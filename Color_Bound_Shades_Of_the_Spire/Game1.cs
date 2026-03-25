@@ -18,6 +18,8 @@ namespace Color_Bound_Shades_Of_the_Spire
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D r;
+
 
         public Game1()
         {
@@ -46,7 +48,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            r = this.Content.Load<Texture2D>("Untitled");
             // TODO: use this.Content to load your game content here
         }
 
@@ -83,7 +85,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(r, new Rectangle(100, 100, 100, 100), Color.Red);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
