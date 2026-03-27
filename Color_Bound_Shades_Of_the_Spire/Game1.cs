@@ -19,8 +19,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont font1;
+        
         Player p;
-        Texture2D r;
+        Texture2D t;
 
 
         public Game1()
@@ -50,7 +51,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            r = this.Content.Load<Texture2D>("Untitled");
+            t = this.Content.Load<Texture2D>("Untitled");
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
             // TODO: use this.Content to load your game content here
         }
@@ -89,12 +90,12 @@ namespace Color_Bound_Shades_Of_the_Spire
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(r, new Rectangle(200, 100, 100, 100), Color.Blue);
-            spriteBatch.Draw(r, new Rectangle(200, 200, 100, 100), Color.Red);
-            spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Purple);
+            spriteBatch.Draw(t, new Rectangle(200, 100, 100, 100), Color.Blue);
+            spriteBatch.Draw(t, new Rectangle(200, 200, 100, 100), Color.Red);
+            spriteBatch.Draw(t, new Rectangle(200, 150, 100, 100), Color.Purple);
             spriteBatch.DrawString(font1, "I really am bound to these colors... I guess i'm COLORBOUND", new Vector2(0, 10), Color.White);
-            spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Brown);
-            spriteBatch.Draw(r, new Rectangle(300, 150, 100, 100), Color.Green);
+            spriteBatch.Draw(t, new Rectangle(200, 150, 100, 100), Color.Brown);
+            spriteBatch.Draw(t, new Rectangle(300, 150, 100, 100), Color.Green);
 
 
             spriteBatch.End();
