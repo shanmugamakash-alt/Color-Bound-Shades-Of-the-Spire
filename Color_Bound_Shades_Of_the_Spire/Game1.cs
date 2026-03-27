@@ -19,6 +19,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont font1;
+        Player p;
         Texture2D r;
 
 
@@ -37,7 +38,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            p = new Player();
             base.Initialize();
         }
 

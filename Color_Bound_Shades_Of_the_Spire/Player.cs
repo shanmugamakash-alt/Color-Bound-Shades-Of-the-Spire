@@ -13,5 +13,9 @@ namespace Color_Bound_Shades_Of_the_Spire
 {
     class Player
     {
+        public Player()
+        {
+
+        }
     }
 }
