@@ -92,6 +92,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             spriteBatch.Draw(r, new Rectangle(200, 200, 100, 100), Color.Red);
             spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Purple);
             spriteBatch.DrawString(font1, "I really am bound to these colors... I guess i'm COLORBOUND", new Vector2(0, 10), Color.White);
+            spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Brown);
+            spriteBatch.Draw(r, new Rectangle(300, 150, 100, 100), Color.Green);
+
+
             spriteBatch.End();
 
             base.Draw(gameTime);
