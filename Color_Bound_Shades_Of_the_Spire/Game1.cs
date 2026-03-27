@@ -88,6 +88,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             spriteBatch.Begin();
             spriteBatch.Draw(r, new Rectangle(100, 100, 100, 100), Color.Blue);
             spriteBatch.Draw(r, new Rectangle(200, 100, 100, 100), Color.Blue);
+            spriteBatch.Draw(r, new Rectangle(200, 200, 100, 100), Color.Red);
             spriteBatch.End();
 
             base.Draw(gameTime);
