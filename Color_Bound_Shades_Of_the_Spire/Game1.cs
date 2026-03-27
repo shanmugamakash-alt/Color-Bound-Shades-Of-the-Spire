@@ -86,7 +86,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(r, new Rectangle(100, 100, 100, 100), Color.Red);
+            spriteBatch.Draw(r, new Rectangle(100, 100, 100, 100), Color.Blue);
             spriteBatch.End();
 
             base.Draw(gameTime);
