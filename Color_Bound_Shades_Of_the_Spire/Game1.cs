@@ -27,6 +27,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
             Content.RootDirectory = "Content";
         }
 
@@ -39,7 +41,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            p = new Player();
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -52,6 +54,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             t = this.Content.Load<Texture2D>("Untitled");
+            p = new Player(t, new Rectangle(100, 100, 100, 100), 1920, 1080);
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
             // TODO: use this.Content to load your game content here
         }
@@ -75,8 +78,12 @@ namespace Color_Bound_Shades_Of_the_Spire
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
-            // TODO: Add your update logic here
+            KeyboardState kb = Keyboard.GetState();
+            if(kb.IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
+            p.move(kb);
 
             base.Update(gameTime);
         }
@@ -90,14 +97,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(t, new Rectangle(200, 100, 100, 100), Color.Blue);
-            spriteBatch.Draw(t, new Rectangle(200, 200, 100, 100), Color.Red);
-            spriteBatch.Draw(t, new Rectangle(200, 150, 100, 100), Color.Purple);
-            spriteBatch.DrawString(font1, "I really am bound to these colors... I guess i'm COLORBOUND", new Vector2(0, 10), Color.White);
-            spriteBatch.Draw(t, new Rectangle(200, 150, 100, 100), Color.Brown);
-            spriteBatch.Draw(t, new Rectangle(300, 150, 100, 100), Color.Green);
-
-
+            p.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
