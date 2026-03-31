@@ -21,7 +21,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         SpriteFont font1;
         Player p;
         Texture2D r;
-
+        string[] fileNames;
+        Texture2D[][] BlockTextures;
+        LevelLoader levelLoader;
 
         public Game1()
         {
@@ -39,6 +41,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             // TODO: Add your initialization logic here
             p = new Player();
+            fileNames = new string[1];
+            fileNames[0] = "Content/level1.txt";
+            BlockTextures = new Texture2D[1][];
+            BlockTextures[0] = new Texture2D[2];
             base.Initialize();
         }
 
@@ -52,6 +58,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             spriteBatch = new SpriteBatch(GraphicsDevice);
             r = this.Content.Load<Texture2D>("Untitled");
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
+            BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[0][1] = this.Content.Load<Texture2D>("images");
+            levelLoader = new LevelLoader(fileNames, BlockTextures);
             // TODO: use this.Content to load your game content here
         }
 
@@ -96,7 +105,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Brown);
             spriteBatch.Draw(r, new Rectangle(300, 150, 100, 100), Color.Green);
 
-
+            levelLoader.DrawAll(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
