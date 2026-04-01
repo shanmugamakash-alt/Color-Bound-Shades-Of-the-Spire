@@ -29,6 +29,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = 1000;
+            graphics.PreferredBackBufferWidth = 1900;
+            IsMouseVisible = true;
         }
 
         /// <summary>
@@ -59,8 +62,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             r = this.Content.Load<Texture2D>("Untitled");
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
-            BlockTextures[0][1] = this.Content.Load<Texture2D>("images");
-            levelLoader = new LevelLoader(fileNames, BlockTextures);
+            BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile");
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
             // TODO: use this.Content to load your game content here
         }
 
@@ -80,11 +83,12 @@ namespace Color_Bound_Shades_Of_the_Spire
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState kb = Keyboard.GetState();
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
-            // TODO: Add your update logic here
+            //replace kb with player call or movement or wtv
+            levelLoader.Update(kb);
 
             base.Update(gameTime);
         }

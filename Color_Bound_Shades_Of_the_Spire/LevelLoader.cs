@@ -15,20 +15,27 @@ namespace Color_Bound_Shades_Of_the_Spire
     public class LevelLoader
     {
         List<Level> levels;
-        public LevelLoader(string[] fileNames, Texture2D[][] Textures)
+        currentLevel CurrentLevel;
+        public enum currentLevel
+        { 
+            level1 = 1,
+        }
+        public LevelLoader(string[] fileNames, Texture2D[][] Textures, int level)
         {
             levels = new List<Level>();
+            CurrentLevel = (currentLevel)level;
             for (int i = 0; i < fileNames.Length; i++)
             {
                 levels.Add(new Level(fileNames[i], Textures[i]));
             }
         }
+        public void Update(KeyboardState kb)
+        {
+            levels[(int)CurrentLevel - 1].Update(kb);
+        }
         public void DrawAll(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < levels.Count; i++)
-            {
-                levels[i].DrawAll(spriteBatch);
-            }
+            levels[(int)CurrentLevel - 1].DrawAll(spriteBatch);
         }
     }
 }
