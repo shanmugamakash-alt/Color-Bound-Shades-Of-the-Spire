@@ -113,7 +113,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             if(kb.IsKeyDown(Keys.D1))
             {
-                p.ChangeColor(Color.Red);
+                if (p.color == Color.White)
+                    p.ChangeColor(Color.Red);
+                else
+                    p.ChangeColor(Color.White);
             }
 
             if (kb.IsKeyDown(Keys.D2))
