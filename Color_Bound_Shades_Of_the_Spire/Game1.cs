@@ -21,6 +21,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         SpriteFont font1;
         
         Player p;
+        Texture2D r;
+        string[] fileNames;
+        Texture2D[][] BlockTextures;
+        LevelLoader levelLoader;
         Texture2D t;
 
 
@@ -30,6 +34,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = 1000;
+            graphics.PreferredBackBufferWidth = 1900;
+            IsMouseVisible = true;
         }
 
         /// <summary>
@@ -41,6 +48,11 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            p = new Player();
+            fileNames = new string[1];
+            fileNames[0] = "Content/level1.txt";
+            BlockTextures = new Texture2D[1][];
+            BlockTextures[0] = new Texture2D[3];
             IsMouseVisible = true;
             base.Initialize();
         }
@@ -56,6 +68,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             t = this.Content.Load<Texture2D>("Untitled");
             p = new Player(t, new Rectangle(100, 100, 100, 100), 1920, 1080);
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
+            BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile");
+            BlockTextures[0][2] = this.Content.Load<Texture2D>("Spike");
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
             // TODO: use this.Content to load your game content here
         }
 
@@ -75,9 +91,12 @@ namespace Color_Bound_Shades_Of_the_Spire
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState kb = Keyboard.GetState();
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            //replace kb with player call or movement or wtv
+            levelLoader.Update(kb);
             KeyboardState kb = Keyboard.GetState();
             if(kb.IsKeyDown(Keys.Escape))
             {
@@ -97,6 +116,14 @@ namespace Color_Bound_Shades_Of_the_Spire
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+            spriteBatch.Draw(r, new Rectangle(200, 100, 100, 100), Color.Blue);
+            spriteBatch.Draw(r, new Rectangle(200, 200, 100, 100), Color.Red);
+            spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Purple);
+            spriteBatch.DrawString(font1, "I really am bound to these colors... I guess i'm COLORBOUND", new Vector2(0, 10), Color.White);
+            spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Brown);
+            spriteBatch.Draw(r, new Rectangle(300, 150, 100, 100), Color.Green);
+
+            levelLoader.DrawAll(spriteBatch);
             p.Draw(spriteBatch);
             spriteBatch.End();
 
