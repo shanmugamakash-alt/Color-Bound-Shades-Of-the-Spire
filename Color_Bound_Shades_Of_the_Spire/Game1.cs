@@ -19,15 +19,20 @@ namespace Color_Bound_Shades_Of_the_Spire
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont font1;
+        
         Player p;
         Texture2D r;
         string[] fileNames;
         Texture2D[][] BlockTextures;
         LevelLoader levelLoader;
+        Texture2D t;
+
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 1000;
             graphics.PreferredBackBufferWidth = 1900;
@@ -48,6 +53,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[0] = "Content/level1.txt";
             BlockTextures = new Texture2D[1][];
             BlockTextures[0] = new Texture2D[3];
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -59,7 +65,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            r = this.Content.Load<Texture2D>("Untitled");
+            t = this.Content.Load<Texture2D>("Untitled");
+            p = new Player(t, new Rectangle(100, 100, 100, 100), 1920, 1080);
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile");
@@ -90,6 +97,12 @@ namespace Color_Bound_Shades_Of_the_Spire
                 this.Exit();
             //replace kb with player call or movement or wtv
             levelLoader.Update(kb);
+            KeyboardState kb = Keyboard.GetState();
+            if(kb.IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
+            p.move(kb);
 
             base.Update(gameTime);
         }
@@ -111,6 +124,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             spriteBatch.Draw(r, new Rectangle(300, 150, 100, 100), Color.Green);
 
             levelLoader.DrawAll(spriteBatch);
+            p.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
