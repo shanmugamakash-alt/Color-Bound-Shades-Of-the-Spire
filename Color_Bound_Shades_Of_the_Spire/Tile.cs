@@ -13,12 +13,20 @@ namespace Color_Bound_Shades_Of_the_Spire
 {
     public class Tile
     {
+        public enum TileType
+        { 
+            wall,
+            floor,
+            spike
+        }
         Texture2D T;
         Rectangle R;
-        public Tile(Texture2D t, Rectangle r)
+        TileType TT;
+        public Tile(Texture2D t, Rectangle r, TileType tt)
         {
             T = t;
             R = r;
+            TT = tt;
         }
 
         public Texture2D GetTex()
@@ -28,6 +36,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         public Rectangle GetRec()
         {
             return R;
+        }
+        public void ChangeRec(Rectangle r)
+        {
+            R = r;
         }
     }
 }

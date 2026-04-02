@@ -33,7 +33,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public void Update(KeyboardState kb)
         {
             if (kb.IsKeyDown(Keys.Left))
-            {
+            { 
                 velocityX += 3;
             }
             if (kb.IsKeyDown(Keys.Right))
@@ -45,10 +45,10 @@ namespace Color_Bound_Shades_Of_the_Spire
                 velocityX--;
             if (velocityX < 0) 
                 velocityX++;
-            if (velocityX > 5)
-                velocityX = 5;
-            if (velocityX < -5)
-                velocityX = -5;
+            if (velocityX > 7)
+                velocityX = 7;
+            if (velocityX < -7)
+                velocityX = -7;
 
             offset += velocityX;
 
@@ -94,14 +94,15 @@ namespace Color_Bound_Shades_Of_the_Spire
             switch (tile)
             {
                 case "f":
-                    tiles[x,y] = new Tile(Textures[0], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize));
+                    tiles[x,y] = new Tile(Textures[0], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.floor);
                     break;
                 case "0":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize));
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.wall);
                     break;
-                default:
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize));
+                case "s":
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.spike);
                     break;
+
             }
         }
 
@@ -112,7 +113,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     Rectangle r = tiles[i, j].GetRec();
-
                     Rectangle drawRect = new Rectangle( r.X + offset,r.Y,r.Width, r.Height);
 
                     spriteBatch.Draw(tiles[i, j].GetTex(), drawRect, Color.White);

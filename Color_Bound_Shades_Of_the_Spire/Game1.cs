@@ -47,7 +47,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames = new string[1];
             fileNames[0] = "Content/level1.txt";
             BlockTextures = new Texture2D[1][];
-            BlockTextures[0] = new Texture2D[2];
+            BlockTextures[0] = new Texture2D[3];
             base.Initialize();
         }
 
@@ -63,6 +63,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile");
+            BlockTextures[0][2] = this.Content.Load<Texture2D>("Spike");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
             // TODO: use this.Content to load your game content here
         }
