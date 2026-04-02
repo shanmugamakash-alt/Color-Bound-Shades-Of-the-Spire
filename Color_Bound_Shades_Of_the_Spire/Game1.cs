@@ -48,7 +48,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            p = new Player();
             fileNames = new string[1];
             fileNames[0] = "Content/level1.txt";
             BlockTextures = new Texture2D[1][];
@@ -97,7 +96,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 this.Exit();
             //replace kb with player call or movement or wtv
             levelLoader.Update(kb);
-            KeyboardState kb = Keyboard.GetState();
             if(kb.IsKeyDown(Keys.Escape))
             {
                 Exit();
@@ -116,13 +114,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(r, new Rectangle(200, 100, 100, 100), Color.Blue);
-            spriteBatch.Draw(r, new Rectangle(200, 200, 100, 100), Color.Red);
-            spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Purple);
-            spriteBatch.DrawString(font1, "I really am bound to these colors... I guess i'm COLORBOUND", new Vector2(0, 10), Color.White);
-            spriteBatch.Draw(r, new Rectangle(200, 150, 100, 100), Color.Brown);
-            spriteBatch.Draw(r, new Rectangle(300, 150, 100, 100), Color.Green);
-
             levelLoader.DrawAll(spriteBatch);
             p.Draw(spriteBatch);
             spriteBatch.End();
