@@ -19,13 +19,18 @@ namespace Color_Bound_Shades_Of_the_Spire
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont font1;
-        
+        Rectangle red;
+        Rectangle yellow;
+        Rectangle blue;
+        Rectangle bar;
+        Rectangle barWhite;
         Player p;
         Texture2D r;
         string[] fileNames;
         Texture2D[][] BlockTextures;
         LevelLoader levelLoader;
         Texture2D t;
+        Texture2D barTex;
 
 
         public Game1()
@@ -48,6 +53,11 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            red = new Rectangle(50, 0, 75, 75);
+            yellow = new Rectangle(150, 0, 75, 75);
+            blue = new Rectangle(250, 0, 75, 75);
+            bar = new Rectangle(0, 100, 400, 100);
+            barWhite = new Rectangle(0, 100, 400, 100);
             fileNames = new string[1];
             fileNames[0] = "Content/level1.txt";
             BlockTextures = new Texture2D[1][];
@@ -70,6 +80,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[0][2] = this.Content.Load<Texture2D>("Spike");
+            barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
             // TODO: use this.Content to load your game content here
         }
@@ -100,7 +111,35 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 Exit();
             }
+            if(kb.IsKeyDown(Keys.D1))
+            {
+                p.ChangeColor(Color.Red);
+            }
+
+            if (kb.IsKeyDown(Keys.D2))
+            {
+                p.ChangeColor(Color.Yellow);
+            }
+
+            if (kb.IsKeyDown(Keys.D3))
+            {
+                p.ChangeColor(Color.Blue);
+            }
             p.move(kb);
+            
+            if(p.color != Color.White)
+            {
+                bar.Width--;
+            }
+            else if(bar.Width < 400)
+            {
+                bar.Width++;
+            }
+
+            if(bar.Width <= 0)
+            {
+                p.ChangeColor(Color.White);
+            }
 
             base.Update(gameTime);
         }
@@ -116,6 +155,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             spriteBatch.Begin();
             levelLoader.DrawAll(spriteBatch);
             p.Draw(spriteBatch);
+            spriteBatch.Draw(t, red, Color.Red);
+            spriteBatch.Draw(t, yellow, Color.Yellow);
+            spriteBatch.Draw(t, blue, Color.Blue);
+            spriteBatch.Draw(t, barWhite, Color.White);
+            spriteBatch.Draw(t, bar, p.color);
             spriteBatch.End();
 
             base.Draw(gameTime);
