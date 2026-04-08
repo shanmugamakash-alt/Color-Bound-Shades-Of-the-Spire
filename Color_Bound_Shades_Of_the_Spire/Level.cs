@@ -44,6 +44,62 @@ namespace Color_Bound_Shades_Of_the_Spire
             try
             {
                 using (StreamReader reader = new StreamReader(path))
+        string fileName;
+        Tile[,] tiles;
+        Texture2D[] Textures;
+        public int tileSize;
+        public int offset, velocityX;
+        public Level(string fileName, Texture2D[] textures)
+        {
+            this.fileName = fileName;
+            tiles = new Tile[20, 50];
+            tileSize = 100;
+            offset = 0;
+            velocityX = 0;
+            Textures = textures;
+            LoadTiles(this.fileName);
+        }
+        //add player as a paramter to check if its reached the middle of the screen, then move to the left (change what you have cuase its useless)
+        public void Update(KeyboardState kb)
+        {
+            if (kb.IsKeyDown(Keys.Left))
+            { 
+                velocityX += 3;
+            }
+            if (kb.IsKeyDown(Keys.Right))
+            {
+                velocityX -= 3;
+            }
+
+            if (velocityX > 0) 
+                velocityX--;
+            if (velocityX < 0) 
+                velocityX++;
+            if (velocityX > 7)
+                velocityX = 7;
+            if (velocityX < -7)
+                velocityX = -7;
+
+            offset += velocityX;
+
+            if (offset > 0)
+            {
+                offset = 0;
+                velocityX = 0;
+            }
+
+            if (offset < -3100)
+            {
+                offset = -3100;
+                velocityX = 0;
+            }
+        }
+        public void LoadTiles(string fileName)
+        {
+            int x = 0;
+            try
+            {
+                using (StreamReader reader = new StreamReader(fileName))
                 {
                     while (!reader.EndOfStream)
                     {
@@ -64,6 +120,11 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         x++;
                         
+                        for (int i = 0; i < tiles.Length; i++)
+                        {
+                            LoadTile(tiles[i], x, i);
+                        }
+                        x++;
                     }
                 }
             }
@@ -85,6 +146,13 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 case "s":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize + offset, y * tileSize + offset, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x,y] = new Tile(Textures[0], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.floor);
+                    break;
+                case "0":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.wall);
+                    break;
+                case "s":
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.spike);
                     break;
 
             }

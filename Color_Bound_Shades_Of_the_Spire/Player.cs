@@ -19,6 +19,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         int height, width;
         float velocity;
         float gravity;
+        public Color color;
         
         public Player(Texture2D t, Rectangle r, int maxwidth, int maxheight)
         {
@@ -28,6 +29,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             rec = r;
             velocity = 0f;
             gravity = 0f;
+            color = Color.White;
         }
 
         public void move(KeyboardState kb)
@@ -75,9 +77,16 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
         }
 
+        public void ChangeColor(Color newColor)
+        {
+            color = newColor;
+        }
+
+
+
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(tex, rec, Color.Red);
+            spritebatch.Draw(tex, rec, color);
         }
     }
 }

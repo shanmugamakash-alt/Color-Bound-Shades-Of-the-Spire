@@ -45,11 +45,14 @@
   <ItemGroup>
     <None Include="level1Rooms\level1R1.txt">
       <Name>level1R1</Name>
+    <None Include="level1.txt">
+      <Name>level1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TileTextures\Tile.jpg">
+    <Compile Include="Tile.jpg">
       <Name>Tile</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -57,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hazards\Spike.png">
+    <Compile Include="Spike.png">
       <Name>Spike</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -67,6 +71,11 @@
       <Name>level1R2</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="bar.jpg">
+      <Name>bar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
