@@ -29,7 +29,7 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Untitled.jpg">
+    <Compile Include="TileTextures\Untitled.jpg">
       <Name>Untitled</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -43,12 +43,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="level1Rooms\level1R1.txt">
+      <Name>level1R1</Name>
     <None Include="level1.txt">
       <Name>level1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TileTextures\Tile.jpg">
     <Compile Include="Tile.jpg">
       <Name>Tile</Name>
       <Importer>TextureImporter</Importer>
@@ -56,6 +59,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hazards\Spike.png">
     <Compile Include="Spike.png">
       <Name>Spike</Name>
       <Importer>TextureImporter</Importer>
@@ -63,6 +67,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="level1Rooms\level1R2.txt">
+      <Name>level1R2</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="bar.jpg">
       <Name>bar</Name>
       <Importer>TextureImporter</Importer>
