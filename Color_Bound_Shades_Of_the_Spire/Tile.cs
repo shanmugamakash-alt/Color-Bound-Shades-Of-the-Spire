@@ -17,7 +17,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         { 
             wall,
             floor,
-            spike
+            spike,
+            exit
         }
         Texture2D T;
         Rectangle R;
@@ -40,6 +41,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         public void ChangeRec(Rectangle r)
         {
             R = r;
+        }
+        public TileType returnType()
+        {
+            return TT;
         }
     }
 }
