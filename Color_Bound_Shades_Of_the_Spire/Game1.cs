@@ -26,7 +26,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         Rectangle barWhite;
         Player p;
         Texture2D r;
-        string[][] fileNames;
         string[] fileNames;
         Texture2D[][] BlockTextures;
         LevelLoader levelLoader;
@@ -54,10 +53,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            fileNames = new string[1][];
-            fileNames[0] = new string[3];
-            fileNames[0][0] = "Content/Level1Rooms/level1R1.txt";
-            fileNames[0][1] = "Content/Level1Rooms/level1R2.txt";
             red = new Rectangle(50, 0, 75, 75);
             yellow = new Rectangle(150, 0, 75, 75);
             blue = new Rectangle(250, 0, 75, 75);
@@ -79,12 +74,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            t = this.Content.Load<Texture2D>("TileTextures/Untitled");
+            t = this.Content.Load<Texture2D>("Untitled");
             p = new Player(t, new Rectangle(100, 100, 100, 100), 1920, 1080);
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
-            BlockTextures[0][0] = this.Content.Load<Texture2D>("TileTextures/Untitled");
-            BlockTextures[0][1] = this.Content.Load<Texture2D>("TileTextures/Tile");
-            BlockTextures[0][2] = this.Content.Load<Texture2D>("Hazards/Spike");
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[0][2] = this.Content.Load<Texture2D>("Spike");
@@ -114,7 +106,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             //replace kb with player call or movement or wtv
-            levelLoader.Update(kb, p);
             levelLoader.Update(kb);
             if(kb.IsKeyDown(Keys.Escape))
             {

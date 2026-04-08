@@ -14,36 +14,6 @@ namespace Color_Bound_Shades_Of_the_Spire
 {
     public class Level
     {
-        string[] fileNames;
-        Tile[,] tiles;
-        Texture2D[] Textures;
-        public int room;
-        public int tileSize;
-        public int offset, velocityX;
-        public Level(string[] fileNames, Texture2D[] textures)
-        {
-            this.fileNames = fileNames;
-            tileSize = 0;
-            offset = 0;
-            velocityX = 0;
-            room = 0;
-            Textures = textures;
-            LoadTiles(this.fileNames);
-        }
-        //add player as a paramter to check if its reached the middle of the screen, then move to the left (change what you have cuase its useless)
-        public void Update(KeyboardState kb, Player player)
-        {
-            room = player.room;
-            LoadTiles(fileNames);
-        }
-        public void LoadTiles(string[] fileNames)
-        {
-            int x = 0;
-            int y = 0;
-            string path = fileNames[room];
-            try
-            {
-                using (StreamReader reader = new StreamReader(path))
         string fileName;
         Tile[,] tiles;
         Texture2D[] Textures;
@@ -105,21 +75,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                     {
                         string line = reader.ReadLine();
                         string[] tiles = line.Split(',');
-                        if (x == 0)
-                        {
-                            this.tiles = new Tile[int.Parse(tiles[0]), int.Parse(tiles[1])];
-                            tileSize = int.Parse(tiles[2]);
-                        }
-                        else
-                        {
-                            for (int i = 0; i < tiles.Length; i++)
-                            {
-                                LoadTile(tiles[i], i, y);
-                            }
-                            y++;
-                        }
-                        x++;
-                        
                         for (int i = 0; i < tiles.Length; i++)
                         {
                             LoadTile(tiles[i], x, i);
@@ -139,13 +94,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             switch (tile)
             {
                 case "f":
-                    tiles[x,y] = new Tile(Textures[0], new Rectangle(x * tileSize + offset, y * tileSize + offset, tileSize, tileSize), Tile.TileType.floor);
-                    break;
-                case "0":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize + offset, y * tileSize + offset, tileSize, tileSize), Tile.TileType.wall);
-                    break;
-                case "s":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize + offset, y * tileSize + offset, tileSize, tileSize), Tile.TileType.spike);
                     tiles[x,y] = new Tile(Textures[0], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.floor);
                     break;
                 case "0":

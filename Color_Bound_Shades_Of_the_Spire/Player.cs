@@ -11,11 +11,10 @@ using System.Linq;
 
 namespace Color_Bound_Shades_Of_the_Spire
 {
-    public class Player
+    class Player
     {
         Texture2D tex;
         Rectangle rec;
-        public int room;
         int height, width;
         float velocity;
         float gravity;
