@@ -21,6 +21,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         public Color color;
         public bool onGround;
         public int room;
+        int double_jumpcnt;
+        KeyboardState oldkb;
         
         public Player(Texture2D t, Rectangle r)
         {
@@ -30,36 +32,63 @@ namespace Color_Bound_Shades_Of_the_Spire
             room = 1;
             position = new Vector2(rec.X, rec.Y);
             velocity = Vector2.Zero;
-            gravity = .95f;
+            gravity = .75f;
             onGround = false;
             color = Color.White;
+            oldkb = Keyboard.GetState();
+            double_jumpcnt = 2;
         }
 
         public void move(KeyboardState kb)
         {
-
+            MouseState mouse = Mouse.GetState();
+            
             if (kb.IsKeyDown(Keys.Right))
             {
                 velocity.X += 1f;
+                if (kb.IsKeyDown(Keys.Space) && kb != oldkb)
+                {
+                    velocity.X += 15;
+                }
             }
             if (kb.IsKeyDown(Keys.Left))
             {
                 velocity.X -= 1f;
+                if (kb.IsKeyDown(Keys.Space) && kb != oldkb)
+                {
+                    velocity.X -= 15;
+                }
             }
-            if (kb.IsKeyDown(Keys.Up) && onGround)
+            if (kb.IsKeyDown(Keys.Up) && double_jumpcnt > 0 && kb != oldkb)
             {
-                velocity.Y -= 25f;
+                if (double_jumpcnt == 1)
+                {
+                    velocity.Y -= 10f;
+                    double_jumpcnt -= 1;
+                }
+                velocity.Y -= 20f;
+                double_jumpcnt -= 1;
+                
             }
+            
+            
             position += velocity;
 
             if (velocity.Y < 0)
                 onGround = false;
-            if (velocity.Y < -25f)
-                velocity.Y = -25f;
+            if (velocity.Y < -20f)
+                velocity.Y = -20f;
 
             velocity.X *= .9f;
             if (!onGround)
                 velocity.Y += gravity;
+
+            if(onGround)
+            {
+                double_jumpcnt = 2;
+            }
+
+            oldkb = kb;
         }
 
         public void ChangeColor(Color newColor)
@@ -93,6 +122,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                             velocity.Y = 0;
                             onGround = true; // mark that we are on a tile
                         }
+
+                        
                     }
                     else if (tiles[i, j].returnType() == Tile.TileType.exit && position.X > tiles[i, j].GetRec().X)
                     {
