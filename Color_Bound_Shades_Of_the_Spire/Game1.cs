@@ -30,6 +30,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         LevelLoader levelLoader;
         Texture2D t;
         Texture2D barTex;
+        KeyboardState oldKB;
 
 
         public Game1()
@@ -41,6 +42,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             graphics.PreferredBackBufferHeight = 1000;
             graphics.PreferredBackBufferWidth = 1900;
             IsMouseVisible = true;
+            oldKB = Keyboard.GetState();
         }
 
         /// <summary>
@@ -145,6 +147,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
 
             base.Update(gameTime);
+            oldKB = kb;
         }
 
         /// <summary>
