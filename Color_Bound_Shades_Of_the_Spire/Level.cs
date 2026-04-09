@@ -14,70 +14,63 @@ namespace Color_Bound_Shades_Of_the_Spire
 {
     public class Level
     {
-        string fileName;
+        string[] fileNames;
         Tile[,] tiles;
         Texture2D[] Textures;
+        public int room;
         public int tileSize;
         public int offset, velocityX;
-        public Level(string fileName, Texture2D[] textures)
+        public Level(string[] fileNames, Texture2D[] textures)
         {
-            this.fileName = fileName;
-            tiles = new Tile[20, 50];
+            this.fileNames = fileNames;
             tileSize = 100;
             offset = 0;
             velocityX = 0;
+            room = 0;
             Textures = textures;
-            LoadTiles(this.fileName);
+            LoadTiles(this.fileNames);
         }
+
         //add player as a paramter to check if its reached the middle of the screen, then move to the left (change what you have cuase its useless)
-        public void Update(KeyboardState kb)
+        public void Update(Player player, KeyboardState kb)
         {
-            if (kb.IsKeyDown(Keys.Left))
-            { 
-                velocityX += 3;
-            }
-            if (kb.IsKeyDown(Keys.Right))
+            if (room != player.room)
             {
-                velocityX -= 3;
+                LoadTiles(fileNames);
+                room = player.room;
+                player.position = new Vector2(400, 400);
             }
+            player.collision(tiles);
+            player.move(kb);
+            player.UpdateRectangle();
 
-            if (velocityX > 0) 
-                velocityX--;
-            if (velocityX < 0) 
-                velocityX++;
-            if (velocityX > 7)
-                velocityX = 7;
-            if (velocityX < -7)
-                velocityX = -7;
+            
 
-            offset += velocityX;
-
-            if (offset > 0)
-            {
-                offset = 0;
-                velocityX = 0;
-            }
-
-            if (offset < -3100)
-            {
-                offset = -3100;
-                velocityX = 0;
-            }
         }
-        public void LoadTiles(string fileName)
+        public void LoadTiles(string[] fileNames)
         {
             int x = 0;
+            int y = 0;
+            string path = fileNames[room];
             try
             {
-                using (StreamReader reader = new StreamReader(fileName))
+                using (StreamReader reader = new StreamReader(path))
                 {
                     while (!reader.EndOfStream)
                     {
                         string line = reader.ReadLine();
                         string[] tiles = line.Split(',');
-                        for (int i = 0; i < tiles.Length; i++)
+                        if (x == 0)
                         {
-                            LoadTile(tiles[i], x, i);
+                            this.tiles = new Tile[int.Parse(tiles[0]), int.Parse(tiles[1])];
+                        }
+                        else
+                        {
+                            for (int i = 0; i < tiles.Length; i++)
+                            {
+                                LoadTile(tiles[i], i, y);
+                            }
+                            y++;
                         }
                         x++;
                     }
@@ -94,18 +87,20 @@ namespace Color_Bound_Shades_Of_the_Spire
             switch (tile)
             {
                 case "f":
-                    tiles[x,y] = new Tile(Textures[0], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.floor);
+                    tiles[x,y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
                     break;
                 case "0":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.wall);
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.wall);
                     break;
                 case "s":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(y * tileSize + offset, x * tileSize + offset, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+                case "E":
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
                     break;
 
             }
         }
-
         public void DrawAll(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
