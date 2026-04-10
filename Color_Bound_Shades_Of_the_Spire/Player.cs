@@ -22,8 +22,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         public bool onGround;
         public int room;
         int double_jumpcnt;
+        MouseState oldMouse;
         KeyboardState oldkb;
-        
+        //int grapple;
+
         public Player(Texture2D t, Rectangle r)
         {
 
@@ -36,7 +38,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             onGround = false;
             color = Color.White;
             oldkb = Keyboard.GetState();
+            oldMouse = Mouse.GetState();
             double_jumpcnt = 2;
+            //grapple = 20;
+            
+
         }
 
         public void move(KeyboardState kb)
@@ -70,14 +76,39 @@ namespace Color_Bound_Shades_Of_the_Spire
                 double_jumpcnt -= 1;
                 
             }
-            
-            
+
+            if (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
+            {
+                Vector2 target = new Vector2(mouse.X, mouse.Y);
+                Vector2 direction = target - position;
+
+                float distance = direction.Length();
+
+                if(distance > 0)
+                {
+                    direction.Normalize();
+                    float variableForce = distance * 0.10f;
+
+                    variableForce = MathHelper.Clamp(variableForce, 5, 100);
+                    velocity = direction * variableForce;
+                }
+            }
+
             position += velocity;
 
-            if (velocity.Y < 0)
-                onGround = false;
-            if (velocity.Y < -20f)
-                velocity.Y = -20f;
+            //if (velocity.Y < 0)
+            //    onGround = false;
+            //if (mouse.LeftButton == ButtonState.Pressed && grapple >= 0)
+            //{
+            //    if (velocity.Y < -33f)
+            //        velocity.Y = -33f;
+            //    grapple--;
+            //}
+            //else
+            //{
+                if (velocity.Y < -20f)
+                    velocity.Y = -20f;
+            //}
 
             velocity.X *= .9f;
             if (!onGround)
@@ -86,9 +117,12 @@ namespace Color_Bound_Shades_Of_the_Spire
             if(onGround)
             {
                 double_jumpcnt = 2;
+                //grapple = 20;
             }
 
             oldkb = kb;
+            oldMouse = mouse;
+            
         }
 
         public void ChangeColor(Color newColor)
@@ -136,6 +170,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             rec = new Rectangle((int)position.X,(int)position.Y,rec.Width, rec.Height);
         }
+
+        
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(tex, rec, color);

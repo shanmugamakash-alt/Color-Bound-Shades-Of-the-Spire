@@ -163,6 +163,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             spriteBatch.Draw(t, blue, Color.Blue);
             spriteBatch.Draw(t, barWhite, Color.White);
             spriteBatch.Draw(t, bar, p.color);
+           
             spriteBatch.End();
 
             base.Draw(gameTime);
