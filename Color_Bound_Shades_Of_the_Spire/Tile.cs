@@ -18,7 +18,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             wall,
             floor,
             spike,
-            exit
+            exit,
+            start
         }
         Texture2D T;
         Rectangle R;

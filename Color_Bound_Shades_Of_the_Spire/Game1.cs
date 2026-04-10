@@ -61,6 +61,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[0] = new string[3];
             fileNames[0][0] = "Content/level1R1.txt";
             fileNames[0][1] = "Content/level1R2.txt";
+            fileNames[0][2] = "Content/level1R3.txt";
             BlockTextures = new Texture2D[1][];
             BlockTextures[0] = new Texture2D[3];
             IsMouseVisible = true;
