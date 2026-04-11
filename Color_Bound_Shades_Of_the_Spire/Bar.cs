@@ -116,7 +116,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     redSize--;
                     yellowSize++;
                     blueSize++;
-                    bar.Width = (int)redSize / 2;
+                    bar.Width = (int)redSize/2;
                     break;
                 case "yellow":
                     redSize++;
