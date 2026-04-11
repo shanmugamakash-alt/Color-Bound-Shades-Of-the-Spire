@@ -18,57 +18,147 @@ namespace Color_Bound_Shades_Of_the_Spire
         double redSize;
         double blueSize;
         double yellowSize;
+        string currentColor;
         Texture2D tex;
+        Texture2D barTex;
+        Texture2D baseTex;
         Rectangle red;
         Rectangle blue;
         Rectangle yellow;
 
-        public Bar(Texture2D tex)
+        public Bar(Texture2D tex, Texture2D baseTex)
         {
             bar = new Rectangle(10, 10, 75, 150);
-            redSize = 150;
-            blueSize = 150;
-            yellowSize = 150;
+            redSize = 300;
+            blueSize = 300;
+            yellowSize = 300;
             background = new Rectangle(10, 10, 75, 150);
             red = new Rectangle(10, 100, 50,50);
             yellow = new Rectangle(80, 100, 50, 50);
             blue = new Rectangle(150, 100, 50, 50);
+            currentColor = "white";
+            this.tex = tex;
+            this.baseTex = baseTex;
+            barTex = baseTex;
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(barTex, bar, Color.White);
+            spriteBatch.Draw(tex, background, Color.Black);
+            spriteBatch.Draw(tex, red, Color.Red);
+            spriteBatch.Draw(tex, red, Color.Yellow);
+            spriteBatch.Draw(tex, red, Color.Blue);
+        }
         public void Update(KeyboardState kb, KeyboardState oldKB, Player p)
         {
-            if (kb.IsKeyDown(Keys.D1) && kb != oldKB)
+            if (kb.IsKeyDown(Keys.D1) && kb != oldKB && redSize >= 10)
             {
                 if (p.color == Color.White)
+                {
                     p.ChangeColor(Color.Red);
+                    currentColor = "red";
+                    barTex = tex;
+                }
                 else
+                {
                     p.ChangeColor(Color.White);
+                    currentColor = "white";
+                    barTex = baseTex;
+                }
+
             }
 
-            if (kb.IsKeyDown(Keys.D2))
+            if (kb.IsKeyDown(Keys.D2) && kb != oldKB && yellowSize >= 10)
             {
-                p.ChangeColor(Color.Yellow);
+                if (p.color == Color.White)
+                {
+                    p.ChangeColor(Color.Yellow);
+                    currentColor = "yellow";
+                    barTex = tex;
+                }
+                else
+                {
+                    p.ChangeColor(Color.White);
+                    currentColor = "white";
+                    barTex = baseTex;
+                }
+
             }
 
-            if (kb.IsKeyDown(Keys.D3))
+            if (kb.IsKeyDown(Keys.D3) && kb != oldKB && blueSize >= 10)
             {
-                p.ChangeColor(Color.Blue);
+                if (p.color == Color.White)
+                {
+                    p.ChangeColor(Color.Blue);
+                    currentColor = "blue";
+                    barTex = tex;
+                }
+                else
+                {
+                    p.ChangeColor(Color.White);
+                    currentColor = "white";
+                    barTex = baseTex;
+                }
+
             }
 
-            if (p.color != Color.White)
+            switch (currentColor)
             {
-                bar.Width--;
-            }
-            else if (bar.Width < 400)
-            {
-                bar.Width++;
-            }
+                case "white":
+                    redSize++;
+                    yellowSize++;
+                    blueSize++;
 
-            if (bar.Width <= 0)
+                    bar.Width = 250;
+                    break;
+                case "red":
+                    redSize--;
+                    yellowSize++;
+                    blueSize++;
+                    bar.Width = (int)redSize / 2;
+                    break;
+                case "yellow":
+                    redSize++;
+                    yellowSize--;
+                    blueSize++;
+                    bar.Width = (int)yellowSize / 2;
+                    break;
+                case "blue":
+                    redSize--;
+                    yellowSize++;
+                    blueSize--;
+                    bar.Width = (int)blueSize / 2;
+                    break;
+
+            }
+            if (redSize <= 0)
             {
                 p.ChangeColor(Color.White);
+                redSize = 0;
             }
+
+            if (blueSize <= 0)
+            {
+                p.ChangeColor(Color.White);
+                blueSize = 0;
+            }
+
+            if (yellowSize <= 0)
+            {
+                p.ChangeColor(Color.White);
+                yellowSize = 0;
+            }
+
+            if (redSize >= 300)
+                redSize = 300;
+            if ( yellowSize >= 300)
+                yellowSize = 300;
+            if (blueSize >= 300)
+                blueSize = 300;
+
 
         }
     }
+
 }
