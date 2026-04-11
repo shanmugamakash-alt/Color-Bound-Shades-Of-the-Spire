@@ -28,11 +28,11 @@ namespace Color_Bound_Shades_Of_the_Spire
 
         public Bar(Texture2D tex, Texture2D baseTex)
         {
-            bar = new Rectangle(10, 10, 75, 150);
+            bar = new Rectangle(10, 10, 150, 75);
             redSize = 300;
             blueSize = 300;
             yellowSize = 300;
-            background = new Rectangle(10, 10, 75, 150);
+            background = new Rectangle(10, 10, 150, 75);
             red = new Rectangle(10, 150, 50,50);
             yellow = new Rectangle(80, 150, 50, 50);
             blue = new Rectangle(150, 150, 50, 50);
