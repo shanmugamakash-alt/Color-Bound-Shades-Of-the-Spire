@@ -33,28 +33,28 @@ namespace Color_Bound_Shades_Of_the_Spire
             blueSize = 300;
             yellowSize = 300;
             background = new Rectangle(10, 10, 75, 150);
-            red = new Rectangle(10, 100, 50,50);
-            yellow = new Rectangle(80, 100, 50, 50);
-            blue = new Rectangle(150, 100, 50, 50);
+            red = new Rectangle(10, 150, 50,50);
+            yellow = new Rectangle(80, 150, 50, 50);
+            blue = new Rectangle(150, 150, 50, 50);
             currentColor = "white";
             this.tex = tex;
             this.baseTex = baseTex;
             barTex = baseTex;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Player p)
         {
-            spriteBatch.Draw(barTex, bar, Color.White);
             spriteBatch.Draw(tex, background, Color.Black);
+            spriteBatch.Draw(barTex, bar,p.color);
             spriteBatch.Draw(tex, red, Color.Red);
-            spriteBatch.Draw(tex, red, Color.Yellow);
-            spriteBatch.Draw(tex, red, Color.Blue);
+            spriteBatch.Draw(tex, yellow, Color.Yellow);
+            spriteBatch.Draw(tex, blue, Color.Blue);
         }
         public void Update(KeyboardState kb, KeyboardState oldKB, Player p)
         {
             if (kb.IsKeyDown(Keys.D1) && kb != oldKB && redSize >= 10)
             {
-                if (p.color == Color.White)
+                if (p.color != Color.Red)
                 {
                     p.ChangeColor(Color.Red);
                     currentColor = "red";
@@ -71,7 +71,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             if (kb.IsKeyDown(Keys.D2) && kb != oldKB && yellowSize >= 10)
             {
-                if (p.color == Color.White)
+                if (p.color != Color.Yellow)
                 {
                     p.ChangeColor(Color.Yellow);
                     currentColor = "yellow";
@@ -88,7 +88,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             if (kb.IsKeyDown(Keys.D3) && kb != oldKB && blueSize >= 10)
             {
-                if (p.color == Color.White)
+                if (p.color != Color.Blue)
                 {
                     p.ChangeColor(Color.Blue);
                     currentColor = "blue";
@@ -136,18 +136,24 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 p.ChangeColor(Color.White);
                 redSize = 0;
+                currentColor = "white";
+                barTex = baseTex;
             }
 
             if (blueSize <= 0)
             {
                 p.ChangeColor(Color.White);
                 blueSize = 0;
+                currentColor = "white";
+                barTex = baseTex;
             }
 
             if (yellowSize <= 0)
             {
                 p.ChangeColor(Color.White);
                 yellowSize = 0;
+                currentColor = "white";
+                barTex = baseTex;
             }
 
             if (redSize >= 300)

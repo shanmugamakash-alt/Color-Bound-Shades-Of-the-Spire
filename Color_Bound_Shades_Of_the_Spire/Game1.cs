@@ -31,6 +31,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D t;
         Texture2D barTex;
         KeyboardState oldKB;
+        Bar barUI;
 
 
         public Game1()
@@ -86,6 +87,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][2] = this.Content.Load<Texture2D>("Spike");
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
+            barUI = new Bar(BlockTextures[0][0], barTex);
             // TODO: use this.Content to load your game content here
         }
 
@@ -111,40 +113,10 @@ namespace Color_Bound_Shades_Of_the_Spire
                 this.Exit();
             //replace kb with player call or movement or wtv
             levelLoader.Update(p, kb);
+            barUI.Update(kb, oldKB, p);
             if(kb.IsKeyDown(Keys.Escape))
             {
                 Exit();
-            }
-            if(kb.IsKeyDown(Keys.D1))
-            {
-                if (p.color == Color.White)
-                    p.ChangeColor(Color.Red);
-                else
-                    p.ChangeColor(Color.White);
-            }
-
-            if (kb.IsKeyDown(Keys.D2))
-            {
-                p.ChangeColor(Color.Yellow);
-            }
-
-            if (kb.IsKeyDown(Keys.D3))
-            {
-                p.ChangeColor(Color.Blue);
-            }
-            
-            if(p.color != Color.White)
-            {
-                bar.Width--;
-            }
-            else if(bar.Width < 400)
-            {
-                bar.Width++;
-            }
-
-            if(bar.Width <= 0)
-            {
-                p.ChangeColor(Color.White);
             }
 
             base.Update(gameTime);
@@ -162,11 +134,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             spriteBatch.Begin();
             levelLoader.DrawAll(spriteBatch);
             p.Draw(spriteBatch);
-            spriteBatch.Draw(t, red, Color.Red);
-            spriteBatch.Draw(t, yellow, Color.Yellow);
-            spriteBatch.Draw(t, blue, Color.Blue);
-            spriteBatch.Draw(t, barWhite, Color.White);
-            spriteBatch.Draw(t, bar, p.color);
+            barUI.Draw(spriteBatch,p);
             spriteBatch.End();
 
             base.Draw(gameTime);
