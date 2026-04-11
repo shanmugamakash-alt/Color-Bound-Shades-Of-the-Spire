@@ -14,8 +14,8 @@ namespace Color_Bound_Shades_Of_the_Spire
     //this is for level controlls, so level selection would go here and passing other values
     public class LevelLoader
     {
-        List<Level> levels;
-        currentLevel CurrentLevel;
+        public List<Level> levels;
+        public currentLevel CurrentLevel;
         public enum currentLevel
         { 
             level1 = 1,
@@ -31,7 +31,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
         public void Update(Player player, KeyboardState kb)
         {
-            levels[(int)CurrentLevel - 1].Update(player, kb);
+            levels[(int)CurrentLevel - 1].Update(player, kb, this);
         }
         public void DrawAll(SpriteBatch spriteBatch)
         {
