@@ -43,8 +43,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1R1.txt">
-      <Name>level1R1</Name>
+    <None Include="level1TR1.txt">
+      <Name>level1TR1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -70,16 +70,36 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1R2.txt">
-      <Name>level1R2</Name>
+    <None Include="level1TR2.txt">
+      <Name>level1TR2</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1R3.txt">
-      <Name>level1R3</Name>
+    <None Include="level1TR3.txt">
+      <Name>level1TR3</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="level1TR4.txt">
+      <Name>level1TR4</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Key.png">
+      <Name>Key</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="checkpoint.jpg">
+      <Name>checkpoint</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

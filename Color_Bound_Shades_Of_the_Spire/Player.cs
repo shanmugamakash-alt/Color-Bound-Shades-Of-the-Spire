@@ -14,17 +14,22 @@ namespace Color_Bound_Shades_Of_the_Spire
     public class Player
     {
         Texture2D tex;
+        Tile checkpointTile;
         public Rectangle rec;
         public Vector2 position;
         Vector2 velocity;
         float gravity;
         public Color color;
         public bool onGround;
+        public bool checkPointReached;
         public bool dead;
         public int deathTimer;
         public int room;
         public Vector2 startPos;
         int double_jump;
+        public int dash;
+        public int dashTimer;
+        public int keyCount;
         KeyboardState oldkb;
         
         public Player(Texture2D t, Rectangle r)
@@ -43,6 +48,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             color = Color.White;
             oldkb = Keyboard.GetState();
             double_jump = 2;
+            keyCount = 0;
+            dash = 1;
+            dashTimer = 90;
+            checkPointReached = false;
         }
 
         public void move(KeyboardState kb, Level level)
@@ -54,17 +63,19 @@ namespace Color_Bound_Shades_Of_the_Spire
                 if (kb.IsKeyDown(Keys.Right))
                 {
                     velocity.X += 1f * level.scale;
-                    if (kb.IsKeyDown(Keys.Space) && kb != oldkb)
+                    if (kb.IsKeyDown(Keys.Space) && kb != oldkb && dash == 1)
                     {
-                        velocity.X += 15 * level.scale;
+                        velocity.X += 25 * level.scale;
+                        dash = 0;
                     }
                 }
                 if (kb.IsKeyDown(Keys.Left))
                 {
                     velocity.X -= 1f * level.scale;
-                    if (kb.IsKeyDown(Keys.Space) && kb != oldkb)
+                    if (kb.IsKeyDown(Keys.Space) && kb != oldkb && dash == 1)
                     {
-                        velocity.X -= 15 * level.scale;
+                        velocity.X -= 25 * level.scale;
+                        dash = 0;
                     }
                 }
                 if (kb.IsKeyDown(Keys.Up) && double_jump > 0 && kb != oldkb)
@@ -92,12 +103,20 @@ namespace Color_Bound_Shades_Of_the_Spire
                 if (!onGround)
                     velocity.Y += gravity;
 
-                if (onGround)
-                {
-                    double_jump = 2;
-                }
-
-                oldkb = kb;
+            if (onGround)
+            {
+             double_jump = 2;
+            }
+            if (dash == 0)
+            {
+                dashTimer -= 1;
+            }
+            if (dashTimer <= 0)
+            {
+                dash = 1;
+                dashTimer = 90;
+            }
+            oldkb = kb;
             
         }
 
@@ -105,7 +124,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             color = newColor;
         }
-        public void collision(Tile[,] tiles, Level level)
+        public void collision(Tile[,] tiles, Level level, LevelLoader LL)
         {
             onGround = false;
             for (int i = 0; i < tiles.GetLength(0); i++)
@@ -151,7 +170,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                     else if (tiles[i, j].returnType() == Tile.TileType.exit && rec.Intersects(tiles[i, j].GetRec()))
                     {
                         room += 1;
-                        Console.WriteLine(room);
                         level.initial = true;
                         return;
                     }
@@ -173,6 +191,30 @@ namespace Color_Bound_Shades_Of_the_Spire
                             dead = true;
                         }
                     }
+                    else if (tiles[i, j].returnType() == Tile.TileType.checkpoint)
+                    {
+                        if (tiles[i, j] != checkpointTile)
+                        {
+                            checkPointReached = false;
+                        }
+                        if (rec.Intersects(tiles[i, j].GetRec()) && !checkPointReached)
+                        {
+                            level.checkpoint += 1;
+                            checkPointReached = true;
+                            checkpointTile = tiles[i, j];
+                        }
+
+                    }
+                    else if (tiles[i, j].returnType() == Tile.TileType.key)
+                    {
+                        if (rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            tiles[i, j].setTileType(Tile.TileType.air);
+                            tiles[i, j].setTex(null);
+                            keyCount += 1;
+                            Console.WriteLine(keyCount);
+                        }
+                    }
                 }
             }
             if (dead)
@@ -181,10 +223,26 @@ namespace Color_Bound_Shades_Of_the_Spire
                 if (deathTimer <= 0)
                 {
                     dead = false;
-                    position = startPos;
+                    respawnCheckpoint(level.checkpoint, LL);
                     UpdateRectangle();
                     deathTimer = 60;
                 }
+            }
+        }
+        public void respawnCheckpoint(int checkpoint, LevelLoader LL)
+        {
+            switch (LL.CurrentLevel)
+            {
+                case LevelLoader.currentLevel.level1:
+                    if (checkpoint == 0)
+                    {
+                        position = startPos;
+                    }
+                    else
+                    {
+                        position = new Vector2(checkpointTile.GetRec().X, checkpointTile.GetRec().Y);
+                    }
+                    break;
             }
         }
         public void UpdateRectangle()

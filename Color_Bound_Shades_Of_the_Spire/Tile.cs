@@ -15,9 +15,11 @@ namespace Color_Bound_Shades_Of_the_Spire
     {
         public enum TileType
         { 
-            wall,
+            air,
             floor,
             spike,
+            checkpoint,
+            key,
             exit,
             start
         }
@@ -46,6 +48,14 @@ namespace Color_Bound_Shades_Of_the_Spire
         public TileType returnType()
         {
             return TT;
+        }
+        public void setTileType(TileType tt)
+        {
+            TT = tt;
+        }
+        public void setTex(Texture2D t)
+        {
+            T = t;
         }
     }
 }

@@ -58,12 +58,13 @@ namespace Color_Bound_Shades_Of_the_Spire
             bar = new Rectangle(0, 100, 400, 100);
             barWhite = new Rectangle(0, 100, 400, 100);
             fileNames = new string[1][];
-            fileNames[0] = new string[3];
-            fileNames[0][0] = "Content/level1R1.txt";
-            fileNames[0][1] = "Content/level1R2.txt";
-            fileNames[0][2] = "Content/level1R3.txt";
+            fileNames[0] = new string[4];
+            fileNames[0][0] = "Content/level1TR1.txt";
+            fileNames[0][1] = "Content/level1TR2.txt";
+            fileNames[0][2] = "Content/level1TR3.txt";
+            fileNames[0][3] = "Content/level1TR4.txt";
             BlockTextures = new Texture2D[1][];
-            BlockTextures[0] = new Texture2D[3];
+            BlockTextures[0] = new Texture2D[5];
             IsMouseVisible = true;
             base.Initialize();
         }
@@ -82,6 +83,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[0][2] = this.Content.Load<Texture2D>("Spike");
+            BlockTextures[0][3] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[0][4] = this.Content.Load<Texture2D>("Key");
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
             // TODO: use this.Content to load your game content here

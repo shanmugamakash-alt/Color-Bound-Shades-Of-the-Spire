@@ -21,6 +21,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int tileSize;
         public int offset, velocityX;
         public bool initial;
+        public int checkpoint;
         public float scale;
         public Level(string[] fileNames, Texture2D[] textures)
         {
@@ -32,19 +33,18 @@ namespace Color_Bound_Shades_Of_the_Spire
             scale = 1;
             Textures = textures;
             initial = true;
+            checkpoint = 0;
             LoadTiles(this.fileNames);
         }
 
         //add player as a paramter to check if its reached the middle of the screen, then move to the left (change what you have cuase its useless)
-        public void Update(Player player, KeyboardState kb)
+        public void Update(Player player, KeyboardState kb, LevelLoader LL)
         {
-            player.collision(tiles, this);
+            player.collision(tiles, this, LL);
             if (room != player.room)
             {
-                Console.WriteLine(room);
                 LoadTiles(fileNames);
                 room = player.room;
-                Console.WriteLine(room);
             }
             player.move(kb, this);
             player.UpdateRectangle();
@@ -94,7 +94,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x,y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
                     break;
                 case "0":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.wall);
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
                 case "s":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
@@ -103,7 +103,13 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
                     break;
                 case "S":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    break;
+                case "c":
+                    tiles[x, y] = new Tile(Textures[3], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.checkpoint);
+                    break;
+                case "k":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.key);
                     break;
 
             }
@@ -120,11 +126,12 @@ namespace Color_Bound_Shades_Of_the_Spire
                         Rectangle r = tiles[i, j].GetRec();
                         Rectangle drawRect = new Rectangle(r.X + offset, r.Y, r.Width, r.Height);
 
-                        // Safety 3: Check if texture exists
                         if (tiles[i, j].GetTex() != null)
                         {
                             spriteBatch.Draw(tiles[i, j].GetTex(), drawRect, Color.White);
                         }
+                        else
+                            spriteBatch.Draw(Textures[1], drawRect, Color.White);
                     }
                 }
             }
