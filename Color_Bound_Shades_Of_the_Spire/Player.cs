@@ -126,106 +126,130 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
         public void collision(Tile[,] tiles, Level level, LevelLoader LL)
         {
-            onGround = false;
-            for (int i = 0; i < tiles.GetLength(0); i++)
+            
+            if (tiles == null)
             {
-                for (int j = 0; j < tiles.GetLength(1); j++)
+
+            }
+            else
+            {
+                onGround = false;
+                for (int i = 0; i < tiles.GetLength(0); i++)
                 {
-                    if (tiles[i, j] == null) 
-                        continue;
+                    for (int j = 0; j < tiles.GetLength(1); j++)
+                    {
+                        if (tiles[i, j] == null)
+                            continue;
 
-                    if (tiles[i, j].returnType() == Tile.TileType.floor)
-                    {
-                        Rectangle tileRec = tiles[i, j].GetRec();
+                        if (tiles[i, j].returnType() == Tile.TileType.floor)
+                        {
+                            Rectangle tileRec = tiles[i, j].GetRec();
 
-                        if (position.X + rec.Width > tileRec.X && position.X < tileRec.X + tileRec.Width)
-                        {
-                            if (velocity.Y >= 0 && position.Y + rec.Height <= tileRec.Y + velocity.Y + 1f && position.Y + rec.Height >= tileRec.Y)
+                            if (position.X + rec.Width > tileRec.X && position.X < tileRec.X + tileRec.Width)
                             {
-                                position.Y = tileRec.Y - rec.Height;
-                                velocity.Y = 0;
-                                onGround = true;
+                                if (velocity.Y >= 0 && position.Y + rec.Height <= tileRec.Y + velocity.Y + 1f && position.Y + rec.Height >= tileRec.Y)
+                                {
+                                    position.Y = tileRec.Y - rec.Height;
+                                    velocity.Y = 0;
+                                    onGround = true;
+                                }
+                                else if (velocity.Y < 0 && position.Y <= tileRec.Y + tileRec.Height && position.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f)
+                                {
+                                    position.Y = tileRec.Y + tileRec.Height;
+                                    velocity.Y = 0;
+                                }
                             }
-                            else if (velocity.Y < 0 && position.Y <= tileRec.Y + tileRec.Height && position.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f)
+                            if (position.Y + rec.Height > tileRec.Y && position.Y < tileRec.Y + tileRec.Height)
                             {
-                                position.Y = tileRec.Y + tileRec.Height;
-                                velocity.Y = 0;
+                                if (velocity.X > 0 && position.X + rec.Width >= tileRec.X && position.X + rec.Width <= tileRec.X + velocity.X + 1f)
+                                {
+                                    position.X = tileRec.X - rec.Width;
+                                    velocity.X = 0;
+                                }
+                                else if (velocity.X < 0 && position.X <= tileRec.X + tileRec.Width && position.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
+                                {
+                                    position.X = tileRec.X + tileRec.Width;
+                                    velocity.X = 0;
+                                }
                             }
-                        }
-                        if (position.Y + rec.Height > tileRec.Y && position.Y < tileRec.Y + tileRec.Height)
-                        {
-                            if (velocity.X > 0 && position.X + rec.Width >= tileRec.X && position.X + rec.Width <= tileRec.X + velocity.X + 1f)
-                            {
-                                position.X = tileRec.X - rec.Width;
-                                velocity.X = 0;
-                            }
-                            else if (velocity.X < 0 && position.X <= tileRec.X + tileRec.Width && position.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
-                            {
-                                position.X = tileRec.X + tileRec.Width;
-                                velocity.X = 0;
-                            }
-                        }
 
-                    }
-                    else if (tiles[i, j].returnType() == Tile.TileType.exit && rec.Intersects(tiles[i, j].GetRec()))
-                    {
-                        room += 1;
-                        level.initial = true;
-                        return;
-                    }
-                    else if (tiles[i, j].returnType() == Tile.TileType.start)
-                    {
-                        if (level.initial)
-                        {
-                            position = new Vector2(tiles[i, j].GetRec().X, tiles[i, j].GetRec().Y);
-                            startPos = position;
-                            rec = tiles[i, j].GetRec();
-                            UpdateRectangle();
-                            level.initial = false;
                         }
-                    }
-                    else if (tiles[i, j].returnType() == Tile.TileType.spike)
-                    {
-                        if (!dead && rec.Intersects(new Rectangle(tiles[i, j].GetRec().X + (int)(20 * level.scale), tiles[i, j].GetRec().Y + (int)(20 * level.scale), tiles[i, j].GetRec().Width - 40, tiles[i, j].GetRec().Height - 40)))
+                        else if (tiles[i, j].returnType() == Tile.TileType.exit && rec.Intersects(tiles[i, j].GetRec()))
                         {
-                            dead = true;
+                            room += 1;
+                            level.initial = true;
+                            return;
                         }
-                    }
-                    else if (tiles[i, j].returnType() == Tile.TileType.checkpoint)
-                    {
-                        if (tiles[i, j] != checkpointTile)
+                        else if (tiles[i, j].returnType() == Tile.TileType.start)
                         {
-                            checkPointReached = false;
+                            if (level.initial)
+                            {
+                                position = new Vector2(tiles[i, j].GetRec().X, tiles[i, j].GetRec().Y);
+                                startPos = position;
+                                rec = tiles[i, j].GetRec();
+                                UpdateRectangle();
+                                level.initial = false;
+                            }
                         }
-                        if (rec.Intersects(tiles[i, j].GetRec()) && !checkPointReached)
+                        else if (tiles[i, j].returnType() == Tile.TileType.spike)
                         {
-                            level.checkpoint += 1;
-                            checkPointReached = true;
-                            checkpointTile = tiles[i, j];
+                            if (!dead && rec.Intersects(new Rectangle(tiles[i, j].GetRec().X + (int)(20 * level.scale), tiles[i, j].GetRec().Y + (int)(20 * level.scale), tiles[i, j].GetRec().Width - 40, tiles[i, j].GetRec().Height - 40)))
+                            {
+                                dead = true;
+                            }
                         }
+                        else if (tiles[i, j].returnType() == Tile.TileType.checkpoint)
+                        {
+                            if (tiles[i, j] != checkpointTile)
+                            {
+                                checkPointReached = false;
+                            }
+                            if (rec.Intersects(tiles[i, j].GetRec()) && !checkPointReached)
+                            {
+                                level.checkpoint += 1;
+                                checkPointReached = true;
+                                checkpointTile = tiles[i, j];
+                            }
 
-                    }
-                    else if (tiles[i, j].returnType() == Tile.TileType.key)
-                    {
-                        if (rec.Intersects(tiles[i, j].GetRec()))
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.key)
                         {
-                            tiles[i, j].setTileType(Tile.TileType.air);
-                            tiles[i, j].setTex(null);
-                            keyCount += 1;
-                            Console.WriteLine(keyCount);
+                            if (rec.Intersects(tiles[i, j].GetRec()))
+                            {
+                                tiles[i, j].setTileType(Tile.TileType.air);
+                                tiles[i, j].setTex(null);
+                                keyCount += 1;
+                                Console.WriteLine(keyCount);
+                            }
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.LevelHub && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            level.levelComplete = true;
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            LL.CurrentLevel = (LevelLoader.currentLevel)2;
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.BlueEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            LL.CurrentLevel = (LevelLoader.currentLevel)3;
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.YellowEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            LL.CurrentLevel = (LevelLoader.currentLevel)4;
                         }
                     }
                 }
-            }
-            if (dead)
-            {
-                deathTimer--;
-                if (deathTimer <= 0)
+                if (dead)
                 {
-                    dead = false;
-                    respawnCheckpoint(level.checkpoint, LL);
-                    UpdateRectangle();
-                    deathTimer = 60;
+                    deathTimer--;
+                    if (deathTimer <= 0)
+                    {
+                        dead = false;
+                        respawnCheckpoint(level.checkpoint, LL);
+                        UpdateRectangle();
+                        deathTimer = 60;
+                    }
                 }
             }
         }
