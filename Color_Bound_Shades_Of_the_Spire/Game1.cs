@@ -19,11 +19,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont font1;
-        Rectangle red;
-        Rectangle yellow;
-        Rectangle blue;
-        Rectangle bar;
-        Rectangle barWhite;
         Player p;
         string[][] fileNames;
         Texture2D[][] BlockTextures;
@@ -54,12 +49,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            red = new Rectangle(50, 0, 75, 75);
-            yellow = new Rectangle(150, 0, 75, 75);
-            blue = new Rectangle(250, 0, 75, 75);
-            bar = new Rectangle(0, 100, 400, 100);
-            barWhite = new Rectangle(0, 100, 400, 100);
 
             fileNames = new string[5][];
             //tutorial
