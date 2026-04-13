@@ -55,11 +55,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            red = new Rectangle(50, 0, 75, 75);
-            yellow = new Rectangle(150, 0, 75, 75);
-            blue = new Rectangle(250, 0, 75, 75);
-            bar = new Rectangle(0, 100, 400, 100);
-            barWhite = new Rectangle(0, 100, 400, 100);
             fileNames = new string[1][];
             fileNames[0] = new string[4];
             fileNames[0][0] = "Content/level1TR1.txt";
