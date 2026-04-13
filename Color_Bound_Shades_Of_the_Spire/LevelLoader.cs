@@ -19,6 +19,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         public enum currentLevel
         { 
             level1 = 1,
+            level2 = 2,
+            level3 = 3,
+            level4 = 4,
+            levelHub = 5
         }
         public LevelLoader(string[][] fileNames, Texture2D[][] Textures, int level)
         {

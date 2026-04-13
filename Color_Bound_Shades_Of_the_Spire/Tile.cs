@@ -21,7 +21,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             checkpoint,
             key,
             exit,
-            start
+            start,
+            LevelHub,
+            RedEntrance,
+            BlueEntrance,
+            YellowEntrance
         }
         Texture2D T;
         Rectangle R;
