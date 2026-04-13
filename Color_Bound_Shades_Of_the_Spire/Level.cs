@@ -23,9 +23,11 @@ namespace Color_Bound_Shades_Of_the_Spire
         public bool initial;
         public int checkpoint;
         public float scale;
+        public bool levelComplete;
         public Level(string[] fileNames, Texture2D[] textures)
         {
             this.fileNames = fileNames;
+            levelComplete = false;
             tileSize = 100;
             offset = 0;
             velocityX = 0;
@@ -48,6 +50,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             player.move(kb, this);
             player.UpdateRectangle();
+            if (levelComplete)
+            {
+                LL.CurrentLevel = (LevelLoader.currentLevel)5;
+            }
         }
         public void LoadTiles(string[] fileNames)
         {
@@ -111,6 +117,19 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "k":
                     tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.key);
                     break;
+                case "L":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    break;
+                case "R":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
+                    break;
+                case "B":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.BlueEntrance);
+                    break;
+                case "Y":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YellowEntrance);
+                    break;
+
 
             }
         }

@@ -55,15 +55,29 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            fileNames = new string[1][];
+
+
+            fileNames = new string[5][];
+            //tutorial
             fileNames[0] = new string[4];
             fileNames[0][0] = "Content/level1TR1.txt";
             fileNames[0][1] = "Content/level1TR2.txt";
             fileNames[0][2] = "Content/level1TR3.txt";
             fileNames[0][3] = "Content/level1TR4.txt";
-            BlockTextures = new Texture2D[1][];
+            //other levels
+            fileNames[1] = new string[1];
+            fileNames[2] = new string[1];
+            fileNames[3] = new string[1];
+            //level hub
+            fileNames[4] = new string[1];
+            fileNames[4][0] = "Content/levelHub.txt";
+
+            BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[5];
-            IsMouseVisible = true;
+            BlockTextures[1] = new Texture2D[5];
+            BlockTextures[2] = new Texture2D[5];
+            BlockTextures[3] = new Texture2D[5];
+            BlockTextures[4] = new Texture2D[5];
             base.Initialize();
         }
 
@@ -78,11 +92,37 @@ namespace Color_Bound_Shades_Of_the_Spire
             t = this.Content.Load<Texture2D>("Untitled");
             p = new Player(t, new Rectangle(100, 100, 100, 100));
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
+
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[0][2] = this.Content.Load<Texture2D>("Spike");
             BlockTextures[0][3] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[0][4] = this.Content.Load<Texture2D>("Key");
+
+            BlockTextures[1][0] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[1][1] = this.Content.Load<Texture2D>("Tile");
+            BlockTextures[1][2] = this.Content.Load<Texture2D>("Spike");
+            BlockTextures[1][3] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[1][4] = this.Content.Load<Texture2D>("Key");
+
+            BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[2][1] = this.Content.Load<Texture2D>("Tile");
+            BlockTextures[2][2] = this.Content.Load<Texture2D>("Spike");
+            BlockTextures[2][3] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[2][4] = this.Content.Load<Texture2D>("Key");
+
+            BlockTextures[3][0] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[3][1] = this.Content.Load<Texture2D>("Tile");
+            BlockTextures[3][2] = this.Content.Load<Texture2D>("Spike");
+            BlockTextures[3][3] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[3][4] = this.Content.Load<Texture2D>("Key");
+
+            BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
+            BlockTextures[4][2] = this.Content.Load<Texture2D>("Spike");
+            BlockTextures[4][3] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[4][4] = this.Content.Load<Texture2D>("Key");
+
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
             barUI = new Bar(BlockTextures[0][0], barTex);
