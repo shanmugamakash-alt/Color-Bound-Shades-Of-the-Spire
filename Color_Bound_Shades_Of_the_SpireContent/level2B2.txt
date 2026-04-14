@@ -1,0 +1,11 @@
+20,10,100
+f,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,f
+f,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,f
+f,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,f
+f,S,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,f
+f,f,f,f,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,f
+f,w,w,w,w,w,w,w,w,f,w,w,w,w,w,f,w,w,w,f
+f,w,w,w,w,w,w,w,w,f,w,w,w,w,w,f,w,w,w,f
+f,w,w,w,w,w,f,w,w,w,w,w,f,w,w,w,w,w,w,f
+f,w,w,w,w,w,f,w,w,w,w,w,f,w,w,w,w,w,w,f
+f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f

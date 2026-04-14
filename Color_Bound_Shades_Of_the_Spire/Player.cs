@@ -14,10 +14,12 @@ namespace Color_Bound_Shades_Of_the_Spire
     public class Player
     {
         Texture2D tex;
+        Tile[,] tile;
         Tile checkpointTile;
         public Rectangle rec;
         public Vector2 position;
         Vector2 velocity;
+        float jump;
         float gravity;
         public Color color;
         public bool onGround;
@@ -26,6 +28,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int deathTimer;
         public int room;
         public Vector2 startPos;
+        bool inwater;
         int double_jump;
         public int dash;
         public int dashTimer;
@@ -48,7 +51,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             color = Color.White;
             oldkb = Keyboard.GetState();
             double_jump = 2;
+            inwater = false;
             keyCount = 0;
+            jump = 10f;
             dash = 1;
             dashTimer = 90;
             checkPointReached = false;
@@ -57,7 +62,31 @@ namespace Color_Bound_Shades_Of_the_Spire
         public void move(KeyboardState kb, Level level)
         {
             MouseState mouse = Mouse.GetState();
-            gravity = .75f * level.scale;
+            inwater = false;
+            if(tile != null)
+            {
+                for (int i = 0; i < tile.GetLength(0); i++)
+                {
+                    for (int j = 0; j < tile.GetLength(1); j++)
+                    {
+                        if (tile[i, j].returnType() == Tile.TileType.water && rec.Intersects(tile[i, j].GetRec()))
+                        {
+                            inwater = true;
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+            if(inwater)
+            {
+                gravity = 0.1f * level.scale;
+            }
+            else
+            {
+                gravity = 0.75f * level.scale;
+            }
             if (!dead)
             {
                 if (kb.IsKeyDown(Keys.Right))
@@ -80,28 +109,52 @@ namespace Color_Bound_Shades_Of_the_Spire
                 }
                 if (kb.IsKeyDown(Keys.Up) && double_jump > 0 && kb != oldkb)
                 {
-                    if (double_jump == 1)
+                    if(!inwater)
                     {
-                        velocity.Y -= 10f * level.scale;
+                        if (double_jump == 1)
+                        {
+                            jump = 10f;
+                            velocity.Y -= jump * level.scale;
+                            double_jump -= 1;
+                        }
+                        jump = 20f;
+                        velocity.Y -= jump * level.scale;
                         double_jump -= 1;
                     }
-                    velocity.Y -= 20f * level.scale;
-                    double_jump -= 1;
+                    else
+                    {
+                        if (double_jump == 1)
+                        {
+                            jump = 3f;
+                            velocity.Y -= jump * level.scale;
+                            double_jump -= 1;
+                        }
+                        jump = 4f;
+                        velocity.Y -= jump * level.scale;
+                        double_jump -= 1;
+                    }
 
                 }
             }
-                position += velocity;
+            position += velocity;
 
-                if (velocity.Y < 0)
+            if (velocity.Y < 0)
                     onGround = false;
 
-                if (velocity.Y < -20f * level.scale)
+            if (velocity.Y < -20f * level.scale)
                     velocity.Y = -20f * level.scale;
 
+               
+            if(!inwater)
+            {
                 velocity.X *= .9f;
-
-                if (!onGround)
-                    velocity.Y += gravity;
+            }
+            else
+            {
+                velocity.X *= .7f;
+            }
+            if (!onGround)
+                velocity.Y += gravity;
 
             if (onGround)
             {
@@ -116,17 +169,20 @@ namespace Color_Bound_Shades_Of_the_Spire
                 dash = 1;
                 dashTimer = 90;
             }
+            
             oldkb = kb;
             
         }
 
+        
         public void ChangeColor(Color newColor)
         {
             color = newColor;
         }
         public void collision(Tile[,] tiles, Level level, LevelLoader LL)
         {
-            
+
+            tile = tiles;
             if (tiles == null)
             {
 
@@ -238,6 +294,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                         {
                             LL.CurrentLevel = (LevelLoader.currentLevel)4;
                         }
+                        
                     }
                 }
                 if (dead)

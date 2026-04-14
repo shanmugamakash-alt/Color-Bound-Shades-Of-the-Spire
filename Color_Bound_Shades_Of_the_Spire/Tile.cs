@@ -25,7 +25,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             LevelHub,
             RedEntrance,
             BlueEntrance,
-            YellowEntrance
+            YellowEntrance,
+            water
         }
         Texture2D T;
         Rectangle R;
