@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bar.cs" />
+    <Compile Include="BlueDoor.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelLoader.cs" />
     <Compile Include="Player.cs" />
