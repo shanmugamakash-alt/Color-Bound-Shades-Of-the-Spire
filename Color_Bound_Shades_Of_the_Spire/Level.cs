@@ -27,6 +27,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         public List<YellowGiver> YGList;
         public List<YellowReciever> YRList;
         public List<YellowDoor> YDList;
+        public List<Torch> torchList;
+        public List<RedDoor> RDList;
         public Level(string[] fileNames, Texture2D[] textures)
         {
             this.fileNames = fileNames;
@@ -42,6 +44,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             YGList = new List<YellowGiver>();
             YRList = new List<YellowReciever>();
             YDList = new List<YellowDoor>();
+            torchList = new List<Torch>();
+            RDList = new List<RedDoor>();
             LoadTiles(this.fileNames);
         }
 
@@ -53,6 +57,14 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YGList.Count; i++)
             {
                 YGList[i].colision(player);
+            }
+            for(int i = 0; i < torchList.Count; i++)
+            {
+                torchList[i].Update(player);
+            }
+            for (int i = 0; i < RDList.Count; i++)
+            {
+                RDList[i].colision(player,this);
             }
             for (int i = 0; i < YRList.Count; i++)
             {
@@ -71,6 +83,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                 YGList.Clear();
                 YRList.Clear();
                 YDList.Clear();
+                torchList.Clear();
+                RDList.Clear();
                 LoadTiles(fileNames);
             }
             if (levelComplete)
@@ -184,6 +198,15 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "YG":
                     YGList.Add(new YellowGiver(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
+                case "RDU":
+                    RDList.Add(new RedDoor(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
+                case "RDD":
+                    RDList.Add(new RedDoor(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
+                case "RT":
+                    torchList.Add(new Torch(Textures[7], Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
 
 
             }
@@ -220,6 +243,14 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YDList.Count; i++)
             {
                 YDList[i].Draw(spriteBatch);
+            }
+            for(int i = 0; i < RDList.Count; i++)
+            {
+                RDList[i].Draw(spriteBatch);
+            }
+            for(int i = 0; i < torchList.Count; i++)
+            {
+                torchList[i].Draw(spriteBatch);
             }
         }
     }

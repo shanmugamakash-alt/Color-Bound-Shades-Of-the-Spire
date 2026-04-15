@@ -61,6 +61,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[0][3] = "Content/level1TR4.txt";
             //other levels
             fileNames[1] = new string[1];
+            fileNames[1][0] = "Content/level1RR1.txt";
             fileNames[2] = new string[1];
 
             fileNames[3] = new string[2];
@@ -72,7 +73,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[5];
-            BlockTextures[1] = new Texture2D[5];
+            BlockTextures[1] = new Texture2D[9];
             BlockTextures[2] = new Texture2D[5];
             BlockTextures[3] = new Texture2D[15];
             BlockTextures[4] = new Texture2D[7];
@@ -102,6 +103,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][2] = this.Content.Load<Texture2D>("Spike");
             BlockTextures[1][3] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[1][4] = this.Content.Load<Texture2D>("Key");
+            BlockTextures[1][5] = this.Content.Load<Texture2D>("firedoorU");
+            BlockTextures[1][6] = this.Content.Load<Texture2D>("firedoorD");
+            BlockTextures[1][7] = this.Content.Load<Texture2D>("torch");
+            BlockTextures[1][8] = this.Content.Load<Texture2D>("littorch");
 
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("Tile");
@@ -134,7 +139,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][6] = this.Content.Load<Texture2D>("YellowEntranceDoorD");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
             barUI = new Bar(BlockTextures[0][0], barTex);
             // TODO: use this.Content to load your game content here
         }
