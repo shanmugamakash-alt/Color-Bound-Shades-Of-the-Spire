@@ -19,11 +19,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont font1;
-        Rectangle red;
-        Rectangle yellow;
-        Rectangle blue;
-        Rectangle bar;
-        Rectangle barWhite;
         Player p;
         string[][] fileNames;
         Texture2D[][] BlockTextures;
@@ -67,7 +62,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             //other levels
             fileNames[1] = new string[1];
             fileNames[2] = new string[1];
-            fileNames[3] = new string[1];
+
+            fileNames[3] = new string[2];
+            fileNames[3][0] = "Content/level1YR1.txt";
+            fileNames[3][1] = "Content/level1YR2.txt";
             //level hub
             fileNames[4] = new string[1];
             fileNames[4][0] = "Content/levelHub.txt";
@@ -76,8 +74,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0] = new Texture2D[5];
             BlockTextures[1] = new Texture2D[5];
             BlockTextures[2] = new Texture2D[5];
-            BlockTextures[3] = new Texture2D[5];
-            BlockTextures[4] = new Texture2D[5];
+            BlockTextures[3] = new Texture2D[15];
+            BlockTextures[4] = new Texture2D[7];
             base.Initialize();
         }
 
@@ -116,12 +114,24 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][2] = this.Content.Load<Texture2D>("Spike");
             BlockTextures[3][3] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[3][4] = this.Content.Load<Texture2D>("Key");
+            BlockTextures[3][5] = this.Content.Load<Texture2D>("Wire");
+            BlockTextures[3][6] = this.Content.Load<Texture2D>("YellowFloor");
+            BlockTextures[3][7] = this.Content.Load<Texture2D>("YellowBackground");
+            BlockTextures[3][8] = this.Content.Load<Texture2D>("YellowDoorUL");
+            BlockTextures[3][9] = this.Content.Load<Texture2D>("YellowDoorUR");
+            BlockTextures[3][10] = this.Content.Load<Texture2D>("YellowDoorDL");
+            BlockTextures[3][11] = this.Content.Load<Texture2D>("YellowDoorDR");
+            BlockTextures[3][12] = this.Content.Load<Texture2D>("YellowGenerator");
+            BlockTextures[3][13] = this.Content.Load<Texture2D>("YellowRecieverOff");
+            BlockTextures[3][14] = this.Content.Load<Texture2D>("YellowRecieverOn");
 
             BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[4][2] = this.Content.Load<Texture2D>("Spike");
             BlockTextures[4][3] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[4][4] = this.Content.Load<Texture2D>("Key");
+            BlockTextures[4][5] = this.Content.Load<Texture2D>("YellowEntranceDoorU");
+            BlockTextures[4][6] = this.Content.Load<Texture2D>("YellowEntranceDoorD");
 
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
@@ -170,7 +180,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            levelLoader.DrawAll(spriteBatch);
+            levelLoader.DrawAll(spriteBatch, p);
             p.Draw(spriteBatch);
             barUI.Draw(spriteBatch,p);
             spriteBatch.End();
