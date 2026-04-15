@@ -64,6 +64,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="YellowDoor.cs" />
+    <Compile Include="YellowGiver.cs" />
+    <Compile Include="YellowReciever.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
