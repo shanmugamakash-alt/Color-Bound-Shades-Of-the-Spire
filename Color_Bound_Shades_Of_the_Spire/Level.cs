@@ -136,6 +136,15 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "sU":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
                     break;
+                case "sD":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+                case "sR":
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+                case "sL":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
                 case "E":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
                     break;

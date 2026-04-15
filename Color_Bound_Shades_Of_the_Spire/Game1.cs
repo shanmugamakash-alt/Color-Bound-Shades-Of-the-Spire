@@ -71,7 +71,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[4][0] = "Content/levelHub.txt";
 
             BlockTextures = new Texture2D[5][];
-            BlockTextures[0] = new Texture2D[5];
+            BlockTextures[0] = new Texture2D[8];
             BlockTextures[1] = new Texture2D[5];
             BlockTextures[2] = new Texture2D[5];
             BlockTextures[3] = new Texture2D[15];
@@ -96,6 +96,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][2] = this.Content.Load<Texture2D>("Spike");
             BlockTextures[0][3] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[0][4] = this.Content.Load<Texture2D>("Key");
+            BlockTextures[0][5] = this.Content.Load<Texture2D>("SpikeD");
+            BlockTextures[0][6] = this.Content.Load<Texture2D>("SpikeR");
+            BlockTextures[0][7] = this.Content.Load<Texture2D>("SpikeL");
 
             BlockTextures[1][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[1][1] = this.Content.Load<Texture2D>("Tile");
