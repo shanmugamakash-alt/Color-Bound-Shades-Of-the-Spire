@@ -49,6 +49,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         /// </summary>
         protected override void Initialize()
         {
+            // TODO: Add your initialization logic here
+
 
             fileNames = new string[5][];
             //tutorial
