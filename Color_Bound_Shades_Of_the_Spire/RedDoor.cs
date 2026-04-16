@@ -23,7 +23,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             isOpen = false;
         }
 
-        public void colision(Player player, Level level)
+        public void collision(Player player, Level level)
         {
             bool allLit = true;
             for (int i = 0; i < level.torchList.Count; i++)

@@ -21,6 +21,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int tileSize;
         public int offset, velocityX;
         public bool initial;
+        public bool playerInitial;
         public int checkpoint;
         public float scale;
         public bool levelComplete;
@@ -40,6 +41,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             scale = 1;
             Textures = textures;
             initial = true;
+            playerInitial = true;
             checkpoint = 0;
             YGList = new List<YellowGiver>();
             YRList = new List<YellowReciever>();
@@ -60,11 +62,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             for(int i = 0; i < torchList.Count; i++)
             {
-                torchList[i].Update(player);
+                torchList[i].collision(player);
             }
             for (int i = 0; i < RDList.Count; i++)
             {
-                RDList[i].colision(player,this);
+                RDList[i].collision(player,this);
             }
             for (int i = 0; i < YRList.Count; i++)
             {
@@ -80,12 +82,14 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             if (initial)
             {
+                playerInitial = true;
                 YGList.Clear();
                 YRList.Clear();
                 YDList.Clear();
                 torchList.Clear();
                 RDList.Clear();
                 LoadTiles(fileNames);
+                initial = false;
             }
             if (levelComplete)
             {
@@ -94,10 +98,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
         public void LoadTiles(string[] fileNames)
         {
-            Console.WriteLine("ROOM: " + room);
-            Console.WriteLine("FILES LENGTH: " + fileNames.Length);
             int x = 0;
             int y = 0;
+            
             string path = fileNames[room];
             try
             {
@@ -200,12 +203,14 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 case "RDU":
                     RDList.Add(new RedDoor(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
                 case "RDD":
                     RDList.Add(new RedDoor(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
                 case "RT":
                     torchList.Add(new Torch(Textures[7], Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
 
 

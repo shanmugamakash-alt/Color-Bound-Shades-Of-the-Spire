@@ -31,25 +31,26 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
 
 
-        public void Update(Player player)
+        public void collision(Player player)
         {
             if (player.rec.Intersects(rect) && player.color == Color.Red)
             {
                 lit = true;
                 litTimer = 0;
-                Console.WriteLine(lit);
+                //Console.WriteLine(lit);
             }
 
             if (lit)
             {
+                Console.WriteLine(lit);
                 litTimer++;
                 if (litTimer >= litLimit)
                 {
                     lit = false;
                     litTimer = 0;
-                    Console.WriteLine(lit);
                 }
             }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -57,11 +58,13 @@ namespace Color_Bound_Shades_Of_the_Spire
             if (lit)
             {
                 spriteBatch.Draw(litT, rect, Color.White);
+                
             }
             else
             {
                 spriteBatch.Draw(baseT, rect, Color.White);
             }
+            Console.WriteLine(lit);
         }
     }
 

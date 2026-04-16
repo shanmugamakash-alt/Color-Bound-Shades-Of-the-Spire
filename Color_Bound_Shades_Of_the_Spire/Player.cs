@@ -201,13 +201,14 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.start)
                         {
-                            if (level.initial)
+                            if (level.playerInitial || level.initial)
                             {
                                 position = new Vector2(tiles[i, j].GetRec().X, tiles[i, j].GetRec().Y);
                                 startPos = position;
                                 rec = tiles[i, j].GetRec();
                                 UpdateRectangle();
                                 level.initial = false;
+                                level.playerInitial = false;
                             }
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.spike)
