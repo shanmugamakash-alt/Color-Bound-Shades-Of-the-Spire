@@ -26,6 +26,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public void collision(Player player, Level level)
         {
             bool allLit = true;
+            bool enemiesDead = true;
             for (int i = 0; i < level.torchList.Count; i++)
             {
                 if (!level.torchList[i].lit)
@@ -34,7 +35,11 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 }
             }
-            if (allLit && player.rec.Intersects(R))
+            if (level.EnemyList.Count == 0)
+                enemiesDead = true;
+            else
+                enemiesDead = false;
+            if (allLit && enemiesDead && player.rec.Intersects(R))
             {
                 level.initial = true;
                 level.room += 1;

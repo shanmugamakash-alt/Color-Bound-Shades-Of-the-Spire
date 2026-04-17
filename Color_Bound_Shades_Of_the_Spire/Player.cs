@@ -288,6 +288,18 @@ namespace Color_Bound_Shades_Of_the_Spire
                         position = new Vector2(checkpointTile.GetRec().X, checkpointTile.GetRec().Y);
                     }
                     break;
+
+                case LevelLoader.currentLevel.level2:
+                    if (checkpoint == 0)
+                    {
+                        position = startPos;
+                    }
+                    else
+                    {
+                        position = new Vector2(checkpointTile.GetRec().X, checkpointTile.GetRec().Y);
+                    }
+                    break;
+
                 case LevelLoader.currentLevel.level4:
                     if (checkpoint == 0)
                     {
