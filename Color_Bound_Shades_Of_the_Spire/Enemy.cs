@@ -45,6 +45,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
         public void Update(Tile [,] tiles, Player p, Level level)
         {
+            isOnGround = false;
             if (tiles != null)
             {
                 gravity = .75f * level.scale;
@@ -61,85 +62,95 @@ namespace Color_Bound_Shades_Of_the_Spire
                     dir = 0;
                 }
 
-                    for (int x = 0; x < tiles.GetLength(0); x++)
+                for (int x = 0; x < tiles.GetLength(0); x++)
+                {
+                    for (int y = 0; y < tiles.GetLength(1); y++)
                     {
-                        for (int y = 0; y < tiles.GetLength(1); y++)
+                        if (tiles[x, y] == null)
                         {
-                            if(tiles[x,y] == null)
-                            {
 
-                            }
-                            else if (tiles[x, y].returnType() == Tile.TileType.floor)
-                            {
-                                Rectangle tileRec = tiles[x, y].GetRec();
+                        }
+                        else if (tiles[x, y].returnType() == Tile.TileType.floor)
+                        {
+                            Rectangle tileRec = tiles[x, y].GetRec();
 
-                                if (rect.X + rect.Width > tileRec.X && rect.X < tileRec.X + tileRec.Width)
+                            if (rect.X + rect.Width > tileRec.X && rect.X < tileRec.X + tileRec.Width)
+                            {
+                                if (velocity.Y >= 0 && rect.Y + rect.Height <= tileRec.Y + velocity.Y + 1f && rect.Y + rect.Height >= tileRec.Y)
                                 {
-                                    if (velocity.Y >= 0 && rect.Y + rect.Height <= tileRec.Y + velocity.Y + 1f && rect.Y + rect.Height >= tileRec.Y)
-                                    {
-                                        rect.Y = tileRec.Y - rect.Height;
-                                        velocity.Y = 0;
-                                        isOnGround = true;
-                                    }
-                                    else if (velocity.Y < 0 && rect.Y <= tileRec.Y + tileRec.Height && rect.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f)
-                                    {
-                                        rect.Y = tileRec.Y + tileRec.Height;
-                                        velocity.Y = 0;
-                                    }
+                                    rect.Y = tileRec.Y - rect.Height;
+                                    velocity.Y = 0;
+                                    //isOnGround = true;
                                 }
-                                if (rect.Y + rect.Height > tileRec.Y && rect.Y < tileRec.Y + tileRec.Height)
+                                else if (velocity.Y < 0 && rect.Y <= tileRec.Y + tileRec.Height && rect.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f)
                                 {
-                                    if (velocity.X > 0 && rect.X + rect.Width >= tileRec.X && rect.X + rect.Width <= tileRec.X + velocity.X + 1f)
-                                    {
-                                        rect.X = tileRec.X - rect.Width;
-                                        velocity.X = 0;
-                                    }
-                                    else if (velocity.X < 0 && rect.X <= tileRec.X + tileRec.Width && rect.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
-                                    {
-                                        rect.X = tileRec.X + tileRec.Width;
-                                        velocity.X = 0;
-                                    }
+                                    rect.Y = tileRec.Y + tileRec.Height;
+                                    velocity.Y = 0;
                                 }
-
+                            }
+                            if (rect.Y + rect.Height > tileRec.Y && rect.Y < tileRec.Y + tileRec.Height)
+                            {
+                                if (velocity.X > 0 && rect.X + rect.Width >= tileRec.X && rect.X + rect.Width <= tileRec.X + velocity.X + 1f)
+                                {
+                                    rect.X = tileRec.X - rect.Width;
+                                    velocity.X = 0;
+                                }
+                                else if (velocity.X < 0 && rect.X <= tileRec.X + tileRec.Width && rect.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
+                                {
+                                    rect.X = tileRec.X + tileRec.Width;
+                                    velocity.X = 0;
+                                }
                             }
 
-                            if (tiles[x, y] == null)
+                        }
+
+                        if (tiles[x, y] == null)
+                        {
+
+                        }
+                        else if (rect.Intersects(tiles[x, y].GetRec()))
+                        {
+                            bool onGround;
+                            if (rect.Bottom == tiles[x, y].GetRec().Bottom)
+                                onGround = true;
+                            else
+                                onGround = false;
+
+                            if (tiles[x, y + 1] == null)
                             {
 
                             }
-                            else if (rect.Intersects(tiles[x, y].GetRec()))
+                            if (tiles[x, y + 1].returnType() == Tile.TileType.floor)
                             {
-                                bool onGround;
-                                if (rect.Bottom == tiles[x, y].GetRec().Bottom)
-                                    onGround = true;
+                                if (onGround)
+                                    isOnGround = true;
                                 else
-                                    onGround = false;
-
-                                if(tiles[x + dir,y] == null)
-                                {
-
-                                }
-
-                                else if (tiles[x + dir, y].returnType() == Tile.TileType.floor)
-                                {
-                                    if (onGround)
-                                        isOnGround = true;
-                                    else
-                                        isOnGround = false;
-                                    if (isOnGround)
-                                    {
-                                        velocity.Y -= 20f * level.scale;
-                                    }
-                                }
-
-
+                                    isOnGround = false;
 
                             }
+
+                            if (tiles[x + dir, y] == null)
+                            {
+
+                            }
+                            else if (tiles[x + dir, y].returnType() == Tile.TileType.floor)
+                            {
+                                if (isOnGround && onGround)
+                                {
+                                    velocity.Y -= 20f * level.scale;
+                                }
+                            }
+
+
+
+
+
                         }
                     }
-                    rect.X += speed * dir;
+                }
+                rect.X += speed * dir;
 
-                
+
 
                 if (rect.Intersects(p.rec))
                 {
