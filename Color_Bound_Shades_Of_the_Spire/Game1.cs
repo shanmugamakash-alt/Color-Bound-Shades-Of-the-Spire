@@ -60,9 +60,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[0][2] = "Content/level1TR3.txt";
             fileNames[0][3] = "Content/level1TR4.txt";
             //other levels
-            fileNames[1] = new string[2];
+            fileNames[1] = new string[3];
             fileNames[1][0] = "Content/level1RR1.txt";
             fileNames[1][1] = "Content/level1RR2.txt";
+            fileNames[1][2] = "Content/level1RR3.txt";
 
             fileNames[2] = new string[1];
 

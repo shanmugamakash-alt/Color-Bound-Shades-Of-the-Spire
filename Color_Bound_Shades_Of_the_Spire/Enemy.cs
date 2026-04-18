@@ -49,13 +49,20 @@ namespace Color_Bound_Shades_Of_the_Spire
             if (tiles != null)
             {
                 gravity = .75f * level.scale;
-                if (p.rec.X - rect.X < level.tileSize * tileDetectionRange && p.rec.X > rect.X)
+                if ((p.rec.Y - rect.Y <= level.tileSize * tileDetectionRange && p.rec.Y > rect.Y) || (rect.Y - p.rec.Y <= level.tileSize * tileDetectionRange && p.rec.Y <= rect.Y))
                 {
-                    dir = 1;
-                }
-                else if (rect.X - p.rec.X < level.tileSize * tileDetectionRange && p.rec.X < rect.X)
-                {
-                    dir = -1;
+                    if (p.rec.X - rect.X < level.tileSize * tileDetectionRange && p.rec.X > rect.X)
+                    {
+                        dir = 1;
+                    }
+                    else if (rect.X - p.rec.X < level.tileSize * tileDetectionRange && p.rec.X < rect.X)
+                    {
+                        dir = -1;
+                    }
+                    else
+                    {
+                        dir = 0;
+                    }
                 }
                 else
                 {
