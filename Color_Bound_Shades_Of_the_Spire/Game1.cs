@@ -181,15 +181,19 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Update(GameTime gameTime)
         {
             KeyboardState kb = Keyboard.GetState();
+            MouseState mouse = Mouse.GetState();
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             //replace kb with player call or movement or wtv
-            levelLoader.Update(p, kb);
-            barUI.Update(kb, oldKB, p);
-            if(kb.IsKeyDown(Keys.Escape))
+            if (gameState == GameState.MainMenu)
             {
-                Exit();
+                PlayButton.isInteracting(new Rectangle(mouse.X, mouse.Y, 2, 2), mouse, oldM, this);
+            }
+            else if (gameState == GameState.Game)
+            {
+                levelLoader.Update(p, kb);
+                barUI.Update(kb, oldKB, p);
             }
 
             base.Update(gameTime);
