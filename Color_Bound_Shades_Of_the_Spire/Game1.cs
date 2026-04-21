@@ -58,7 +58,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            gameState = GameState.MainMenu;
 
             fileNames = new string[5][];
             //tutorial
