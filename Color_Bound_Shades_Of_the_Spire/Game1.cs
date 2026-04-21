@@ -203,13 +203,20 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin();
-            levelLoader.DrawAll(spriteBatch, p);
-            p.Draw(spriteBatch);
-            barUI.Draw(spriteBatch,p);
-            spriteBatch.End();
-
+            if (gameState == GameState.MainMenu)
+            {
+                spriteBatch.Begin();
+                PlayButton.Draw(spriteBatch);
+                spriteBatch.End();
+            }
+            else if (gameState == GameState.Game)
+            {
+                spriteBatch.Begin();
+                levelLoader.DrawAll(spriteBatch, p);
+                p.Draw(spriteBatch);
+                barUI.Draw(spriteBatch, p);
+                spriteBatch.End();
+            }
             base.Draw(gameTime);
         }
     }
