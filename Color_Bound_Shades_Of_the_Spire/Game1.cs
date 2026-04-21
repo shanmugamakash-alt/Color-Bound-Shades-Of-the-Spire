@@ -78,7 +78,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0] = new Texture2D[8];
             BlockTextures[1] = new Texture2D[10];
             BlockTextures[2] = new Texture2D[5];
-            BlockTextures[3] = new Texture2D[15];
+            BlockTextures[3] = new Texture2D[18];
             BlockTextures[4] = new Texture2D[7];
             base.Initialize();
         }
@@ -136,6 +136,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][12] = this.Content.Load<Texture2D>("YellowGenerator");
             BlockTextures[3][13] = this.Content.Load<Texture2D>("YellowRecieverOff");
             BlockTextures[3][14] = this.Content.Load<Texture2D>("YellowRecieverOn");
+            BlockTextures[3][15] = this.Content.Load<Texture2D>("SpikeD");
+            BlockTextures[3][16] = this.Content.Load<Texture2D>("SpikeR");
+            BlockTextures[3][17] = this.Content.Load<Texture2D>("SpikeL");
 
             BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
