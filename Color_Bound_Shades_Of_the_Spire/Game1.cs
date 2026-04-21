@@ -77,9 +77,10 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             fileNames[2] = new string[1];
 
-            fileNames[3] = new string[2];
+            fileNames[3] = new string[3];
             fileNames[3][0] = "Content/level1YR1.txt";
             fileNames[3][1] = "Content/level1YR2.txt";
+            fileNames[3][2] = "Content/level1YR3.txt";
             //level hub
             fileNames[4] = new string[1];
             fileNames[4][0] = "Content/levelHub.txt";
@@ -165,8 +166,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][10] = this.Content.Load<Texture2D>("DungeonTileWall3");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
-            barUI = new Bar(BlockTextures[0][0], barTex);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
+            barUI = new Bar(BlockTextures[3][0], barTex);
 
             PlayButton = new Button(t, new Rectangle(800, 400, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
@@ -202,9 +203,20 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 levelLoader.Update(p, kb);
                 barUI.Update(kb, oldKB, p);
+                if (kb.IsKeyDown(Keys.Escape) && !oldKB.IsKeyDown(Keys.Escape))
+                {
+                    gameState = GameState.Pause;
+                }
+            }
+            else if (gameState == GameState.Pause)
+            {
+                if (kb.IsKeyDown(Keys.Escape) && !oldKB.IsKeyDown(Keys.Escape))
+                {
+                    gameState = GameState.Game;
+                }
             }
 
-            base.Update(gameTime);
+                base.Update(gameTime);
             oldKB = kb;
         }
 
@@ -228,6 +240,15 @@ namespace Color_Bound_Shades_Of_the_Spire
                 levelLoader.DrawAll(spriteBatch, p);
                 p.Draw(spriteBatch);
                 barUI.Draw(spriteBatch, p);
+                spriteBatch.End();
+            }
+            else if (gameState == GameState.Pause)
+            {
+                spriteBatch.Begin();
+                levelLoader.DrawAll(spriteBatch, p);
+                p.Draw(spriteBatch);
+                barUI.Draw(spriteBatch, p);
+                spriteBatch.DrawString(font1, "Paused", new Vector2(903, 200), Color.Black);
                 spriteBatch.End();
             }
             base.Draw(gameTime);
