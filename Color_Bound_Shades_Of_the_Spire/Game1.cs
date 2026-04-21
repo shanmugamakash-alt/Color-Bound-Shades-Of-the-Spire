@@ -27,7 +27,15 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D barTex;
         KeyboardState oldKB;
         Bar barUI;
-
+        Button PlayButton;
+        public GameState gameState;
+        public enum GameState
+        {
+            MainMenu,
+            LevelSelect,
+            Game,
+            Pause,
+        }
 
         public Game1()
         {
