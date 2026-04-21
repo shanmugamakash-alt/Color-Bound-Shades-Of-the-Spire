@@ -89,7 +89,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1] = new Texture2D[10];
             BlockTextures[2] = new Texture2D[5];
             BlockTextures[3] = new Texture2D[18];
-            BlockTextures[4] = new Texture2D[7];
+            BlockTextures[4] = new Texture2D[11];
             base.Initialize();
         }
 
@@ -153,13 +153,16 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][16] = this.Content.Load<Texture2D>("SpikeR");
             BlockTextures[3][17] = this.Content.Load<Texture2D>("SpikeL");
 
-            BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[4][0] = this.Content.Load<Texture2D>("DungeonTileFloor");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[4][2] = this.Content.Load<Texture2D>("SpikeU");
             BlockTextures[4][3] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[4][4] = this.Content.Load<Texture2D>("Key");
             BlockTextures[4][5] = this.Content.Load<Texture2D>("YellowEntranceDoorU");
             BlockTextures[4][6] = this.Content.Load<Texture2D>("YellowEntranceDoorD");
+            BlockTextures[0][8] = this.Content.Load<Texture2D>("DungeonTileWall1");
+            BlockTextures[0][9] = this.Content.Load<Texture2D>("DungeonTileWall2");
+            BlockTextures[0][10] = this.Content.Load<Texture2D>("DungeonTileWall3");
 
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
