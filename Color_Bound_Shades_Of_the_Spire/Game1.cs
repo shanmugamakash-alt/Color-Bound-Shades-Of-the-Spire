@@ -26,8 +26,17 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D t;
         Texture2D barTex;
         KeyboardState oldKB;
+        MouseState oldM;
         Bar barUI;
-
+        Button PlayButton;
+        public GameState gameState;
+        public enum GameState
+        {
+            MainMenu,
+            LevelSelect,
+            Game,
+            Pause,
+        }
 
         public Game1()
         {
@@ -39,6 +48,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             graphics.PreferredBackBufferWidth = 1900;
             IsMouseVisible = true;
             oldKB = Keyboard.GetState();
+            oldM = Mouse.GetState();
         }
 
         /// <summary>
@@ -50,7 +60,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            gameState = GameState.MainMenu;
 
             fileNames = new string[5][];
             //tutorial
@@ -78,7 +88,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0] = new Texture2D[8];
             BlockTextures[1] = new Texture2D[10];
             BlockTextures[2] = new Texture2D[5];
-            BlockTextures[3] = new Texture2D[15];
+            BlockTextures[3] = new Texture2D[18];
             BlockTextures[4] = new Texture2D[7];
             base.Initialize();
         }
@@ -136,6 +146,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][12] = this.Content.Load<Texture2D>("YellowGenerator");
             BlockTextures[3][13] = this.Content.Load<Texture2D>("YellowRecieverOff");
             BlockTextures[3][14] = this.Content.Load<Texture2D>("YellowRecieverOn");
+            BlockTextures[3][15] = this.Content.Load<Texture2D>("SpikeD");
+            BlockTextures[3][16] = this.Content.Load<Texture2D>("SpikeR");
+            BlockTextures[3][17] = this.Content.Load<Texture2D>("SpikeL");
 
             BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
@@ -148,6 +161,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
             barUI = new Bar(BlockTextures[0][0], barTex);
+
+            PlayButton = new Button(t, new Rectangle(800, 400, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
         }
 
@@ -168,15 +183,19 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Update(GameTime gameTime)
         {
             KeyboardState kb = Keyboard.GetState();
+            MouseState mouse = Mouse.GetState();
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             //replace kb with player call or movement or wtv
-            levelLoader.Update(p, kb);
-            barUI.Update(kb, oldKB, p);
-            if(kb.IsKeyDown(Keys.Escape))
+            if (gameState == GameState.MainMenu)
             {
-                Exit();
+                PlayButton.isInteracting(new Rectangle(mouse.X, mouse.Y, 2, 2), mouse, oldM, this);
+            }
+            else if (gameState == GameState.Game)
+            {
+                levelLoader.Update(p, kb);
+                barUI.Update(kb, oldKB, p);
             }
 
             base.Update(gameTime);
@@ -190,13 +209,20 @@ namespace Color_Bound_Shades_Of_the_Spire
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin();
-            levelLoader.DrawAll(spriteBatch, p);
-            p.Draw(spriteBatch);
-            barUI.Draw(spriteBatch,p);
-            spriteBatch.End();
-
+            if (gameState == GameState.MainMenu)
+            {
+                spriteBatch.Begin();
+                PlayButton.Draw(spriteBatch);
+                spriteBatch.End();
+            }
+            else if (gameState == GameState.Game)
+            {
+                spriteBatch.Begin();
+                levelLoader.DrawAll(spriteBatch, p);
+                p.Draw(spriteBatch);
+                barUI.Draw(spriteBatch, p);
+                spriteBatch.End();
+            }
             base.Draw(gameTime);
         }
     }
