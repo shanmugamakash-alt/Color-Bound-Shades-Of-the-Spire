@@ -52,7 +52,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
         public void Update(KeyboardState kb, KeyboardState oldKB, Player p)
         {
-            if (kb.IsKeyDown(Keys.D1) && kb != oldKB && redSize >= 10)
+            if (kb.IsKeyDown(Keys.D1) && kb != oldKB && redSize >= 10 && p.dead == false)
             {
                 if (p.color != Color.Red)
                 {
@@ -69,7 +69,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             }
 
-            if (kb.IsKeyDown(Keys.D2) && kb != oldKB && yellowSize >= 10)
+            if (kb.IsKeyDown(Keys.D2) && kb != oldKB && yellowSize >= 10 && p.dead == false)
             {
                 if (p.color != Color.Yellow)
                 {
@@ -86,7 +86,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             }
 
-            if (kb.IsKeyDown(Keys.D3) && kb != oldKB && blueSize >= 10)
+            if (kb.IsKeyDown(Keys.D3) && kb != oldKB && blueSize >= 10 && p.dead == false)
             {
                 if (p.color != Color.Blue)
                 {

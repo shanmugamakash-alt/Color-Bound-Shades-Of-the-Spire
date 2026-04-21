@@ -21,12 +21,16 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int tileSize;
         public int offset, velocityX;
         public bool initial;
+        public bool playerInitial;
         public int checkpoint;
         public float scale;
         public bool levelComplete;
         public List<YellowGiver> YGList;
         public List<YellowReciever> YRList;
         public List<YellowDoor> YDList;
+        public List<Torch> torchList;
+        public List<RedDoor> RDList;
+        public List<Enemy> EnemyList;
         public Level(string[] fileNames, Texture2D[] textures)
         {
             this.fileNames = fileNames;
@@ -38,10 +42,14 @@ namespace Color_Bound_Shades_Of_the_Spire
             scale = 1;
             Textures = textures;
             initial = true;
+            playerInitial = true;
             checkpoint = 0;
             YGList = new List<YellowGiver>();
             YRList = new List<YellowReciever>();
             YDList = new List<YellowDoor>();
+            torchList = new List<Torch>();
+            RDList = new List<RedDoor>();
+            EnemyList = new List<Enemy>();
             LoadTiles(this.fileNames);
         }
 
@@ -53,6 +61,22 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YGList.Count; i++)
             {
                 YGList[i].colision(player);
+            }
+            for (int i = 0; i < EnemyList.Count; i++)
+            {
+                EnemyList[i].Update(tiles, player, this);
+                if(EnemyList[i].dead)
+                {
+                    EnemyList.Remove(EnemyList[i]);
+                }
+            }
+            for (int i = 0; i < torchList.Count; i++)
+            {
+                torchList[i].collision(player);
+            }
+            for (int i = 0; i < RDList.Count; i++)
+            {
+                RDList[i].collision(player,this);
             }
             for (int i = 0; i < YRList.Count; i++)
             {
@@ -68,10 +92,15 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             if (initial)
             {
+                playerInitial = true;
                 YGList.Clear();
                 YRList.Clear();
                 YDList.Clear();
+                torchList.Clear();
+                RDList.Clear();
+                EnemyList.Clear();
                 LoadTiles(fileNames);
+                initial = false;
             }
             if (levelComplete)
             {
@@ -80,10 +109,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
         public void LoadTiles(string[] fileNames)
         {
-            Console.WriteLine("ROOM: " + room);
-            Console.WriteLine("FILES LENGTH: " + fileNames.Length);
             int x = 0;
             int y = 0;
+            
             string path = fileNames[room];
             try
             {
@@ -193,6 +221,21 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "YG":
                     YGList.Add(new YellowGiver(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
+                case "RDU":
+                    RDList.Add(new RedDoor(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
+                case "RDD":
+                    RDList.Add(new RedDoor(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
+                case "RT":
+                    torchList.Add(new Torch(Textures[7], Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
+                case "eR":
+                    EnemyList.Add(new Enemy(Textures[9], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize),3,5));
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
 
 
             }
@@ -229,6 +272,18 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YDList.Count; i++)
             {
                 YDList[i].Draw(spriteBatch);
+            }
+            for(int i = 0; i < RDList.Count; i++)
+            {
+                RDList[i].Draw(spriteBatch);
+            }
+            for(int i = 0; i < torchList.Count; i++)
+            {
+                torchList[i].Draw(spriteBatch);
+            }
+            for (int i = 0; i < EnemyList.Count; i++)
+            {
+                EnemyList[i].Draw(spriteBatch);
             }
         }
     }
