@@ -26,6 +26,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D t;
         Texture2D barTex;
         KeyboardState oldKB;
+        MouseState oldM;
         Bar barUI;
         Button PlayButton;
         public GameState gameState;
@@ -47,6 +48,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             graphics.PreferredBackBufferWidth = 1900;
             IsMouseVisible = true;
             oldKB = Keyboard.GetState();
+            oldM = Mouse.GetState();
         }
 
         /// <summary>
