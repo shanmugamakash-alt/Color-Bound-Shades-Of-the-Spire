@@ -31,6 +31,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public List<Torch> torchList;
         public List<RedDoor> RDList;
         public List<Enemy> EnemyList;
+        public Random rand = new Random();
         public Level(string[] fileNames, Texture2D[] textures)
         {
             this.fileNames = fileNames;
@@ -156,7 +157,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
                     break;
                 case "0":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    int texNum = rand.Next(8, 10);
+                    tiles[x, y] = new Tile(Textures[texNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
                 case "Y0":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
@@ -177,7 +179,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
                     break;
                 case "S":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    int texNum2 = rand.Next(8, 10);
+                    tiles[x, y] = new Tile(Textures[texNum2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
                     break;
                 case "YS":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
