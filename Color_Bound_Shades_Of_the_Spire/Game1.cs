@@ -167,8 +167,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][10] = this.Content.Load<Texture2D>("DungeonTileWall3");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 4);
-            barUI = new Bar(BlockTextures[3][0], barTex);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
+            barUI = new Bar(BlockTextures[0][0], barTex);
 
             PlayButton = new Button(t, new Rectangle(800, 400, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
