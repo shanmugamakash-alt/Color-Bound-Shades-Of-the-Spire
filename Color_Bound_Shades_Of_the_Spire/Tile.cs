@@ -21,6 +21,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             checkpoint,
             key,
             exit,
+            keyDoor,
             start,
             LevelHub,
             RedEntrance,

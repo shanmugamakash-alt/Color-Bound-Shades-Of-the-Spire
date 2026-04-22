@@ -160,8 +160,17 @@ namespace Color_Bound_Shades_Of_the_Spire
                         if (tiles[i, j] == null)
                             continue;
 
-                        if (tiles[i, j].returnType() == Tile.TileType.floor)
+                        if (tiles[i, j].returnType() == Tile.TileType.floor || tiles[i, j].returnType() == Tile.TileType.keyDoor)
                         {
+                            if (LL.CurrentLevel == LevelLoader.currentLevel.level1 && tiles[i, j].returnType() == Tile.TileType.keyDoor)
+                            {
+                                if (keyCount == 2)
+                                {
+                                    tiles[i, j].setTileType(Tile.TileType.air);
+                                    tiles[i, j].setTex(null);
+                                    break;
+                                }
+                            }
                             Rectangle tileRec = tiles[i, j].GetRec();
 
                             if (position.X + rec.Width > tileRec.X && position.X < tileRec.X + tileRec.Width)
@@ -245,18 +254,22 @@ namespace Color_Bound_Shades_Of_the_Spire
                         else if (tiles[i, j].returnType() == Tile.TileType.LevelHub && rec.Intersects(tiles[i, j].GetRec()))
                         {
                             level.levelComplete = true;
+                            keyCount = 0;
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
                         {
                             LL.CurrentLevel = (LevelLoader.currentLevel)2;
+                            keyCount = 0;
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.BlueEntrance && rec.Intersects(tiles[i, j].GetRec()))
                         {
                             LL.CurrentLevel = (LevelLoader.currentLevel)3;
+                            keyCount = 0;
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.YellowEntrance && rec.Intersects(tiles[i, j].GetRec()))
                         {
                             LL.CurrentLevel = (LevelLoader.currentLevel)4;
+                            keyCount = 0;
                         }
                     }
                 }

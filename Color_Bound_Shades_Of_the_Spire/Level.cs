@@ -178,6 +178,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "E":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
                     break;
+                case "KD":
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
+                    break;
                 case "S":
                     int texNum2 = rand.Next(8, 10);
                     tiles[x, y] = new Tile(Textures[texNum2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
@@ -227,6 +230,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "YG":
                     YGList.Add(new YellowGiver(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
+
                 case "RDU":
                     RDList.Add(new RedDoor(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
