@@ -71,6 +71,8 @@
     <Compile Include="YellowDoor.cs" />
     <Compile Include="YellowGiver.cs" />
     <Compile Include="YellowReciever.cs" />
+    <Compile Include="YLaserHorizVarient.cs" />
+    <Compile Include="YLaserVertVarient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

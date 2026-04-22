@@ -18,6 +18,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             air,
             floor,
             spike,
+            YLaserVert,
+            YLaserHoriz,
             checkpoint,
             key,
             exit,

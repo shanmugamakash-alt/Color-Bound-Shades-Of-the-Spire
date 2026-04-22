@@ -28,6 +28,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         public List<YellowGiver> YGList;
         public List<YellowReciever> YRList;
         public List<YellowDoor> YDList;
+        public List<YLaserVertVarient> YLVVList;
+        public List<YLaserHorizVarient> YLHVList;
         public List<Torch> torchList;
         public List<RedDoor> RDList;
         public List<Enemy> EnemyList;
@@ -39,8 +41,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             tileSize = 100;
             offset = 0;
             velocityX = 0;
-            room = 0;
             scale = 1;
+            room = 0;
             Textures = textures;
             initial = true;
             playerInitial = true;
@@ -51,6 +53,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             torchList = new List<Torch>();
             RDList = new List<RedDoor>();
             EnemyList = new List<Enemy>();
+            YLVVList = new List<YLaserVertVarient>();
+            YLHVList = new List<YLaserHorizVarient>();
             LoadTiles(this.fileNames);
         }
 
@@ -100,6 +104,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 torchList.Clear();
                 RDList.Clear();
                 EnemyList.Clear();
+
                 LoadTiles(fileNames);
                 initial = false;
             }
@@ -112,7 +117,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             int x = 0;
             int y = 0;
-            
             string path = fileNames[room];
             try
             {
@@ -150,67 +154,28 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             switch (tile)
             {
+                //basic items (dungeon)
                 case "f":
                     tiles[x,y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
-                    break;
-                case "Yf":
-                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
                     break;
                 case "0":
                     int texNum = rand.Next(8, 10);
                     tiles[x, y] = new Tile(Textures[texNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
-                case "Y0":
-                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
-                    break;
-                case "sU":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
-                    break;
-                case "sD":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
-                    break;
-                case "sR":
-                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
-                    break;
-                case "sL":
-                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
-                    break;
                 case "E":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
-                    break;
-                case "KD":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
                     break;
                 case "S":
                     int texNum2 = rand.Next(8, 10);
                     tiles[x, y] = new Tile(Textures[texNum2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
                     break;
-                case "YS":
-                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+
+                //yellow level items
+                case "Yf":
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
                     break;
-                case "YsL":
-                    tiles[x, y] = new Tile(Textures[17], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
-                    break;
-                case "c":
-                    tiles[x, y] = new Tile(Textures[3], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.checkpoint);
-                    break;
-                case "k":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.key);
-                    break;
-                case "L":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
-                    break;
-                case "RE":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
-                    break;
-                case "BE":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.BlueEntrance);
-                    break;
-                case "YEU":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YellowEntrance);
-                    break;
-                case "YED":
-                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YellowEntrance);
+                case "Y0":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
                 case "YDUL":
                     YDList.Add(new YellowDoor(Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
@@ -230,7 +195,93 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "YG":
                     YGList.Add(new YellowGiver(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
+                case "YS":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    break;
+                case "YsL":
+                    tiles[x, y] = new Tile(Textures[17], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
 
+                //yellow lasers and varients
+                case "YLVT":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    break;
+                case "YLVM":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    break;
+                case "YLVB":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    break;
+
+                case "YLHL":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    break;
+                case "YLHM":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    break;
+                case "YLHR":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    break;
+
+                case "YLVVT":
+
+                    break;
+                case "YLVVM":
+
+                    break;
+                case "YLVVB":
+
+                    break;
+
+                case "YLVHT":
+
+                    break;
+                case "YLVHM":
+
+                    break;
+                case "YLVHB":
+
+                    break;
+
+                //tutorial items
+                case "c":
+                    tiles[x, y] = new Tile(Textures[3], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.checkpoint);
+                    break;
+                case "k":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.key);
+                    break;
+                case "L":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    break;
+                case "KD":
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
+                    break;
+                case "sU":
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+                case "sD":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+                case "sR":
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+                case "sL":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+
+                //level hub items
+                case "RE":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
+                    break;
+                case "BE":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.BlueEntrance);
+                    break;
+                case "YEU":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YellowEntrance);
+                    break;
+                case "YED":
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YellowEntrance);
+                    break;
                 case "RDU":
                     RDList.Add(new RedDoor(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
@@ -238,6 +289,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "RDD":
                     RDList.Add(new RedDoor(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
+                //other things
                 case "RT":
                     torchList.Add(new Torch(Textures[7], Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);

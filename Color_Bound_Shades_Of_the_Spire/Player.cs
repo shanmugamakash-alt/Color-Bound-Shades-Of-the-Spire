@@ -42,7 +42,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             position = new Vector2(rec.X, rec.Y);
             startPos = position;
             dead = false;
-            deathTimer = 60;
+            deathTimer = 45;
             velocity = Vector2.Zero;
             gravity = .75f;
             onGround = false;
@@ -222,9 +222,37 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.spike)
                         {
-                            if (!dead && rec.Intersects(new Rectangle(tiles[i, j].GetRec().X + (int)(15 * level.scale), tiles[i, j].GetRec().Y + (int)(15 * level.scale), tiles[i, j].GetRec().Width - 30, tiles[i, j].GetRec().Height - 30)))
+                            Rectangle r = tiles[i, j].GetRec();
+                            //fix the hitbox
+                            if (!dead && rec.Intersects(new Rectangle(r.X + (int)(15 * level.scale), r.Y + (int)(15 * level.scale),r.Width - 30, r.Height - 30)))
                             {
                                 dead = true;
+                            }
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.YLaserVert)
+                        {
+                            Rectangle r = tiles[i, j].GetRec();
+                            if (!dead && rec.Intersects(new Rectangle(r.X + 15, r.Y, r.Width - 15, r.Height)))
+                            {
+                                if (color != Color.Yellow)
+                                {
+                                    dead = true;
+                                }
+                                else
+                                    continue;
+                            }
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.YLaserHoriz)
+                        {
+                            Rectangle r = tiles[i, j].GetRec();
+                            if (!dead && rec.Intersects(new Rectangle(r.X, r.Y + 15, r.Width, r.Height - 15)))
+                            {
+                                if (color != Color.Yellow)
+                                {
+                                    dead = true;
+                                }
+                                else
+                                    continue;
                             }
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.checkpoint)
@@ -281,7 +309,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                         dead = false;
                         respawnCheckpoint(level.checkpoint, LL);
                         UpdateRectangle();
-                        deathTimer = 60;
+                        deathTimer = 45;
                     }
                 }
                 
