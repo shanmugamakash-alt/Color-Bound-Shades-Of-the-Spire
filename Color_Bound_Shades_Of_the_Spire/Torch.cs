@@ -25,7 +25,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             baseT = b;
             litT = l;
             rect = r;
-            lit = false;
+            lit = true;
             litTimer = 0;
             litLimit = 300;
         }

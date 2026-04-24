@@ -14,6 +14,7 @@ namespace Color_Bound_Shades_Of_the_Spire
     public class Player
     {
         Texture2D tex;
+        Texture2D[] textures;
         Tile checkpointTile;
         public Rectangle rec;
         public Vector2 position;
@@ -33,13 +34,14 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int dashDuration;
         public int keyCount;
         public bool charged;
+        public int idleTime;
         KeyboardState oldkb;
         
-        
-        public Player(Texture2D t, Rectangle r)
+        public Player(Texture2D[] t, Rectangle r)
         {
-            tex = t;
-
+            tex = t[0];
+            textures = t;
+            idleTime = 30;
             rec = r;
             position = new Vector2(rec.X, rec.Y);
             startPos = position;
@@ -78,6 +80,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 if (kb.IsKeyDown(Keys.Right))
                 {
+                    tex = textures[1];
                     velocity.X += 1f * level.scale;
                     if (kb.IsKeyDown(Keys.Space) && !oldkb.IsKeyDown(Keys.Space) && dash == 1)
                     {
@@ -90,6 +93,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 }
                 if (kb.IsKeyDown(Keys.Left))
                 {
+                    tex = textures[2];
                     velocity.X -= 1f * level.scale;
                     if (kb.IsKeyDown(Keys.Space) && !oldkb.IsKeyDown(Keys.Space) && dash == 1)
                     {
@@ -124,7 +128,15 @@ namespace Color_Bound_Shades_Of_the_Spire
 
                 if (!onGround && !isDashing)
                     velocity.Y += gravity;
-
+            if (!kb.IsKeyDown(Keys.Right) && !kb.IsKeyDown(Keys.Left))
+            {
+                idleTime--;
+                if (idleTime == 0)
+                {
+                    tex = textures[0];
+                    idleTime = 30;
+                }
+            }
             if (onGround)
             {
              double_jump = 2;

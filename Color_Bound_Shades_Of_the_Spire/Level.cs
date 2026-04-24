@@ -70,10 +70,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < EnemyList.Count; i++)
             {
                 EnemyList[i].Update(tiles, player, this);
-                if(EnemyList[i].dead)
-                {
-                    EnemyList.Remove(EnemyList[i]);
-                }
             }
             for (int i = 0; i < torchList.Count; i++)
             {
@@ -207,23 +203,23 @@ namespace Color_Bound_Shades_Of_the_Spire
 
                 //yellow lasers and varients
                 case "YLVT":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    tiles[x, y] = new Tile(Textures[19], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
                     break;
                 case "YLVM":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    tiles[x, y] = new Tile(Textures[20], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
                     break;
                 case "YLVB":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    tiles[x, y] = new Tile(Textures[21], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
                     break;
 
                 case "YLHL":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    tiles[x, y] = new Tile(Textures[22], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
                     break;
                 case "YLHM":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    tiles[x, y] = new Tile(Textures[23], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
                     break;
                 case "YLHR":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    tiles[x, y] = new Tile(Textures[24], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
                     break;
 
                 case "YLVVT":
@@ -319,6 +315,15 @@ namespace Color_Bound_Shades_Of_the_Spire
                 //    int Num = rand.Next(8, 10);
                 //    tiles[x, y] = new Tile(Textures[Num], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                 //    break;
+                case "RA":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
+                case "RS":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    break;
+                case "RF":
+                    tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                    break;
 
 
             }
