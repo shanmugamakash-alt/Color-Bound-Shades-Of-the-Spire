@@ -41,8 +41,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                 enemiesDead = false;
             if (allLit && enemiesDead && player.rec.Intersects(R))
             {
-                level.initial = true;
                 level.room += 1;
+                level.initial = true;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
