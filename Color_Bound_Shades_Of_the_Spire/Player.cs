@@ -35,9 +35,11 @@ namespace Color_Bound_Shades_Of_the_Spire
         public bool charged;
         KeyboardState oldkb;
         
+        
         public Player(Texture2D t, Rectangle r)
         {
             tex = t;
+
             rec = r;
             position = new Vector2(rec.X, rec.Y);
             startPos = position;

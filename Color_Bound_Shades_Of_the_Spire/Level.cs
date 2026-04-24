@@ -117,6 +117,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             int x = 0;
             int y = 0;
+            Console.WriteLine(fileNames.Length);
+            Console.WriteLine(room);
             string path = fileNames[room];
             try
             {
@@ -148,6 +150,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 Console.WriteLine("file not read");
                 Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
         }
         public void LoadTile(string tile,int x,int y)
@@ -298,6 +301,24 @@ namespace Color_Bound_Shades_Of_the_Spire
                     EnemyList.Add(new Enemy(Textures[9], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize),3,5));
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
+                //Blue levels items
+                case "Ww":
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.water);
+                    break;
+                case "ww":
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.water);
+                    break;
+                case "BS":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    break;
+                //case "B0":
+                //    int bNum = rand.Next(8, 10);
+                //    tiles[x, y] = new Tile(Textures[bNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                //    break;
+                //case "B":
+                //    int Num = rand.Next(8, 10);
+                //    tiles[x, y] = new Tile(Textures[Num], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                //    break;
 
 
             }
