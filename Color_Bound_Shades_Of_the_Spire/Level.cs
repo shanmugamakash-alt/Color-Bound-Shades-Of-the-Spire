@@ -70,10 +70,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < EnemyList.Count; i++)
             {
                 EnemyList[i].Update(tiles, player, this);
-                if(EnemyList[i].dead)
-                {
-                    EnemyList.Remove(EnemyList[i]);
-                }
             }
             for (int i = 0; i < torchList.Count; i++)
             {
