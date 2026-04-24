@@ -14,10 +14,10 @@ namespace Color_Bound_Shades_Of_the_Spire
     class Bar
     {
         Rectangle bar;
-        Rectangle background;
-        double redSize;
-        double blueSize;
-        double yellowSize;
+        public Rectangle background;
+        public double redSize;
+        public double blueSize;
+        public double yellowSize;
         string currentColor;
         Texture2D tex;
         Texture2D barTex;
@@ -29,9 +29,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         public Bar(Texture2D tex, Texture2D baseTex)
         {
             bar = new Rectangle(10, 10, 300, 75);
-            redSize = 300;
-            blueSize = 300;
-            yellowSize = 300;
+            redSize = 0;
+            blueSize = 0;
+            yellowSize = 0;
             background = new Rectangle(10, 10, 300, 75);
             red = new Rectangle(10, 100, 50,50);
             yellow = new Rectangle(80, 100, 50, 50);
@@ -106,27 +106,17 @@ namespace Color_Bound_Shades_Of_the_Spire
             switch (currentColor)
             {
                 case "white":
-                    redSize++;
-                    yellowSize++;
-                    blueSize++;
-
                     bar.Width = 300;
                     break;
                 case "red":
                     redSize--;
-                    yellowSize++;
-                    blueSize++;
                     bar.Width = (int)redSize;
                     break;
                 case "yellow":
-                    redSize++;
                     yellowSize--;
-                    blueSize++;
                     bar.Width = (int)yellowSize;
                     break;
                 case "blue":
-                    redSize--;
-                    yellowSize++;
                     blueSize--;
                     bar.Width = (int)blueSize;
                     break;
