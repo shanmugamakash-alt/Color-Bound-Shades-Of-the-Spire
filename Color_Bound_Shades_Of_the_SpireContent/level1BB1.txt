@@ -1,0 +1,11 @@
+20,10,100
+f,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,f
+f,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,f
+f,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,f
+f,B,BS,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,f
+f,f,f,f,f,f,f,f,Ww,Ww,Ww,Ww,Ww,Ww,Ww,Ww,Ww,Ww,Ww,f
+f,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,f
+f,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,f
+f,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,f
+f,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,ww,f
+f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f
