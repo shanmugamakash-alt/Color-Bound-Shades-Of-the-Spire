@@ -35,14 +35,19 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 }
             }
-            if (level.EnemyList.Count == 0)
-                enemiesDead = true;
-            else
-                enemiesDead = false;
+            for (int i = 0; i < level.EnemyList.Count; i++)
+            {
+                if (!level.EnemyList[i].dead)
+                {
+                    enemiesDead = false;
+                    break;
+                }
+            }
+
             if (allLit && enemiesDead && player.rec.Intersects(R))
             {
-                level.initial = true;
                 level.room += 1;
+                level.initial = true;
             }
         }
         public void Draw(SpriteBatch spriteBatch)

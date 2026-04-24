@@ -16,6 +16,7 @@ namespace Color_Bound_Shades_Of_the_Spire
     {
         Texture2D tex;
         Rectangle rect;
+        Rectangle initialRect;
         int speed;
         int tileDetectionRange;
         int dir;
@@ -29,6 +30,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             tex = t;
             rect = r;
+            initialRect = r;
             speed = s;
             tileDetectionRange = range;
             dir = 1;
@@ -171,7 +173,18 @@ namespace Color_Bound_Shades_Of_the_Spire
                     }
                 }
 
-                if (!isOnGround)
+                if(dead)
+                {
+                    rect = new Rectangle(-1000, -1000, 0, 0);
+                }
+
+                if(p.dead)
+                {
+                    rect = initialRect;
+                    dead = false;
+                }
+
+                if (!isOnGround && !dead)
                     velocity.Y += gravity;
                 rect.Y += (int)velocity.Y;
             }
