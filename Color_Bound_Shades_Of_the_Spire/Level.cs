@@ -204,23 +204,23 @@ namespace Color_Bound_Shades_Of_the_Spire
 
                 //yellow lasers and varients
                 case "YLVT":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    tiles[x, y] = new Tile(Textures[19], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
                     break;
                 case "YLVM":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    tiles[x, y] = new Tile(Textures[20], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
                     break;
                 case "YLVB":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
+                    tiles[x, y] = new Tile(Textures[21], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserVert);
                     break;
 
                 case "YLHL":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    tiles[x, y] = new Tile(Textures[22], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
                     break;
                 case "YLHM":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    tiles[x, y] = new Tile(Textures[23], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
                     break;
                 case "YLHR":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
+                    tiles[x, y] = new Tile(Textures[24], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YLaserHoriz);
                     break;
 
                 case "YLVVT":
