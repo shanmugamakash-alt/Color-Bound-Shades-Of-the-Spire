@@ -61,6 +61,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelLoader.cs" />
+    <Compile Include="OverloadGrid.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PowerGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Torch.cs" />
     <Compile Include="YellowDoor.cs" />
     <Compile Include="YellowGiver.cs" />
+    <Compile Include="YellowKey.cs" />
     <Compile Include="YellowReciever.cs" />
     <Compile Include="YLaserHorizVarient.cs" />
     <Compile Include="YLaserVertVarient.cs" />

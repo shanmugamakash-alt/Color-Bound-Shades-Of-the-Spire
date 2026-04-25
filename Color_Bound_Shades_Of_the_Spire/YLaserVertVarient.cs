@@ -34,5 +34,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                 T = texs[7];
             }
         }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(T, R, Color.White);
+        }
     }
 }

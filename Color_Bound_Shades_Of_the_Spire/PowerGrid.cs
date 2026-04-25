@@ -14,37 +14,40 @@ namespace Color_Bound_Shades_Of_the_Spire
 {
     public class PowerGrid
     {
-        Texture2D T;
-        Rectangle R;
-        public int numReciever;
+        public Texture2D T;
+        public Rectangle R;
+        public bool isDestroyed;
 
-        public PowerGrid(Texture2D t, Rectangle r, Level level)
+        public PowerGrid(Texture2D t, Rectangle r)
         {
             T = t;
             R = r;
-            numReciever = level.YRList.Count;
+            isDestroyed = false;
         }
 
         public void colision(Player player, Level level)
         {
-            int numOn = 0;
-            if (player.rec.Intersects(R))
+            if (player.rec.Intersects(R) && player.ultraCharged)
             {
-                for (int i = 0; i < level.YRList.Count; i++)
+                for (int i = 0; i < level.YLVVList.Count; i++)
                 {
-                    if (level.YRList[i].isOn)
-                    {
-                        numOn++;
-                    }
+                    level.YLVVList[i].isOn = false;
                 }
-                if (numOn == numReciever)
+                for (int i = 0; i < level.YLHVList.Count; i++)
                 {
-                    for (int i = 0; i < level.YLVVList.Count; i++)
-                    {
-                        level.YLVVList[i].isOn = false;
-                    }
+                    level.YLHVList[i].isOn = false;
                 }
+                isDestroyed = true;
             }
+            if (isDestroyed)
+            {
+                T = level.Textures[34];
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(T, R, Color.White);
         }
     }
 }

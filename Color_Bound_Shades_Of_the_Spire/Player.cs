@@ -34,6 +34,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int dashDuration;
         public int keyCount;
         public bool charged;
+        public bool ultraCharged;
         public int idleTime;
         KeyboardState oldkb;
         
@@ -56,6 +57,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             keyCount = 0;
             dash = 1;
             dashTimer = 90;
+            charged = false;
+            ultraCharged = false;
             isDashing = false;
             dashDuration = 12;
             checkPointReached = false;
@@ -185,6 +188,15 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     break;
                                 }
                             }
+                            if (LL.CurrentLevel == LevelLoader.currentLevel.level4 && tiles[i, j].returnType() == Tile.TileType.keyDoor)
+                            {
+                                if (keyCount == 3)
+                                {
+                                    tiles[i, j].setTileType(Tile.TileType.air);
+                                    tiles[i, j].setTex(null);
+                                    break;
+                                }
+                            }
                             Rectangle tileRec = tiles[i, j].GetRec();
 
                             if (position.X + rec.Width > tileRec.X && position.X < tileRec.X + tileRec.Width)
@@ -295,7 +307,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.LevelHub && rec.Intersects(tiles[i, j].GetRec()))
                         {
-                            level.levelComplete = true;
+                            LL.CurrentLevel = (LevelLoader.currentLevel)5;
+                            LL.levels[4].initial = true;
                             keyCount = 0;
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
@@ -345,6 +358,16 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
 
                 case LevelLoader.currentLevel.level2:
+                    if (checkpoint == 0)
+                    {
+                        position = startPos;
+                    }
+                    else
+                    {
+                        position = new Vector2(checkpointTile.GetRec().X, checkpointTile.GetRec().Y);
+                    }
+                    break;
+                case LevelLoader.currentLevel.level3:
                     if (checkpoint == 0)
                     {
                         position = startPos;
