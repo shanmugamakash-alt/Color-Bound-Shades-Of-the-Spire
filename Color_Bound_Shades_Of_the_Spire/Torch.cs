@@ -25,7 +25,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             baseT = b;
             litT = l;
             rect = r;
-            lit = true;
+            lit = false;
             litTimer = 0;
             litLimit = 300;
         }
@@ -37,12 +37,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 lit = true;
                 litTimer = 0;
-                //Console.WriteLine(lit);
             }
 
             if (lit)
             {
-                Console.WriteLine(lit);
                 litTimer++;
                 if (litTimer >= litLimit)
                 {
@@ -64,7 +62,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 spriteBatch.Draw(baseT, rect, Color.White);
             }
-            Console.WriteLine(lit);
         }
     }
 

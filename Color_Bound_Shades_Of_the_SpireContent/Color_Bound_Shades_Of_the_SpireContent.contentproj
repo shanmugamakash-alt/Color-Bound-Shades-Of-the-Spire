@@ -396,6 +396,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="colorCollectable.png">
+      <Name>colorCollectable</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="OverloadGridUnpowered.png">
       <Name>OverloadGridUnpowered</Name>
       <Importer>TextureImporter</Importer>
