@@ -190,7 +190,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                             }
                             if (LL.CurrentLevel == LevelLoader.currentLevel.level4 && tiles[i, j].returnType() == Tile.TileType.keyDoor)
                             {
-                                if (keyCount == 3)
+                                if (keyCount == 4)
                                 {
                                     tiles[i, j].setTileType(Tile.TileType.air);
                                     tiles[i, j].setTex(null);
@@ -302,7 +302,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                                 tiles[i, j].setTileType(Tile.TileType.air);
                                 tiles[i, j].setTex(null);
                                 keyCount += 1;
-                                Console.WriteLine(keyCount);
                             }
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.LevelHub && rec.Intersects(tiles[i, j].GetRec()))
@@ -314,16 +313,19 @@ namespace Color_Bound_Shades_Of_the_Spire
                         else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
                         {
                             LL.CurrentLevel = (LevelLoader.currentLevel)2;
+                            LL.levels[1].initial = true;
                             keyCount = 0;
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.BlueEntrance && rec.Intersects(tiles[i, j].GetRec()))
                         {
                             LL.CurrentLevel = (LevelLoader.currentLevel)3;
+                            LL.levels[2].initial = true;
                             keyCount = 0;
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.YellowEntrance && rec.Intersects(tiles[i, j].GetRec()))
                         {
                             LL.CurrentLevel = (LevelLoader.currentLevel)4;
+                            LL.levels[3].initial = true;
                             keyCount = 0;
                         }
                     }

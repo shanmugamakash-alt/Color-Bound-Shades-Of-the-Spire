@@ -270,6 +270,12 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "OG":
                     OG = new OverloadGrid(Textures[31], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
                     break;
+                case "YLU":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    break;
+                case "YLD":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    break;
 
 
                 //tutorial items
@@ -279,11 +285,17 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "k":
                     tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.key);
                     break;
-                case "L":
+                case "LU":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    break;
+                case "LD":
                     tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
                     break;
                 case "KD":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
+                    break;
+                case "YKD":
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
                     break;
                 case "sU":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);

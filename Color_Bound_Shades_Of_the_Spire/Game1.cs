@@ -92,7 +92,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0] = new Texture2D[11];
             BlockTextures[1] = new Texture2D[10];
             BlockTextures[2] = new Texture2D[8];
-            BlockTextures[3] = new Texture2D[36];
+            BlockTextures[3] = new Texture2D[37];
             BlockTextures[4] = new Texture2D[11];
             base.Initialize();
         }
@@ -180,6 +180,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][33] = this.Content.Load<Texture2D>("PowerGridOn");
             BlockTextures[3][34] = this.Content.Load<Texture2D>("PowerGridDestroyed");
             BlockTextures[3][35] = this.Content.Load<Texture2D>("WireCharged");
+            BlockTextures[3][36] = this.Content.Load<Texture2D>("WireOverload");
 
             BlockTextures[4][0] = this.Content.Load<Texture2D>("DungeonTileFloor");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
