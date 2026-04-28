@@ -27,7 +27,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D barTex;
         KeyboardState oldKB;
         MouseState oldM;
-        Bar barUI;
         Button PlayButton;
         public GameState gameState;
         public enum GameState
@@ -178,7 +177,6 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
-            barUI = new Bar(BlockTextures[3][0], barTex);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 400, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
@@ -212,8 +210,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             else if (gameState == GameState.Game)
             {
-                levelLoader.Update(p, kb);
-                barUI.Update(kb, oldKB, p);
+                levelLoader.Update(p, kb, oldKB);
                 if (kb.IsKeyDown(Keys.Escape) && !oldKB.IsKeyDown(Keys.Escape))
                 {
                     gameState = GameState.Pause;
@@ -250,7 +247,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 spriteBatch.Begin();
                 levelLoader.DrawAll(spriteBatch, p);
                 p.Draw(spriteBatch);
-                barUI.Draw(spriteBatch, p);
                 spriteBatch.End();
             }
             else if (gameState == GameState.Pause)
@@ -258,7 +254,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 spriteBatch.Begin();
                 levelLoader.DrawAll(spriteBatch, p);
                 p.Draw(spriteBatch);
-                barUI.Draw(spriteBatch, p);
                 spriteBatch.DrawString(font1, "Paused", new Vector2(903, 200), Color.Black);
                 spriteBatch.End();
             }

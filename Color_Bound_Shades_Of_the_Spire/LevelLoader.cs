@@ -33,9 +33,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                 levels.Add(new Level(fileNames[i], Textures[i]));
             }
         }
-        public void Update(Player player, KeyboardState kb)
+        public void Update(Player player, KeyboardState kb, KeyboardState oldKB)
         {
-            levels[(int)CurrentLevel - 1].Update(player, kb, this);
+            levels[(int)CurrentLevel - 1].Update(player, kb, oldKB, this);
         }
         public void DrawAll(SpriteBatch spriteBatch, Player player)
         {

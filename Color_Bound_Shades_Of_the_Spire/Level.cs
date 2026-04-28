@@ -33,7 +33,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         public List<Torch> torchList;
         public List<RedDoor> RDList;
         public List<Enemy> EnemyList;
+        public List<ColorCollectable> CollectablesList;
         public Random rand = new Random();
+        Bar UIbar;
         public Level(string[] fileNames, Texture2D[] textures)
         {
             this.fileNames = fileNames;
@@ -55,14 +57,16 @@ namespace Color_Bound_Shades_Of_the_Spire
             EnemyList = new List<Enemy>();
             YLVVList = new List<YLaserVertVarient>();
             YLHVList = new List<YLaserHorizVarient>();
+            CollectablesList = new List<ColorCollectable>();
             LoadTiles(this.fileNames);
         }
 
-        public void Update(Player player, KeyboardState kb, LevelLoader LL)
+        public void Update(Player player, KeyboardState kb, KeyboardState oldKB, LevelLoader LL)
         {
             player.move(kb, this);
             player.UpdateRectangle();
             player.collision(tiles, this, LL);
+            UIbar.Update(kb, oldKB, player);
             for (int i = 0; i < YGList.Count; i++)
             {
                 YGList[i].colision(player);
@@ -70,6 +74,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < EnemyList.Count; i++)
             {
                 EnemyList[i].Update(tiles, player, this);
+            }
+            for(int i = 0; i < CollectablesList.Count; i++)
+            {
+                CollectablesList[i].Update(player, UIbar);
             }
             for (int i = 0; i < torchList.Count; i++)
             {
@@ -100,6 +108,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 torchList.Clear();
                 RDList.Clear();
                 EnemyList.Clear();
+                CollectablesList.Clear();
 
                 LoadTiles(fileNames);
                 initial = false;
@@ -151,6 +160,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
         public void LoadTile(string tile,int x,int y)
         {
+            UIbar = new Bar(Textures[0]);
             switch (tile)
             {
                 //basic items (dungeon)
@@ -281,6 +291,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "YED":
                     tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YellowEntrance);
                     break;
+                //red items
                 case "RDU":
                     RDList.Add(new RedDoor(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
@@ -288,7 +299,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "RDD":
                     RDList.Add(new RedDoor(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
-                //other things
+                
                 case "RT":
                     torchList.Add(new Torch(Textures[7], Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
@@ -296,6 +307,20 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "eR":
                     EnemyList.Add(new Enemy(Textures[9], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize),3,5));
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
+
+                case "RA":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
+                case "RS":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    break;
+                case "RF":
+                    tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                    break;
+                case "RC":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    CollectablesList.Add(new ColorCollectable(Textures[10], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Red, 600));
                     break;
                 //Blue levels items
                 case "Ww":
@@ -315,15 +340,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 //    int Num = rand.Next(8, 10);
                 //    tiles[x, y] = new Tile(Textures[Num], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                 //    break;
-                case "RA":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
-                    break;
-                case "RS":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
-                    break;
-                case "RF":
-                    tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
-                    break;
+
 
 
             }
@@ -373,6 +390,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 EnemyList[i].Draw(spriteBatch);
             }
+            for(int i = 0; i < CollectablesList.Count; i++)
+            {
+                CollectablesList[i].Draw(spriteBatch);
+            }
+            UIbar.Draw(spriteBatch, player);
         }
     }
 }
