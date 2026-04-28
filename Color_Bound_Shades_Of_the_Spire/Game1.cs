@@ -76,10 +76,11 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             fileNames[2] = new string[1];
 
-            fileNames[3] = new string[3];
+            fileNames[3] = new string[4];
             fileNames[3][0] = "Content/level1YR1.txt";
             fileNames[3][1] = "Content/level1YR2.txt";
             fileNames[3][2] = "Content/level1YR3.txt";
+            fileNames[3][3] = "Content/level1YR4.txt";
             //level hub
             fileNames[4] = new string[1];
             fileNames[4][0] = "Content/levelHub.txt";
@@ -87,8 +88,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[11];
             BlockTextures[1] = new Texture2D[11];
-            BlockTextures[2] = new Texture2D[5];
-            BlockTextures[3] = new Texture2D[25];
+            BlockTextures[2] = new Texture2D[8];
+            BlockTextures[3] = new Texture2D[36];
             BlockTextures[4] = new Texture2D[11];
             base.Initialize();
         }
@@ -163,6 +164,17 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][22] = this.Content.Load<Texture2D>("YLaserHorizL");
             BlockTextures[3][23] = this.Content.Load<Texture2D>("YLaserHorizM");
             BlockTextures[3][24] = this.Content.Load<Texture2D>("YLaserHorizR");
+            BlockTextures[3][25] = this.Content.Load<Texture2D>("YLaserVertTVarient");
+            BlockTextures[3][26] = this.Content.Load<Texture2D>("YLaserVertMVarient");
+            BlockTextures[3][27] = this.Content.Load<Texture2D>("YLaserVertBVarient");
+            BlockTextures[3][28] = this.Content.Load<Texture2D>("YLaserHorizLVarient");
+            BlockTextures[3][29] = this.Content.Load<Texture2D>("YLaserHorizMVarient");
+            BlockTextures[3][30] = this.Content.Load<Texture2D>("YLaserHorizRVarient");
+            BlockTextures[3][31] = this.Content.Load<Texture2D>("OverloadGridUnpowered");
+            BlockTextures[3][32] = this.Content.Load<Texture2D>("OverloadGridPowered");
+            BlockTextures[3][33] = this.Content.Load<Texture2D>("PowerGridOn");
+            BlockTextures[3][34] = this.Content.Load<Texture2D>("PowerGridDestroyed");
+            BlockTextures[3][35] = this.Content.Load<Texture2D>("WireCharged");
 
             BlockTextures[4][0] = this.Content.Load<Texture2D>("DungeonTileFloor");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
