@@ -30,6 +30,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public List<YellowDoor> YDList;
         public List<YLaserVertVarient> YLVVList;
         public List<YLaserHorizVarient> YLHVList;
+        public List<BlueDoor> BD;
         public List<Torch> torchList;
         public List<RedDoor> RDList;
         public List<Enemy> EnemyList;
@@ -47,6 +48,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             initial = true;
             playerInitial = true;
             checkpoint = 0;
+            BD = new List<BlueDoor>();
             YGList = new List<YellowGiver>();
             YRList = new List<YellowReciever>();
             YDList = new List<YellowDoor>();
@@ -66,6 +68,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YGList.Count; i++)
             {
                 YGList[i].colision(player);
+            }
+
+            for(int i = 0; i < BD.Count; i++)
+            {
+                BD[i].openDoor(player, this);
             }
             for (int i = 0; i < EnemyList.Count; i++)
             {
@@ -100,6 +107,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 torchList.Clear();
                 RDList.Clear();
                 EnemyList.Clear();
+                BD.Clear();
 
                 LoadTiles(fileNames);
                 initial = false;
@@ -307,6 +315,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "BS":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
                     break;
+                case "BD":
+                    BD.Add(new BlueDoor(Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
                 //case "B0":
                 //    int bNum = rand.Next(8, 10);
                 //    tiles[x, y] = new Tile(Textures[bNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
@@ -331,6 +342,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         public void DrawAll(SpriteBatch spriteBatch, Player player)
         {
             if (tiles == null) return;
+
+            player.tiles = tiles;
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
@@ -352,6 +365,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YGList.Count; i++)
             {
                 YGList[i].Draw(spriteBatch, player, this);
+            }
+            for(int i = 0; i < BD.Count; i++)
+            {
+                BD[i].Draw(spriteBatch);
             }
             for (int i = 0; i < YRList.Count; i++)
             {

@@ -77,7 +77,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             fileNames[2] = new string[2];
             fileNames[2][0] = "Content/level1BB1.txt";
-            fileNames[2][1] = "Content/level1BB1.txt";
+            fileNames[2][1] = "Content/level1BB2.txt";
 
             fileNames[3] = new string[3];
             fileNames[3][0] = "Content/level1YR1.txt";
@@ -90,7 +90,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[11];
             BlockTextures[1] = new Texture2D[10];
-            BlockTextures[2] = new Texture2D[8];
+            BlockTextures[2] = new Texture2D[9];
             BlockTextures[3] = new Texture2D[25];
             BlockTextures[4] = new Texture2D[11];
             base.Initialize();
@@ -142,6 +142,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[2][5] = this.Content.Load<Texture2D>("water");
             BlockTextures[2][6] = this.Content.Load<Texture2D>("water surface");
             BlockTextures[2][7] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[2][8] = this.Content.Load<Texture2D>("checkpoint");
 
             BlockTextures[3][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[3][1] = this.Content.Load<Texture2D>("Tile");
