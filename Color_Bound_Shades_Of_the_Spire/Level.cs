@@ -318,14 +318,12 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "BD":
                     BD.Add(new BlueDoor(Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
-                //case "B0":
-                //    int bNum = rand.Next(8, 10);
-                //    tiles[x, y] = new Tile(Textures[bNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
-                //    break;
-                //case "B":
-                //    int Num = rand.Next(8, 10);
-                //    tiles[x, y] = new Tile(Textures[Num], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
-                //    break;
+                case "B0":
+                    tiles[x, y] = new Tile(Textures[9], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
+                case "BF":
+                    tiles[x, y] = new Tile(Textures[10], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                    break;
                 case "RA":
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;

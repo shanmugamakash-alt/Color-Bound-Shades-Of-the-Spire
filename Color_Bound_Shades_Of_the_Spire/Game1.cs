@@ -90,7 +90,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[11];
             BlockTextures[1] = new Texture2D[10];
-            BlockTextures[2] = new Texture2D[9];
+            BlockTextures[2] = new Texture2D[11];
             BlockTextures[3] = new Texture2D[25];
             BlockTextures[4] = new Texture2D[11];
             base.Initialize();
@@ -143,6 +143,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[2][6] = this.Content.Load<Texture2D>("water surface");
             BlockTextures[2][7] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][8] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[2][9] = this.Content.Load<Texture2D>("Moss Wall");
+            BlockTextures[2][10] = this.Content.Load<Texture2D>("Wet Moss Wall");
 
             BlockTextures[3][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[3][1] = this.Content.Load<Texture2D>("Tile");
