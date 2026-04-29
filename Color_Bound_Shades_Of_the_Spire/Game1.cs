@@ -27,7 +27,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D barTex;
         KeyboardState oldKB;
         MouseState oldM;
-        Bar barUI;
         Button PlayButton;
         public GameState gameState;
         public enum GameState
@@ -75,23 +74,34 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[1][1] = "Content/level1RR2.txt";
             fileNames[1][2] = "Content/level1RR3.txt";
 
+<<<<<<< Akash10
             fileNames[2] = new string[2];
             fileNames[2][0] = "Content/level1BB1.txt";
             fileNames[2][1] = "Content/level1BB2.txt";
+=======
+            fileNames[2] = new string[1];
+>>>>>>> master
 
-            fileNames[3] = new string[3];
+            fileNames[3] = new string[4];
             fileNames[3][0] = "Content/level1YR1.txt";
             fileNames[3][1] = "Content/level1YR2.txt";
             fileNames[3][2] = "Content/level1YR3.txt";
+            fileNames[3][3] = "Content/level1YR4.txt";
             //level hub
             fileNames[4] = new string[1];
             fileNames[4][0] = "Content/levelHub.txt";
 
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[11];
+<<<<<<< Akash10
             BlockTextures[1] = new Texture2D[10];
             BlockTextures[2] = new Texture2D[11];
             BlockTextures[3] = new Texture2D[25];
+=======
+            BlockTextures[1] = new Texture2D[11];
+            BlockTextures[2] = new Texture2D[8];
+            BlockTextures[3] = new Texture2D[36];
+>>>>>>> master
             BlockTextures[4] = new Texture2D[11];
             base.Initialize();
         }
@@ -133,18 +143,22 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][7] = this.Content.Load<Texture2D>("torch");
             BlockTextures[1][8] = this.Content.Load<Texture2D>("littorch");
             BlockTextures[1][9] = this.Content.Load<Texture2D>("enemy");
+            BlockTextures[1][10] = this.Content.Load<Texture2D>("colorCollectable");
 
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[2][2] = this.Content.Load<Texture2D>("SpikeU");
             BlockTextures[2][3] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[2][4] = this.Content.Load<Texture2D>("Key");
+<<<<<<< Akash10
             BlockTextures[2][5] = this.Content.Load<Texture2D>("water");
             BlockTextures[2][6] = this.Content.Load<Texture2D>("water surface");
             BlockTextures[2][7] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][8] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[2][9] = this.Content.Load<Texture2D>("Moss Wall");
             BlockTextures[2][10] = this.Content.Load<Texture2D>("Wet Moss Wall");
+=======
+>>>>>>> master
 
             BlockTextures[3][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[3][1] = this.Content.Load<Texture2D>("Tile");
@@ -171,6 +185,17 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][22] = this.Content.Load<Texture2D>("YLaserHorizL");
             BlockTextures[3][23] = this.Content.Load<Texture2D>("YLaserHorizM");
             BlockTextures[3][24] = this.Content.Load<Texture2D>("YLaserHorizR");
+            BlockTextures[3][25] = this.Content.Load<Texture2D>("YLaserVertTVarient");
+            BlockTextures[3][26] = this.Content.Load<Texture2D>("YLaserVertMVarient");
+            BlockTextures[3][27] = this.Content.Load<Texture2D>("YLaserVertBVarient");
+            BlockTextures[3][28] = this.Content.Load<Texture2D>("YLaserHorizLVarient");
+            BlockTextures[3][29] = this.Content.Load<Texture2D>("YLaserHorizMVarient");
+            BlockTextures[3][30] = this.Content.Load<Texture2D>("YLaserHorizRVarient");
+            BlockTextures[3][31] = this.Content.Load<Texture2D>("OverloadGridUnpowered");
+            BlockTextures[3][32] = this.Content.Load<Texture2D>("OverloadGridPowered");
+            BlockTextures[3][33] = this.Content.Load<Texture2D>("PowerGridOn");
+            BlockTextures[3][34] = this.Content.Load<Texture2D>("PowerGridDestroyed");
+            BlockTextures[3][35] = this.Content.Load<Texture2D>("WireCharged");
 
             BlockTextures[4][0] = this.Content.Load<Texture2D>("DungeonTileFloor");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
@@ -185,7 +210,6 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
-            barUI = new Bar(BlockTextures[3][0], barTex);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 400, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
@@ -219,8 +243,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             else if (gameState == GameState.Game)
             {
-                levelLoader.Update(p, kb);
-                barUI.Update(kb, oldKB, p);
+                levelLoader.Update(p, kb, oldKB);
                 if (kb.IsKeyDown(Keys.Escape) && !oldKB.IsKeyDown(Keys.Escape))
                 {
                     gameState = GameState.Pause;
@@ -257,7 +280,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 spriteBatch.Begin();
                 levelLoader.DrawAll(spriteBatch, p);
                 p.Draw(spriteBatch);
-                barUI.Draw(spriteBatch, p);
                 spriteBatch.End();
             }
             else if (gameState == GameState.Pause)
@@ -265,7 +287,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 spriteBatch.Begin();
                 levelLoader.DrawAll(spriteBatch, p);
                 p.Draw(spriteBatch);
-                barUI.Draw(spriteBatch, p);
                 spriteBatch.DrawString(font1, "Paused", new Vector2(903, 200), Color.Black);
                 spriteBatch.End();
             }

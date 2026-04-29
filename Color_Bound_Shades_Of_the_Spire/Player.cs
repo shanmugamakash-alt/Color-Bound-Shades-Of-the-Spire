@@ -37,6 +37,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public bool charged;
         public bool inwater;
         public Tile[,] tiles;
+        public bool ultraCharged;
         public int idleTime;
         int timer;
         KeyboardState oldkb;
@@ -63,6 +64,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             dash = 1;
             inwater = false;
             dashTimer = 90;
+            charged = false;
+            ultraCharged = false;
             isDashing = false;
             dashDuration = 12;
             checkPointReached = false;
@@ -223,6 +226,15 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     break;
                                 }
                             }
+                            if (LL.CurrentLevel == LevelLoader.currentLevel.level4 && tiles[i, j].returnType() == Tile.TileType.keyDoor)
+                            {
+                                if (keyCount == 3)
+                                {
+                                    tiles[i, j].setTileType(Tile.TileType.air);
+                                    tiles[i, j].setTex(null);
+                                    break;
+                                }
+                            }
                             Rectangle tileRec = tiles[i, j].GetRec();
 
                             if (position.X + rec.Width > tileRec.X && position.X < tileRec.X + tileRec.Width)
@@ -333,7 +345,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.LevelHub && rec.Intersects(tiles[i, j].GetRec()))
                         {
-                            level.levelComplete = true;
+                            LL.CurrentLevel = (LevelLoader.currentLevel)5;
+                            LL.levels[4].initial = true;
                             keyCount = 0;
                         }
                         else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))

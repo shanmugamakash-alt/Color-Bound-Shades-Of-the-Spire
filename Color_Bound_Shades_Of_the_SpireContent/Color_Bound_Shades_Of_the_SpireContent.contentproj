@@ -271,8 +271,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1YR3.txt">
-      <Name>level1YR3</Name>
+    <None Include="level1YR4.txt">
+      <Name>level1YR4</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -404,6 +404,43 @@
   <ItemGroup>
     <Compile Include="Moss Wall.png">
       <Name>Moss Wall</Name>
+    <Compile Include="colorCollectable.png">
+      <Name>colorCollectable</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="OverloadGridUnpowered.png">
+      <Name>OverloadGridUnpowered</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="YLaserHorizLVarient.png">
+      <Name>YLaserHorizLVarient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="YLaserHorizMVarient.png">
+      <Name>YLaserHorizMVarient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="YLaserHorizRVarient.png">
+      <Name>YLaserHorizRVarient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="YLaserVertBVarient.png">
+      <Name>YLaserVertBVarient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="YLaserVertMVarient.png">
+      <Name>YLaserVertMVarient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="YLaserVertTVarient.png">
+      <Name>YLaserVertTVarient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -414,6 +451,32 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="OverloadGridPowered.png">
+      <Name>OverloadGridPowered</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="PowerGridDestroyed.png">
+      <Name>PowerGridDestroyed</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="PowerGridOn.png">
+      <Name>PowerGridOn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="WireOverload.png">
+      <Name>WireOverload</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="level1YR3.txt">
+      <Name>level1YR3</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
