@@ -63,7 +63,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     float angle = (float)Math.Atan2(edge.Y, edge.X);
                     float length = edge.Length();
 
-                    spriteBatch.Draw(level.Textures[35], start, null, Color.White, angle, new Vector2(0, level.Textures[35].Height / 2f), new Vector2(length / level.Textures[35].Width, 1f), SpriteEffects.None, 0f);
+                    spriteBatch.Draw(level.Textures[35], start, null, Color.Yellow, angle, new Vector2(0, level.Textures[35].Height / 2f), new Vector2(length / level.Textures[35].Width, 1f), SpriteEffects.None, 0f);
                 }
                 else if (level.PG.isDestroyed)
                 {
@@ -73,7 +73,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     float angle = (float)Math.Atan2(edge.Y, edge.X);
                     float length = edge.Length();
 
-                    spriteBatch.Draw(level.Textures[36], start, null, Color.White, angle, new Vector2(0, level.Textures[35].Height / 2f), new Vector2(length / level.Textures[35].Width, 1f), SpriteEffects.None, 0f);
+                    spriteBatch.Draw(level.Textures[35], start, null, Color.White, angle, new Vector2(0, level.Textures[35].Height / 2f), new Vector2(length / level.Textures[35].Width, 1f), SpriteEffects.None, 0f);
                 }
             }
             spriteBatch.Draw(T, R, Color.White);

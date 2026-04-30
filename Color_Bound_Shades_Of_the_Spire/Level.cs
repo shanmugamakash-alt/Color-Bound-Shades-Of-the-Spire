@@ -17,6 +17,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         string[] fileNames;
         Tile[,] tiles;
         public Texture2D[] Textures;
+        public string Hint;
+        public Vector2 Hintlocation;
         public int room;
         public int tileSize;
         public int offset, velocityX;
@@ -30,6 +32,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public List<YellowDoor> YDList;
         public List<YLaserVertVarient> YLVVList;
         public List<YLaserHorizVarient> YLHVList;
+        public List<BossDoorLayer1> BossDoor1;
         public PowerGrid PG;
         public OverloadGrid OG;
         public List<Torch> torchList;
@@ -57,8 +60,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             EnemyList = new List<Enemy>();
             YLVVList = new List<YLaserVertVarient>();
             YLHVList = new List<YLaserHorizVarient>();
+            BossDoor1 = new List<BossDoorLayer1>();
             PG = new PowerGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
             OG = new OverloadGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
+            Hint = "";
+            Hintlocation = Vector2.Zero;
             LoadTiles(this.fileNames);
         }
 
@@ -67,17 +73,21 @@ namespace Color_Bound_Shades_Of_the_Spire
             if (initial)
             {
                 playerInitial = true;
+                player.charged = false;
+                player.ultraCharged = false;
                 YGList.Clear();
                 YRList.Clear();
                 YDList.Clear();
                 YLVVList.Clear();
                 YLHVList.Clear();
+                BossDoor1.Clear();
                 torchList.Clear();
                 RDList.Clear();
                 PG = new PowerGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
                 OG = new OverloadGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
                 EnemyList.Clear();
-
+                Hint = "";
+                Hintlocation = Vector2.Zero;
                 LoadTiles(fileNames);
                 initial = false;
             }
@@ -119,6 +129,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YLHVList.Count; i++)
             {
                 YLHVList[i].colision(player, Textures);
+            }
+            for (int i = 0; i < BossDoor1.Count; i++)
+            {
+                BossDoor1[i].colision(player, this);
             }
             PG.colision(player, this);
             OG.colision(player, this);
@@ -175,14 +189,26 @@ namespace Color_Bound_Shades_Of_the_Spire
                     int texNum = rand.Next(8, 10);
                     tiles[x, y] = new Tile(Textures[texNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
-                case "E":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
+                case "EU":
+                    tiles[x, y] = new Tile(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
+                    break;
+                case "ED":
+                    tiles[x, y] = new Tile(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
                     break;
                 case "S":
                     int texNum2 = rand.Next(8, 10);
                     tiles[x, y] = new Tile(Textures[texNum2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
                     break;
-
+                //layer1 keys
+                case "YK":
+                    tiles[x, y] = new Tile(Textures[38], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.yellowKey);
+                    break;
+                case "RK":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.redKey);
+                    break;
+                case "BK":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.blueKey);
+                    break;
                 //yellow level items
                 case "Yf":
                     tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
@@ -271,12 +297,17 @@ namespace Color_Bound_Shades_Of_the_Spire
                     OG = new OverloadGrid(Textures[31], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
                     break;
                 case "YLU":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    tiles[x, y] = new Tile(Textures[36], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
                     break;
                 case "YLD":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    tiles[x, y] = new Tile(Textures[37], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
                     break;
-
+                case "YTT":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
+                    break;
+                case "YKD":
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
+                    break;
 
                 //tutorial items
                 case "c":
@@ -286,16 +317,13 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.key);
                     break;
                 case "LU":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    tiles[x, y] = new Tile(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
                     break;
                 case "LD":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    tiles[x, y] = new Tile(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
                     break;
                 case "KD":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
-                    break;
-                case "YKD":
-                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
+                    tiles[x, y] = new Tile(Textures[13], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
                     break;
                 case "sU":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
@@ -308,6 +336,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 case "sL":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+                case "TT":
+                    tiles[x, y] = new Tile(Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
                     break;
 
                 //level hub items
@@ -329,6 +360,19 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 case "RDD":
                     RDList.Add(new RedDoor(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
+                    //boss door
+                case "BDDL":
+                    BossDoor1.Add(new BossDoorLayer1(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
+                case "BDUL":
+                    BossDoor1.Add(new BossDoorLayer1(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
+                case "BDDR":
+                    BossDoor1.Add(new BossDoorLayer1(Textures[13], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
+                case "BDUR":
+                    BossDoor1.Add(new BossDoorLayer1(Textures[14], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
                 //other things
                 case "RT":
@@ -370,7 +414,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             }
         }
-        public void DrawAll(SpriteBatch spriteBatch, Player player, LevelLoader LL)
+        public void DrawAll(SpriteBatch spriteBatch, Player player, LevelLoader LL, SpriteFont Font1)
         {
             if (tiles == null) return;
             for (int i = 0; i < tiles.GetLength(0); i++)
@@ -386,6 +430,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                         {
                             spriteBatch.Draw(tiles[i, j].GetTex(), drawRect, Color.White);
                         }
+                        else if (LL.CurrentLevel == LevelLoader.currentLevel.level1)
+                            spriteBatch.Draw(Textures[8], drawRect, Color.White);
                         else if (LL.CurrentLevel == LevelLoader.currentLevel.level4)
                             spriteBatch.Draw(Textures[7], drawRect, Color.White);
                         else
@@ -393,6 +439,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     }
                 }
             }
+            spriteBatch.DrawString(Font1, Hint, Hintlocation, Color.Black);
             for (int i = 0; i < YGList.Count; i++)
             {
                 YGList[i].Draw(spriteBatch, player, this);
@@ -412,6 +459,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YLHVList.Count; i++)
             {
                 YLHVList[i].Draw(spriteBatch);
+            }
+            for (int i = 0; i < BossDoor1.Count; i++)
+            {
+                BossDoor1[i].Draw(spriteBatch);
             }
             OG.Draw(spriteBatch, player, this);
             PG.Draw(spriteBatch);

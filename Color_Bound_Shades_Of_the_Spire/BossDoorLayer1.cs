@@ -11,34 +11,23 @@ using System.Linq;
 
 namespace Color_Bound_Shades_Of_the_Spire
 {
-    public class YellowDoor
+    public class BossDoorLayer1
     {
-        Texture2D T;
-        Rectangle R;
-        public bool isOpen;
-        public YellowDoor(Texture2D t, Rectangle r)
+        public Texture2D T;
+        public Rectangle R;
+
+        public BossDoorLayer1(Texture2D t, Rectangle r)
         {
             T = t;
             R = r;
-            isOpen = false;
         }
 
         public void colision(Player player, Level level)
         {
-            bool allOn = true; 
-            for (int i = 0; i < level.YRList.Count; i++)
+            if (player.hasBlueKey && player.hasRedKey && player.hasYellowKey && player.rec.Intersects(R))
             {
-                if (!level.YRList[i].isOn)
-                {
-                    allOn = false;
-                    break;
-                }
-            }
-            if (allOn && player.rec.Intersects(R))
-            {
+                level.room++;
                 level.initial = true;
-                level.room += 1;
-                allOn = false;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
