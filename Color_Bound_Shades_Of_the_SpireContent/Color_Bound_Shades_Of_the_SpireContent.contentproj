@@ -396,6 +396,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="level1BB2.txt">
+      <Name>level1BB2</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Moss Wall.png">
+      <Name>Moss Wall</Name>
     <Compile Include="colorCollectable.png">
       <Name>colorCollectable</Name>
       <Importer>TextureImporter</Importer>
@@ -438,6 +446,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Wet Moss Wall.png">
+      <Name>Wet Moss Wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="OverloadGridPowered.png">
       <Name>OverloadGridPowered</Name>
       <Importer>TextureImporter</Importer>

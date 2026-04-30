@@ -32,21 +32,27 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int dash;
         public int dashTimer;
         public int dashDuration;
+        public float maxJumpheight;
         public int keyCount;
         public bool charged;
+        public bool inwater;
+        public Tile[,] tiles;
         public bool ultraCharged;
         public int idleTime;
+        int timer;
         KeyboardState oldkb;
         
         public Player(Texture2D[] t, Rectangle r)
         {
             tex = t[0];
+            timer = 0;
             textures = t;
             idleTime = 30;
             rec = r;
             position = new Vector2(rec.X, rec.Y);
             startPos = position;
             dead = false;
+            maxJumpheight = -20f;
             deathTimer = 45;
             velocity = Vector2.Zero;
             gravity = .75f;
@@ -56,6 +62,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             double_jump = 2;
             keyCount = 0;
             dash = 1;
+            inwater = false;
             dashTimer = 90;
             charged = false;
             ultraCharged = false;
@@ -67,7 +74,25 @@ namespace Color_Bound_Shades_Of_the_Spire
         public void move(KeyboardState kb, Level level)
         {
             MouseState mouse = Mouse.GetState();
-            gravity = .75f * level.scale;
+            
+           
+            if(inwater)
+            {
+                gravity = 0.1f * level.scale;
+                maxJumpheight = -5f;
+                //timer++;
+            }
+            else
+            {
+                gravity = 0.75f * level.scale;
+                maxJumpheight = -20f;
+                timer = 0;
+            }
+
+            if(timer / 60 == 2)
+            {
+                dead = true;
+            }
             if (isDashing)
             {
                 dashDuration--;
@@ -81,6 +106,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             if (!dead)
             {
+                
                 if (kb.IsKeyDown(Keys.Right))
                 {
                     tex = textures[1];
@@ -118,19 +144,29 @@ namespace Color_Bound_Shades_Of_the_Spire
                     double_jump -= 1;
 
                 }
+               
             }
-                position += velocity;
+            position += velocity;
 
-                if (velocity.Y < 0)
-                    onGround = false;
+            if (velocity.Y < 0)
+                onGround = false;
 
-                if (velocity.Y < -20f * level.scale)
-                    velocity.Y = -20f * level.scale;
+            if (velocity.Y < maxJumpheight * level.scale)
+                velocity.Y = maxJumpheight * level.scale;
 
-                velocity.X *= .9f;
 
-                if (!onGround && !isDashing)
-                    velocity.Y += gravity;
+
+            if (inwater)
+            {
+                velocity.X *= .7f;
+            }
+            else
+            {
+               velocity.X *= .9f;
+            }
+
+            if (!onGround && !isDashing)
+               velocity.Y += gravity;
             if (!kb.IsKeyDown(Keys.Right) && !kb.IsKeyDown(Keys.Left))
             {
                 idleTime--;
@@ -169,7 +205,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             else
             {
+                this.tiles = tiles;
                 onGround = false;
+                inwater = false;
                 for (int i = 0; i < tiles.GetLength(0); i++)
                 {
                     for (int j = 0; j < tiles.GetLength(1); j++)
@@ -326,6 +364,11 @@ namespace Color_Bound_Shades_Of_the_Spire
                             LL.CurrentLevel = (LevelLoader.currentLevel)4;
                             keyCount = 0;
                         }
+                        if (tiles[i, j].returnType() == Tile.TileType.water && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            inwater = true;
+                        }
+                        
                     }
                 }
                 if (dead)

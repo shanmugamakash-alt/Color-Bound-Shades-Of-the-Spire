@@ -30,8 +30,12 @@ namespace Color_Bound_Shades_Of_the_Spire
         public List<YellowDoor> YDList;
         public List<YLaserVertVarient> YLVVList;
         public List<YLaserHorizVarient> YLHVList;
+<<<<<<< Akash10
+        public List<BlueDoor> BD;
+=======
         public PowerGrid PG;
         public OverloadGrid OG;
+>>>>>>> master
         public List<Torch> torchList;
         public List<RedDoor> RDList;
         public List<Enemy> EnemyList;
@@ -51,6 +55,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             initial = true;
             playerInitial = true;
             checkpoint = 0;
+            BD = new List<BlueDoor>();
             YGList = new List<YellowGiver>();
             YRList = new List<YellowReciever>();
             YDList = new List<YellowDoor>();
@@ -81,7 +86,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                 OG = new OverloadGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
                 EnemyList.Clear();
                 CollectablesList.Clear();
-
+                BD.Clear();
+              
                 LoadTiles(fileNames);
                 initial = false;
             }
@@ -92,6 +98,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YGList.Count; i++)
             {
                 YGList[i].colision(player);
+            }
+
+            for(int i = 0; i < BD.Count; i++)
+            {
+                BD[i].openDoor(player, this);
             }
             for (int i = 0; i < EnemyList.Count; i++)
             {
@@ -362,15 +373,24 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "BS":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
                     break;
-                //case "B0":
-                //    int bNum = rand.Next(8, 10);
-                //    tiles[x, y] = new Tile(Textures[bNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
-                //    break;
-                //case "B":
-                //    int Num = rand.Next(8, 10);
-                //    tiles[x, y] = new Tile(Textures[Num], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
-                //    break;
-
+                case "BD":
+                    BD.Add(new BlueDoor(Textures[8], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    break;
+                case "B0":
+                    tiles[x, y] = new Tile(Textures[9], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
+                case "BF":
+                    tiles[x, y] = new Tile(Textures[10], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                    break;
+                case "RA":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    break;
+                case "RS":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    break;
+                case "RF":
+                    tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                    break;
 
 
             }
@@ -378,6 +398,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         public void DrawAll(SpriteBatch spriteBatch, Player player, LevelLoader LL)
         {
             if (tiles == null) return;
+
+            player.tiles = tiles;
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
@@ -401,6 +423,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             for (int i = 0; i < YGList.Count; i++)
             {
                 YGList[i].Draw(spriteBatch, player, this);
+            }
+            for(int i = 0; i < BD.Count; i++)
+            {
+                BD[i].Draw(spriteBatch);
             }
             for (int i = 0; i < YRList.Count; i++)
             {
