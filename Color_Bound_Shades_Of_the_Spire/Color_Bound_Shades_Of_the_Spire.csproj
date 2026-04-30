@@ -58,7 +58,10 @@
   <ItemGroup>
     <Compile Include="Bar.cs" />
     <Compile Include="BossDoorLayer1.cs" />
+    <Compile Include="BlueDoor.cs" />
+    <Compile Include="BlueGiver.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="ColorCollectable.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelLoader.cs" />

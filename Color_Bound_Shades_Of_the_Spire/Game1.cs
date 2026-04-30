@@ -28,7 +28,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D logo;
         KeyboardState oldKB;
         MouseState oldM;
-        Bar barUI;
         Button PlayButton;
         public GameState gameState;
         public enum GameState
@@ -78,7 +77,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             fileNames[2] = new string[2];
             fileNames[2][0] = "Content/level1BB1.txt";
-            fileNames[2][1] = "Content/level1BB1.txt";
+            fileNames[2][1] = "Content/level1BB2.txt";
 
             fileNames[3] = new string[4];
             fileNames[3][0] = "Content/level1YR1.txt";
@@ -92,8 +91,8 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[14];
-            BlockTextures[1] = new Texture2D[10];
-            BlockTextures[2] = new Texture2D[8];
+            BlockTextures[1] = new Texture2D[11];
+            BlockTextures[2] = new Texture2D[11];
             BlockTextures[3] = new Texture2D[39];
             BlockTextures[4] = new Texture2D[15];
             base.Initialize();
@@ -140,6 +139,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][7] = this.Content.Load<Texture2D>("torch");
             BlockTextures[1][8] = this.Content.Load<Texture2D>("littorch");
             BlockTextures[1][9] = this.Content.Load<Texture2D>("enemy");
+            BlockTextures[1][10] = this.Content.Load<Texture2D>("colorCollectable");
 
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("Tile");
@@ -149,6 +149,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[2][5] = this.Content.Load<Texture2D>("water");
             BlockTextures[2][6] = this.Content.Load<Texture2D>("water surface");
             BlockTextures[2][7] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[2][8] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[2][9] = this.Content.Load<Texture2D>("Moss Wall");
+            BlockTextures[2][10] = this.Content.Load<Texture2D>("Wet Moss Wall");
 
             BlockTextures[3][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[3][1] = this.Content.Load<Texture2D>("Tile");
@@ -207,7 +210,6 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
-            barUI = new Bar(BlockTextures[3][0], barTex);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 550, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
@@ -241,8 +243,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             else if (gameState == GameState.Game)
             {
-                levelLoader.Update(p, kb);
-                barUI.Update(kb, oldKB, p);
+                levelLoader.Update(p, kb, oldKB);
                 if (kb.IsKeyDown(Keys.Escape) && !oldKB.IsKeyDown(Keys.Escape))
                 {
                     gameState = GameState.Pause;
@@ -280,7 +281,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 spriteBatch.Begin();
                 levelLoader.DrawAll(spriteBatch, p, font1);
                 p.Draw(spriteBatch);
-                barUI.Draw(spriteBatch, p);
                 spriteBatch.End();
             }
             else if (gameState == GameState.Pause)
@@ -288,7 +288,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 spriteBatch.Begin();
                 levelLoader.DrawAll(spriteBatch, p, font1);
                 p.Draw(spriteBatch);
-                barUI.Draw(spriteBatch, p);
                 spriteBatch.DrawString(font1, "Paused", new Vector2(903, 200), Color.Black);
                 spriteBatch.End();
             }
