@@ -333,6 +333,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     deathTimer--;
                     if (deathTimer <= 0)
                     {
+                        color = Color.White;
                         dead = false;
                         respawnCheckpoint(level.checkpoint, LL);
                         UpdateRectangle();
