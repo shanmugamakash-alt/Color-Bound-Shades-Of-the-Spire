@@ -19,27 +19,25 @@ namespace Color_Bound_Shades_Of_the_Spire
         public Rectangle rec;
         public Vector2 position;
         public Vector2 oldPosition;
-        public Vector2 startPos;
-        public Vector2 velocity;
-        public float gravity;
+        Vector2 velocity;
+        float gravity;
         public Color color;
         public bool onGround;
         public bool checkPointReached;
         public bool dead;
         public bool isDashing;
-        public bool charged;
-        public bool ultraCharged;
-        public bool hasYellowKey;
-        public bool hasRedKey;
-        public bool hasBlueKey;
-        public bool inwater;
         public int deathTimer;
-        public int double_jump;
+        public Vector2 startPos;
+        int double_jump;
         public int dash;
         public int dashTimer;
         public int dashDuration;
         public float maxJumpheight;
         public int keyCount;
+        public bool charged;
+        public bool inwater;
+        public Tile[,] tiles;
+        public bool ultraCharged;
         public int idleTime;
         int timer;
         KeyboardState oldkb;
@@ -71,9 +69,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             isDashing = false;
             dashDuration = 12;
             checkPointReached = false;
-            hasYellowKey = false;
-            hasRedKey = false;
-            hasBlueKey = false;
         }
 
         public void move(KeyboardState kb, Level level)
@@ -233,7 +228,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                             }
                             if (LL.CurrentLevel == LevelLoader.currentLevel.level4 && tiles[i, j].returnType() == Tile.TileType.keyDoor)
                             {
-                                if (keyCount == 4)
+                                if (keyCount == 3)
                                 {
                                     tiles[i, j].setTileType(Tile.TileType.air);
                                     tiles[i, j].setTex(null);
@@ -271,164 +266,103 @@ namespace Color_Bound_Shades_Of_the_Spire
                             }
 
                         }
-                        if (!dead)
+                        else if (tiles[i, j].returnType() == Tile.TileType.exit && rec.Intersects(tiles[i, j].GetRec()))
                         {
-                            if (tiles[i, j].returnType() == Tile.TileType.exit && rec.Intersects(tiles[i, j].GetRec()))
+                            level.room += 1;
+                            level.initial = true;
+                            return;
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.start)
+                        {
+                            if (level.playerInitial || level.initial)
                             {
-                                level.room += 1;
-                                level.initial = true;
-                                return;
+                                position = new Vector2(tiles[i, j].GetRec().X, tiles[i, j].GetRec().Y);
+                                startPos = position;
+                                rec = tiles[i, j].GetRec();
+                                UpdateRectangle();
+                                level.initial = false;
+                                level.playerInitial = false;
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.start)
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.spike)
+                        {
+                            Rectangle r = tiles[i, j].GetRec();
+                            //fix the hitbox
+                            if (!dead && rec.Intersects(new Rectangle(r.X + (int)(15 * level.scale), r.Y + (int)(15 * level.scale),r.Width - 30, r.Height - 30)))
                             {
-                                if (level.playerInitial || level.initial)
-                                {
-                                    position = new Vector2(tiles[i, j].GetRec().X, tiles[i, j].GetRec().Y);
-                                    startPos = position;
-                                    rec = tiles[i, j].GetRec();
-                                    UpdateRectangle();
-                                    level.initial = false;
-                                    level.playerInitial = false;
-                                }
+                                dead = true;
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.spike)
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.YLaserVert)
+                        {
+                            Rectangle r = tiles[i, j].GetRec();
+                            if (!dead && rec.Intersects(new Rectangle(r.X + 15, r.Y, r.Width - 15, r.Height)))
                             {
-                                Rectangle r = tiles[i, j].GetRec();
-                                //fix the hitbox
-                                if (!dead && rec.Intersects(new Rectangle(r.X + (int)(15 * level.scale), r.Y + (int)(15 * level.scale), r.Width - 30, r.Height - 30)))
+                                if (color != Color.Yellow)
                                 {
                                     dead = true;
                                 }
+                                else
+                                    continue;
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.YLaserVert)
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.YLaserHoriz)
+                        {
+                            Rectangle r = tiles[i, j].GetRec();
+                            if (!dead && rec.Intersects(new Rectangle(r.X, r.Y + 15, r.Width, r.Height - 15)))
                             {
-                                Rectangle r = tiles[i, j].GetRec();
-                                if (!dead && rec.Intersects(new Rectangle(r.X + 15, r.Y, r.Width - 15, r.Height)))
+                                if (color != Color.Yellow)
                                 {
-                                    if (color != Color.Yellow)
-                                    {
-                                        dead = true;
-                                    }
-                                    else
-                                        continue;
+                                    dead = true;
                                 }
+                                else
+                                    continue;
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.YLaserHoriz)
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.checkpoint)
+                        {
+                            if (tiles[i, j] != checkpointTile)
                             {
-                                Rectangle r = tiles[i, j].GetRec();
-                                if (!dead && rec.Intersects(new Rectangle(r.X, r.Y + 15, r.Width, r.Height - 15)))
-                                {
-                                    if (color != Color.Yellow)
-                                    {
-                                        dead = true;
-                                    }
-                                    else
-                                        continue;
-                                }
+                                checkPointReached = false;
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.checkpoint)
+                            if (rec.Intersects(tiles[i, j].GetRec()) && !checkPointReached)
                             {
-                                if (tiles[i, j] != checkpointTile)
-                                {
-                                    checkPointReached = false;
-                                }
-                                if (rec.Intersects(tiles[i, j].GetRec()) && !checkPointReached)
-                                {
-                                    level.checkpoint += 1;
-                                    checkPointReached = true;
-                                    checkpointTile = tiles[i, j];
-                                }
+                                level.checkpoint += 1;
+                                checkPointReached = true;
+                                checkpointTile = tiles[i, j];
+                            }
 
-                            }
-                            else if (tiles[i, j].returnType() == Tile.TileType.key)
-                            {
-                                if (rec.Intersects(tiles[i, j].GetRec()))
-                                {
-                                    tiles[i, j].setTileType(Tile.TileType.air);
-                                    tiles[i, j].setTex(null);
-                                    keyCount += 1;
-                                }
-                            }
-                            else if (tiles[i, j].returnType() == Tile.TileType.TextTrigger)
-                            {
-                                if (rec.Intersects(tiles[i, j].GetRec()))
-                                {
-                                    if (LL.CurrentLevel == LevelLoader.currentLevel.level1)
-                                    {
-                                        if (level.room == 1)
-                                        {
-                                            level.Hint = "Press up twice to double jump";
-                                            level.Hintlocation = new Vector2(750, 120);
-                                        }
-                                        else if (level.room == 2)
-                                        {
-                                            level.Hint = "Press space to dash";
-                                            level.Hintlocation = new Vector2(750, 120);
-                                        }
-                                        else if (level.room == 3)
-                                        {
-                                            level.Hint = "Keys are the key...";
-                                            level.Hintlocation = new Vector2(450, 420);
-                                        }
-                                    }
-                                    if (LL.CurrentLevel == LevelLoader.currentLevel.level4)
-                                    {
-                                        if (level.room == 0)
-                                        {
-                                            level.Hint = "Touch the generator and bring power to the recievers";
-                                            level.Hintlocation = new Vector2(650, 120);
-                                        }
-                                        else if (level.room == 2)
-                                        {
-                                            level.Hint = "Power all recievers to turn on the overcharge box \n then connect the power to overload the power grid";
-                                            level.Hintlocation = new Vector2(650, 120);
-                                        }
-                                    }
-
-                                }
-                            }
-                            else if (tiles[i, j].returnType() == Tile.TileType.yellowKey && rec.Intersects(tiles[i, j].GetRec()))
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.key)
+                        {
+                            if (rec.Intersects(tiles[i, j].GetRec()))
                             {
                                 tiles[i, j].setTileType(Tile.TileType.air);
                                 tiles[i, j].setTex(null);
-                                hasYellowKey = true;
+                                keyCount += 1;
+                                Console.WriteLine(keyCount);
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.blueKey && rec.Intersects(tiles[i, j].GetRec()))
-                            {
-                                tiles[i, j].setTileType(Tile.TileType.air);
-                                tiles[i, j].setTex(null);
-                                hasBlueKey = true;
-                            }
-                            else if (tiles[i, j].returnType() == Tile.TileType.redKey && rec.Intersects(tiles[i, j].GetRec()))
-                            {
-                                tiles[i, j].setTileType(Tile.TileType.air);
-                                tiles[i, j].setTex(null);
-                                hasRedKey = true;
-                            }
-                            else if (tiles[i, j].returnType() == Tile.TileType.LevelHub && rec.Intersects(tiles[i, j].GetRec()))
-                            {
-                                LL.CurrentLevel = (LevelLoader.currentLevel)5;
-                                LL.levels[4].initial = true;
-                                keyCount = 0;
-                            }
-                            else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
-                            {
-                                LL.CurrentLevel = (LevelLoader.currentLevel)2;
-                                LL.levels[1].initial = true;
-                                keyCount = 0;
-                            }
-                            else if (tiles[i, j].returnType() == Tile.TileType.BlueEntrance && rec.Intersects(tiles[i, j].GetRec()))
-                            {
-                                LL.CurrentLevel = (LevelLoader.currentLevel)3;
-                                LL.levels[2].initial = true;
-                                keyCount = 0;
-                            }
-                            else if (tiles[i, j].returnType() == Tile.TileType.YellowEntrance && rec.Intersects(tiles[i, j].GetRec()))
-                            {
-                                LL.CurrentLevel = (LevelLoader.currentLevel)4;
-                                LL.levels[3].initial = true;
-                                keyCount = 0;
-                            }
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.LevelHub && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            LL.CurrentLevel = (LevelLoader.currentLevel)5;
+                            LL.levels[4].initial = true;
+                            keyCount = 0;
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            LL.CurrentLevel = (LevelLoader.currentLevel)2;
+                            keyCount = 0;
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.BlueEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            LL.CurrentLevel = (LevelLoader.currentLevel)3;
+                            keyCount = 0;
+                        }
+                        else if (tiles[i, j].returnType() == Tile.TileType.YellowEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                        {
+                            LL.CurrentLevel = (LevelLoader.currentLevel)4;
+                            keyCount = 0;
                         }
                         if (tiles[i, j].returnType() == Tile.TileType.water && rec.Intersects(tiles[i, j].GetRec()))
                         {
@@ -440,8 +374,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 if (dead)
                 {
                     deathTimer--;
-                    charged = false;
-                    ultraCharged = false;
                     if (deathTimer <= 0)
                     {
                         dead = false;

@@ -37,9 +37,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             levels[(int)CurrentLevel - 1].Update(player, kb, oldKB, this);
         }
-        public void DrawAll(SpriteBatch spriteBatch, Player player, SpriteFont Font1)
+        public void DrawAll(SpriteBatch spriteBatch, Player player)
         {
-            levels[(int)CurrentLevel - 1].DrawAll(spriteBatch, player, this, Font1);
+            levels[(int)CurrentLevel - 1].DrawAll(spriteBatch, player, this);
         }
 
     }

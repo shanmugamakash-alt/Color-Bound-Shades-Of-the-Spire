@@ -38,7 +38,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 level.initial = true;
                 level.room += 1;
-                allOn = false;
             }
         }
         public void Draw(SpriteBatch spriteBatch)

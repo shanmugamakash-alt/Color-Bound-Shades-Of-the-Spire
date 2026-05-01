@@ -22,9 +22,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             YLaserHoriz,
             checkpoint,
             key,
-            yellowKey,
-            redKey,
-            blueKey,
             exit,
             keyDoor,
             start,
@@ -32,8 +29,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             RedEntrance,
             BlueEntrance,
             YellowEntrance,
-            water,
-            TextTrigger
+            water
         }
         Texture2D T;
         Rectangle R;
