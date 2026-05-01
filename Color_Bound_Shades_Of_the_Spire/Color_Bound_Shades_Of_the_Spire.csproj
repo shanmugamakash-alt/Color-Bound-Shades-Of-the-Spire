@@ -57,8 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bar.cs" />
-    <Compile Include="BlueDoor.cs" />
-    <Compile Include="BlueGiver.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="ColorCollectable.cs" />
     <Compile Include="Enemy.cs" />
