@@ -16,15 +16,20 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D T;
         Rectangle R;
         public bool isOpen;
+        int cooldown;
         public YellowDoor(Texture2D t, Rectangle r)
         {
             T = t;
             R = r;
             isOpen = false;
+            cooldown = 0;
+       
         }
 
         public void colision(Player player, Level level)
         {
+            if (cooldown > 0)
+                cooldown--;
             bool allOn = true; 
             for (int i = 0; i < level.YRList.Count; i++)
             {
@@ -36,6 +41,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             if (allOn && player.rec.Intersects(R))
             {
+                cooldown = 10;
                 level.initial = true;
                 level.room += 1;
             }

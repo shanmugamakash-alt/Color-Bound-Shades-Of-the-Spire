@@ -70,6 +70,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             if (initial)
             {
                 playerInitial = true;
+                player.ChangeColor(Color.White);
                 YGList.Clear();
                 YRList.Clear();
                 YDList.Clear();
@@ -77,10 +78,11 @@ namespace Color_Bound_Shades_Of_the_Spire
                 YLHVList.Clear();
                 torchList.Clear();
                 RDList.Clear();
-                PG = new PowerGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
-                OG = new OverloadGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
+                UIbar = null;
                 EnemyList.Clear();
                 CollectablesList.Clear();
+                PG = new PowerGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
+                OG = new OverloadGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
 
                 LoadTiles(fileNames);
                 initial = false;
