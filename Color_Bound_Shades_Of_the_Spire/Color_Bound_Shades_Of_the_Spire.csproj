@@ -15,7 +15,7 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>c3759cff-d10b-40d9-81cb-ed69b909a6d7</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <ApplicationIcon>GameLogoV3.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
+    <Content Include="GameLogoV3.ico" />
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>

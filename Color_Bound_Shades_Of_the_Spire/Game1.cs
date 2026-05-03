@@ -25,6 +25,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         LevelLoader levelLoader;
         Texture2D[] t;
         Texture2D barTex;
+        Texture2D Logo;
         KeyboardState oldKB;
         MouseState oldM;
         Button PlayButton;
@@ -86,11 +87,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[4][0] = "Content/levelHub.txt";
 
             BlockTextures = new Texture2D[5][];
-            BlockTextures[0] = new Texture2D[11];
+            BlockTextures[0] = new Texture2D[14];
             BlockTextures[1] = new Texture2D[11];
             BlockTextures[2] = new Texture2D[8];
-            BlockTextures[3] = new Texture2D[36];
-            BlockTextures[4] = new Texture2D[11];
+            BlockTextures[3] = new Texture2D[40];
+            BlockTextures[4] = new Texture2D[16];
             base.Initialize();
         }
 
@@ -108,9 +109,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             t[2] = this.Content.Load<Texture2D>("BlobLeft");
             p = new Player(t, new Rectangle(100, 100, 100, 100));
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
+            Logo = this.Content.Load<Texture2D>("Logo");
 
-            BlockTextures[0][0] = this.Content.Load<Texture2D>("DungeonTileFloor");
-            BlockTextures[0][1] = this.Content.Load<Texture2D>("Tile"); // unused as of now
+            BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
+            BlockTextures[0][1] = this.Content.Load<Texture2D>("KeyDoor"); // unused as of now
             BlockTextures[0][2] = this.Content.Load<Texture2D>("SpikeU");
             BlockTextures[0][3] = this.Content.Load<Texture2D>("checkpoint");
             BlockTextures[0][4] = this.Content.Load<Texture2D>("Key");
@@ -120,6 +122,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][8] = this.Content.Load<Texture2D>("DungeonTileWall1");
             BlockTextures[0][9] = this.Content.Load<Texture2D>("DungeonTileWall2");
             BlockTextures[0][10] = this.Content.Load<Texture2D>("DungeonTileWall3");
+            BlockTextures[0][11] = this.Content.Load<Texture2D>("levelHubDoorU");
+            BlockTextures[0][12] = this.Content.Load<Texture2D>("levelHubDoorD");
+            BlockTextures[0][13] = this.Content.Load<Texture2D>("DungeonTileFloor");
 
             BlockTextures[1][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[1][1] = this.Content.Load<Texture2D>("Tile");
@@ -143,7 +148,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[3][2] = this.Content.Load<Texture2D>("YSpikeU");
             BlockTextures[3][3] = this.Content.Load<Texture2D>("checkpoint");
-            BlockTextures[3][4] = this.Content.Load<Texture2D>("Key");
+            BlockTextures[3][4] = this.Content.Load<Texture2D>("KeyY");
             BlockTextures[3][5] = this.Content.Load<Texture2D>("Wire");
             BlockTextures[3][6] = this.Content.Load<Texture2D>("YellowFloor");
             BlockTextures[3][7] = this.Content.Load<Texture2D>("YellowBackground");
@@ -175,8 +180,12 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][33] = this.Content.Load<Texture2D>("PowerGridOn");
             BlockTextures[3][34] = this.Content.Load<Texture2D>("PowerGridDestroyed");
             BlockTextures[3][35] = this.Content.Load<Texture2D>("WireCharged");
+            BlockTextures[3][36] = this.Content.Load<Texture2D>("levelHubDoorUY");
+            BlockTextures[3][37] = this.Content.Load<Texture2D>("levelHubDoorD");
+            BlockTextures[3][38] = this.Content.Load<Texture2D>("BossKeyY");
+            BlockTextures[3][39] = this.Content.Load<Texture2D>("colorCollectable");
 
-            BlockTextures[4][0] = this.Content.Load<Texture2D>("DungeonTileFloor");
+            BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[4][2] = this.Content.Load<Texture2D>("SpikeU");
             BlockTextures[4][3] = this.Content.Load<Texture2D>("checkpoint");
@@ -186,11 +195,16 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][8] = this.Content.Load<Texture2D>("DungeonTileWall1");
             BlockTextures[4][9] = this.Content.Load<Texture2D>("DungeonTileWall2");
             BlockTextures[4][10] = this.Content.Load<Texture2D>("DungeonTileWall3");
+            BlockTextures[4][11] = this.Content.Load<Texture2D>("BossDoorDL");
+            BlockTextures[4][12] = this.Content.Load<Texture2D>("BossDoorDR");
+            BlockTextures[4][13] = this.Content.Load<Texture2D>("BossDoorUL");
+            BlockTextures[4][14] = this.Content.Load<Texture2D>("BossDoorUR");
+            BlockTextures[4][15] = this.Content.Load<Texture2D>("DungeonTileFloor");
 
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
 
-            PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 400, 250, 100), Button.ButtonType.Play);
+            PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 500, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
         }
 
@@ -246,25 +260,26 @@ namespace Color_Bound_Shades_Of_the_Spire
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             if (gameState == GameState.MainMenu)
             {
                 spriteBatch.Begin();
                 PlayButton.Draw(spriteBatch);
-                spriteBatch.DrawString(font1, "Play", new Vector2(903, 435), Color.Black);
+                spriteBatch.Draw(Logo, new Rectangle(602, 50, 660, 450), Color.White);
+                spriteBatch.DrawString(font1, "Play", new Vector2(903, 536), Color.Black);
                 spriteBatch.End();
             }
             else if (gameState == GameState.Game)
             {
                 spriteBatch.Begin();
-                levelLoader.DrawAll(spriteBatch, p);
+                levelLoader.DrawAll(spriteBatch, p, font1);
                 p.Draw(spriteBatch);
                 spriteBatch.End();
             }
             else if (gameState == GameState.Pause)
             {
                 spriteBatch.Begin();
-                levelLoader.DrawAll(spriteBatch, p);
+                levelLoader.DrawAll(spriteBatch, p, font1);
                 p.Draw(spriteBatch);
                 spriteBatch.DrawString(font1, "Paused", new Vector2(903, 200), Color.Black);
                 spriteBatch.End();
