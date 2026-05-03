@@ -64,6 +64,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             CollectablesList = new List<ColorCollectable>();
             PG = new PowerGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
             OG = new OverloadGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
+            Hint = "";
+            HintLocation = new Vector2(-100, -100);
             LoadTiles(this.fileNames);
         }
 
@@ -267,7 +269,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "YTT":
                     tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
                     break;
-
 
                 //yellow lasers and varients
                 case "YLVT":
