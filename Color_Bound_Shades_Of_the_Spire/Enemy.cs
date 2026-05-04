@@ -89,7 +89,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                                 {
                                     rect.Y = tileRec.Y - rect.Height;
                                     velocity.Y = 0;
-                                    //isOnGround = true;
+                                    isOnGround = true;
                                 }
                                 else if (velocity.Y < 0 && rect.Y <= tileRec.Y + tileRec.Height && rect.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f)
                                 {
