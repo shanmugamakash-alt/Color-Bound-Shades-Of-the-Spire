@@ -87,10 +87,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[4][0] = "Content/levelHub.txt";
 
             BlockTextures = new Texture2D[5][];
-            BlockTextures[0] = new Texture2D[14];
+            BlockTextures[0] = new Texture2D[16];
             BlockTextures[1] = new Texture2D[11];
             BlockTextures[2] = new Texture2D[8];
-            BlockTextures[3] = new Texture2D[40];
+            BlockTextures[3] = new Texture2D[42];
             BlockTextures[4] = new Texture2D[16];
             base.Initialize();
         }
@@ -125,6 +125,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][11] = this.Content.Load<Texture2D>("levelHubDoorU");
             BlockTextures[0][12] = this.Content.Load<Texture2D>("levelHubDoorD");
             BlockTextures[0][13] = this.Content.Load<Texture2D>("DungeonTileFloor");
+            BlockTextures[0][14] = this.Content.Load<Texture2D>("SignUnread");
+            BlockTextures[0][15] = this.Content.Load<Texture2D>("SignRead");
 
             BlockTextures[1][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[1][1] = this.Content.Load<Texture2D>("Tile");
@@ -184,6 +186,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][37] = this.Content.Load<Texture2D>("levelHubDoorD");
             BlockTextures[3][38] = this.Content.Load<Texture2D>("BossKeyY");
             BlockTextures[3][39] = this.Content.Load<Texture2D>("colorCollectable");
+            BlockTextures[3][40] = this.Content.Load<Texture2D>("YellowSignUnread");
+            BlockTextures[3][41] = this.Content.Load<Texture2D>("YellowSignRead");
 
             BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
@@ -202,7 +206,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][15] = this.Content.Load<Texture2D>("DungeonTileFloor");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 500, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here

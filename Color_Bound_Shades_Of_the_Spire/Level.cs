@@ -203,7 +203,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[texNum2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
                     break;
                 case "TT":
-                    tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
+                    tiles[x, y] = new Tile(Textures[14], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
                     break;
 
                 //yellow level items
@@ -267,7 +267,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     CollectablesList.Add(new ColorCollectable(Textures[39], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Yellow, 180));
                     break;
                 case "YTT":
-                    tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
+                    tiles[x, y] = new Tile(Textures[40], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
                     break;
 
                 //yellow lasers and varients
@@ -444,6 +444,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         else if (LL.CurrentLevel == LevelLoader.currentLevel.level4)
                             spriteBatch.Draw(Textures[7], drawRect, Color.White);
+                        else if (LL.CurrentLevel == LevelLoader.currentLevel.level1)
+                            spriteBatch.Draw(Textures[10], drawRect, Color.White);
                         else
                             spriteBatch.Draw(Textures[1], drawRect, Color.White);
                     }

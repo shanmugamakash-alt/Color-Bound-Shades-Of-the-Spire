@@ -183,7 +183,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                         if (tiles[i, j] == null)
                             continue;
 
-                        if (tiles[i, j].returnType() == Tile.TileType.floor || tiles[i, j].returnType() == Tile.TileType.keyDoor || tiles[i, j].returnType() == Tile.TileType.TextTrigger)
+                        if (tiles[i, j].returnType() == Tile.TileType.floor || tiles[i, j].returnType() == Tile.TileType.keyDoor)
                         {
                             if (LL.CurrentLevel == LevelLoader.currentLevel.level1 && tiles[i, j].returnType() == Tile.TileType.keyDoor)
                             {
@@ -201,39 +201,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     tiles[i, j].setTileType(Tile.TileType.air);
                                     tiles[i, j].setTex(null);
                                     break;
-                                }
-                            }
-                            //text
-                            if (LL.CurrentLevel == LevelLoader.currentLevel.level1 && tiles[i, j].returnType() == Tile.TileType.TextTrigger)
-                            {
-                                if (rec.Intersects(tiles[i, j].GetRec()))
-                                {
-                                    if (level.room == 0)
-                                    {
-                                        level.Hint = "";
-                                        level.HintLocation = new Vector2(100, 100);
-                                    }
-                                }
-                                else
-                                {
-                                    level.Hint = "";
-                                    level.HintLocation = new Vector2(-100, -100);
-                                }
-                            }
-                            if (LL.CurrentLevel == LevelLoader.currentLevel.level4 && tiles[i, j].returnType() == Tile.TileType.TextTrigger)
-                            {
-                                if (rec.Intersects(tiles[i, j].GetRec()))
-                                {
-                                    if (level.room == 0)
-                                    {
-                                        level.Hint = "";
-                                        level.HintLocation = new Vector2(100, 100);
-                                    }
-                                }
-                                else
-                                {
-                                    level.Hint = "";
-                                    level.HintLocation = new Vector2(-100, -100);
                                 }
                             }
 
@@ -270,7 +237,56 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         if (!dead)
                         {
-                            if (tiles[i, j].returnType() == Tile.TileType.exit && rec.Intersects(tiles[i, j].GetRec()))
+                            if (LL.CurrentLevel == LevelLoader.currentLevel.level1 && tiles[i, j].returnType() == Tile.TileType.TextTrigger)
+                            {
+                                if (level.room == 0)
+                                {
+                                    level.Hint = "Arrow keys to move";
+                                    level.HintLocation = new Vector2(250, 300);
+                                }
+                                else if (rec.Intersects(tiles[i, j].GetRec()))
+                                {
+                                    if (level.room == 1)
+                                    {
+                                        level.Hint = "Press up twice to double jump";
+                                        level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 20, tiles[i, j].GetRec().Y - 30);
+                                    }
+                                    if (level.room == 2)
+                                    {
+                                        level.Hint = "Press Space to dash\n (may require some timing)";
+                                        level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 80, tiles[i, j].GetRec().Y - 50);
+                                    }
+                                    tiles[i, j].setTex(level.Textures[15]);
+                                }
+                                else
+                                {
+                                    level.Hint = "";
+                                    level.HintLocation = new Vector2(-100, -100);
+                                }
+                            }
+                            if (LL.CurrentLevel == LevelLoader.currentLevel.level4 && tiles[i, j].returnType() == Tile.TileType.TextTrigger)
+                            {
+                                if (rec.Intersects(tiles[i, j].GetRec()))
+                                {
+                                    if (level.room == 0)
+                                    {
+                                        level.Hint = "Connect the generator in the top right to\n the recievers on the left with your ability,\n collect the color to the right and press 2";
+                                        level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 100, tiles[i, j].GetRec().Y - 80);
+                                    }
+                                    if (level.room == 2)
+                                    {
+                                        level.Hint = "The power grid is what keeps the blue lasers on,\n the only way to destroy it is to overload it with energy \nvia the overcharge box, connect the box to the power grid \nwith your ability to overload it";
+                                        level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 100, tiles[i, j].GetRec().Y - 250);
+                                    }
+                                    tiles[i, j].setTex(level.Textures[41]);
+                                }
+                                else
+                                {
+                                    level.Hint = "";
+                                    level.HintLocation = new Vector2(-100, -100);
+                                }
+                            }
+                            else if (tiles[i, j].returnType() == Tile.TileType.exit && rec.Intersects(tiles[i, j].GetRec()))
                             {
                                 level.room += 1;
                                 level.initial = true;
