@@ -16,17 +16,21 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D T;
         Rectangle R;
         public bool isOpen;
+        int cooldown;
         public RedDoor(Texture2D t, Rectangle r)
         {
             T = t;
             R = r;
             isOpen = false;
+            cooldown = 0;
         }
 
         public void collision(Player player, Level level)
         {
             bool allLit = true;
             bool enemiesDead = true;
+            if (cooldown > 0)
+                cooldown--;
             for (int i = 0; i < level.torchList.Count; i++)
             {
                 if (!level.torchList[i].lit)
@@ -44,8 +48,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                 }
             }
 
-            if (allLit && enemiesDead && player.rec.Intersects(R))
+            if (allLit && enemiesDead && player.rec.Intersects(R) && cooldown <= 0)
             {
+                cooldown = 10;
                 level.room += 1;
                 level.initial = true;
             }
