@@ -69,6 +69,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="RedDoor.cs" />
+    <Compile Include="RedLevelHubDoor.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Torch.cs" />
     <Compile Include="YellowDoor.cs" />

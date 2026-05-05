@@ -183,7 +183,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                         if (tiles[i, j] == null)
                             continue;
 
-                        if (tiles[i, j].returnType() == Tile.TileType.floor || tiles[i, j].returnType() == Tile.TileType.keyDoor)
+                        if (tiles[i, j].returnType() == Tile.TileType.floor || tiles[i, j].returnType() == Tile.TileType.barrier || tiles[i, j].returnType() == Tile.TileType.floorUp || tiles[i, j].returnType() == Tile.TileType.keyDoor)
                         {
                             if (LL.CurrentLevel == LevelLoader.currentLevel.level1 && tiles[i, j].returnType() == Tile.TileType.keyDoor)
                             {
@@ -214,23 +214,26 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     velocity.Y = 0;
                                     onGround = true;
                                 }
-                                else if (velocity.Y < 0 && position.Y <= tileRec.Y + tileRec.Height && position.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f)
+                                else if (velocity.Y < 0 && position.Y <= tileRec.Y + tileRec.Height && position.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f && tiles[i, j].returnType() != Tile.TileType.floorUp)
                                 {
                                     position.Y = tileRec.Y + tileRec.Height;
                                     velocity.Y = 0;
                                 }
                             }
-                            if (position.Y + rec.Height > tileRec.Y && position.Y < tileRec.Y + tileRec.Height)
+                            if (tiles[i, j].returnType() != Tile.TileType.floorUp)
                             {
-                                if (velocity.X > 0 && position.X + rec.Width >= tileRec.X && position.X + rec.Width <= tileRec.X + velocity.X + 1f)
+                                if (position.Y + rec.Height > tileRec.Y && position.Y < tileRec.Y + tileRec.Height)
                                 {
-                                    position.X = tileRec.X - rec.Width;
-                                    velocity.X = 0;
-                                }
-                                else if (velocity.X < 0 && position.X <= tileRec.X + tileRec.Width && position.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
-                                {
-                                    position.X = tileRec.X + tileRec.Width;
-                                    velocity.X = 0;
+                                    if (velocity.X > 0 && position.X + rec.Width >= tileRec.X && position.X + rec.Width <= tileRec.X + velocity.X + 1f)
+                                    {
+                                        position.X = tileRec.X - rec.Width;
+                                        velocity.X = 0;
+                                    }
+                                    else if (velocity.X < 0 && position.X <= tileRec.X + tileRec.Width && position.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
+                                    {
+                                        position.X = tileRec.X + tileRec.Width;
+                                        velocity.X = 0;
+                                    }
                                 }
                             }
 
@@ -279,6 +282,28 @@ namespace Color_Bound_Shades_Of_the_Spire
                                         level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 100, tiles[i, j].GetRec().Y - 250);
                                     }
                                     tiles[i, j].setTex(level.Textures[41]);
+                                }
+                                else
+                                {
+                                    level.Hint = "";
+                                    level.HintLocation = new Vector2(-100, -100);
+                                }
+                            }
+                            if (LL.CurrentLevel == LevelLoader.currentLevel.level2 && tiles[i, j].returnType() == Tile.TileType.TextTrigger)
+                            {
+                                if (rec.Intersects(tiles[i, j].GetRec()))
+                                {
+                                    if (level.room == 0)
+                                    {
+                                        level.Hint = "Collect paint to refill bar and press 1 to become red.\n While red, touch torches to light them up.\n Touch enemies to kill them. \n Torches extinguish after 5 seconds!";
+                                        level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 200, tiles[i, j].GetRec().Y - 400);
+                                    }
+                                    if (level.room == 2)
+                                    {
+                                        level.Hint = "Kill the enemies before lighting the torches!";
+                                        level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 100, tiles[i, j].GetRec().Y - 250);
+                                    }
+                                    tiles[i, j].setTex(level.Textures[12]);
                                 }
                                 else
                                 {
@@ -403,7 +428,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                                 LL.levels[4].initial = true;
                                 LL.levels[4].Hint = "";
                                 keyCount = 0;
-                                
+
                             }
                             else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
                             {
@@ -433,6 +458,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     {
                         color = Color.White;
                         dead = false;
+                        level.resetBar();
                         respawnCheckpoint(level.checkpoint, LL);
                         UpdateRectangle();
                         deathTimer = 45;

@@ -70,10 +70,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[0][2] = "Content/level1TR3.txt";
             fileNames[0][3] = "Content/level1TR4.txt";
             //other levels
-            fileNames[1] = new string[3];
+            fileNames[1] = new string[4];
             fileNames[1][0] = "Content/level1RR1.txt";
             fileNames[1][1] = "Content/level1RR2.txt";
             fileNames[1][2] = "Content/level1RR3.txt";
+            fileNames[1][2] = "Content/level1RR4.txt";
 
             fileNames[2] = new string[1];
 
@@ -88,7 +89,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[16];
-            BlockTextures[1] = new Texture2D[11];
+            BlockTextures[1] = new Texture2D[20];
             BlockTextures[2] = new Texture2D[8];
             BlockTextures[3] = new Texture2D[42];
             BlockTextures[4] = new Texture2D[16];
@@ -129,9 +130,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][15] = this.Content.Load<Texture2D>("SignRead");
 
             BlockTextures[1][0] = this.Content.Load<Texture2D>("Untitled");
-            BlockTextures[1][1] = this.Content.Load<Texture2D>("Tile");
-            BlockTextures[1][2] = this.Content.Load<Texture2D>("SpikeU");
-            BlockTextures[1][3] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[1][1] = this.Content.Load<Texture2D>("redAir");
+            BlockTextures[1][2] = this.Content.Load<Texture2D>("redSpikeUp");
+            BlockTextures[1][3] = this.Content.Load<Texture2D>("redCheckpoint");
             BlockTextures[1][4] = this.Content.Load<Texture2D>("Key");
             BlockTextures[1][5] = this.Content.Load<Texture2D>("firedoorU");
             BlockTextures[1][6] = this.Content.Load<Texture2D>("firedoorD");
@@ -139,6 +140,15 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][8] = this.Content.Load<Texture2D>("littorch");
             BlockTextures[1][9] = this.Content.Load<Texture2D>("enemy");
             BlockTextures[1][10] = this.Content.Load<Texture2D>("colorCollectable");
+            BlockTextures[1][11] = this.Content.Load<Texture2D>("SignUnread");
+            BlockTextures[1][12] = this.Content.Load<Texture2D>("SignRead");
+            BlockTextures[1][13] = this.Content.Load<Texture2D>("redBarrier");
+            BlockTextures[1][14] = this.Content.Load<Texture2D>("redFloor");
+            BlockTextures[1][15] = this.Content.Load<Texture2D>("redSpikeDown");
+            BlockTextures[1][16] = this.Content.Load<Texture2D>("redSpikeLeft");
+            BlockTextures[1][17] = this.Content.Load<Texture2D>("redSpikeRight");
+            BlockTextures[1][18] = this.Content.Load<Texture2D>("redFloorUp");
+            BlockTextures[1][19] = this.Content.Load<Texture2D>("redBossKey");
 
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("Tile");

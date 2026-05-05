@@ -34,7 +34,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlueEntrance,
             YellowEntrance,
             water,
-            TextTrigger
+            TextTrigger,
+            barrier,
+            floorUp
         }
         Texture2D T;
         Rectangle R;

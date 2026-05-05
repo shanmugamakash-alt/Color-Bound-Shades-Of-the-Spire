@@ -11,13 +11,13 @@ using System.Linq;
 
 namespace Color_Bound_Shades_Of_the_Spire
 {
-    public class RedDoor
+    public class RedLevelHubDoor
     {
         Texture2D T;
         Rectangle R;
         public bool isOpen;
         int cooldown;
-        public RedDoor(Texture2D t, Rectangle r)
+        public RedLevelHubDoor(Texture2D t, Rectangle r)
         {
             T = t;
             R = r;
@@ -25,7 +25,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             cooldown = 0;
         }
 
-        public void collision(Player player, Level level)
+        public void collision(Player player, Level level, LevelLoader LL)
         {
             bool allLit = true;
             bool enemiesDead = true;
@@ -48,11 +48,13 @@ namespace Color_Bound_Shades_Of_the_Spire
                 }
             }
 
-            if (allLit && enemiesDead && player.rec.Intersects(R) && cooldown <= 0)
+            if (allLit && enemiesDead && player.rec.Intersects(R) && cooldown <= 0 && player.hasRedKey)
             {
                 cooldown = 10;
-                level.room ++;
-                level.initial = true;
+                LL.CurrentLevel = (LevelLoader.currentLevel)5;
+                LL.levels[4].initial = true;
+                LL.levels[4].Hint = "";
+                player.keyCount = 0;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -61,4 +63,3 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
     }
 }
-
