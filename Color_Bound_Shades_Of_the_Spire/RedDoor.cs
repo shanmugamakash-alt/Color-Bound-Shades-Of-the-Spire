@@ -51,7 +51,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             if (allLit && enemiesDead && player.rec.Intersects(R) && cooldown <= 0)
             {
                 cooldown = 10;
-                level.room += 2;
+                level.room ++;
                 level.initial = true;
             }
         }

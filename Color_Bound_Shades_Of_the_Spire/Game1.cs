@@ -216,7 +216,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][15] = this.Content.Load<Texture2D>("DungeonTileFloor");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 500, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
