@@ -17,7 +17,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         { 
             air,
             floor,
-            spike,
+            spikeU,
+            spikeD,
+            spikeR,
+            spikeL,
             YLaserVert,
             YLaserHoriz,
             checkpoint,

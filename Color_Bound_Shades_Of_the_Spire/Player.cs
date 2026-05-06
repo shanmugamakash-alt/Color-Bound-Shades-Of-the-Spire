@@ -267,6 +267,23 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     level.HintLocation = new Vector2(-100, -100);
                                 }
                             }
+                            if (LL.CurrentLevel == LevelLoader.currentLevel.level3 && tiles[i, j].returnType() == Tile.TileType.TextTrigger)
+                            {
+                                if (level.room == 0)
+                                {
+                                    level.Hint = "Blue Level Placeholder, heres the key:";
+                                    level.HintLocation = new Vector2(250, 300);
+                                }
+                                else if (rec.Intersects(tiles[i, j].GetRec()))
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    level.Hint = "";
+                                    level.HintLocation = new Vector2(-100, -100);
+                                }
+                            }
                             if (LL.CurrentLevel == LevelLoader.currentLevel.level4 && tiles[i, j].returnType() == Tile.TileType.TextTrigger)
                             {
                                 if (rec.Intersects(tiles[i, j].GetRec()))
@@ -329,11 +346,38 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     level.playerInitial = false;
                                 }
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.spike)
+                            else if (tiles[i, j].returnType() == Tile.TileType.spikeU)
                             {
                                 Rectangle r = tiles[i, j].GetRec();
                                 //fix the hitbox
-                                if (!dead && rec.Intersects(new Rectangle(r.X + (int)(15 * level.scale), r.Y + (int)(15 * level.scale), r.Width - 30, r.Height - 30)))
+                                if (!dead && rec.Intersects(new Rectangle(r.X + (int)(15 * level.scale), r.Y + (int)((r.Height / 2) * level.scale), r.Width - (int)(2 * (15 * level.scale)), (int)((r.Height / 2) * level.scale))))
+                                {
+                                    dead = true;
+                                }
+                            }
+                            else if (tiles[i, j].returnType() == Tile.TileType.spikeR)
+                            {
+                                Rectangle r = tiles[i, j].GetRec();
+                                //fix the hitbox
+                                if (!dead && rec.Intersects(new Rectangle(r.X, r.Y + (int)(15 * level.scale), r.Width - (int)((r.Width / 2) - 3 * level.scale), (int)(15 * level.scale))))
+                                {
+                                    dead = true;
+                                }
+                            }
+                            else if (tiles[i, j].returnType() == Tile.TileType.spikeL)
+                            {
+                                Rectangle r = tiles[i, j].GetRec();
+                                //fix the hitbox
+                                if (!dead && rec.Intersects(new Rectangle(r.X + (int)((r.Width / 2) * level.scale), r.Y + (int)(15 * level.scale), r.Width, (int)(15 * level.scale))))
+                                {
+                                    dead = true;
+                                }
+                            }
+                            else if (tiles[i, j].returnType() == Tile.TileType.spikeD)
+                            {
+                                Rectangle r = tiles[i, j].GetRec();
+                                //fix the hitbox
+                                if (!dead && rec.Intersects(new Rectangle(r.X + (int)(15 * level.scale), r.Y, r.Width - (int)(2 * (15 * level.scale)), r.Height - (int)((r.Height / 2) * level.scale))))
                                 {
                                     dead = true;
                                 }
@@ -341,7 +385,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                             else if (tiles[i, j].returnType() == Tile.TileType.YLaserVert)
                             {
                                 Rectangle r = tiles[i, j].GetRec();
-                                if (!dead && rec.Intersects(new Rectangle(r.X + 15, r.Y, r.Width - 15, r.Height)))
+                                if (!dead && rec.Intersects(new Rectangle(r.X + (int)(15 * level.scale), r.Y, r.Width - (int)(15 * level.scale), r.Height)))
                                 {
                                     if (color != Color.Yellow)
                                     {
@@ -354,7 +398,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                             else if (tiles[i, j].returnType() == Tile.TileType.YLaserHoriz)
                             {
                                 Rectangle r = tiles[i, j].GetRec();
-                                if (!dead && rec.Intersects(new Rectangle(r.X, r.Y + 15, r.Width, r.Height - 15)))
+                                if (!dead && rec.Intersects(new Rectangle(r.X, r.Y + (int)(15 * level.scale), r.Width, r.Height - (int)(15 * level.scale))))
                                 {
                                     if (color != Color.Yellow)
                                     {
@@ -416,6 +460,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                             }
                             else if (tiles[i, j].returnType() == Tile.TileType.bossDoor1 && rec.Intersects(tiles[i, j].GetRec()))
                             {
+                                Console.WriteLine(hasYellowKey);
+                                Console.WriteLine(hasBlueKey);
+                                Console.WriteLine(hasRedKey);
                                 if (hasYellowKey && hasRedKey && hasBlueKey)
                                 {
                                     level.room++;

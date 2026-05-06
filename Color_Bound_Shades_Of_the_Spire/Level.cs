@@ -19,7 +19,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public Texture2D[] Textures;
         public int room;
         public int tileSize;
-        public int offset, velocityX;
+        public int velocityX;
         public bool initial;
         public bool playerInitial;
         public int checkpoint;
@@ -46,7 +46,6 @@ namespace Color_Bound_Shades_Of_the_Spire
             this.fileNames = fileNames;
             levelComplete = false;
             tileSize = 100;
-            offset = 0;
             velocityX = 0;
             scale = 1;
             room = 0;
@@ -244,16 +243,16 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
                     break;
                 case "YsU":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeU);
                     break;
                 case "YsL":
-                    tiles[x, y] = new Tile(Textures[17], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[17], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeL);
                     break;
                 case "YsR":
-                    tiles[x, y] = new Tile(Textures[16], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[16], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeR);
                     break;
                 case "YsD":
-                    tiles[x, y] = new Tile(Textures[15], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[15], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeD);
                     break;
 
                 case "Yk":
@@ -344,16 +343,16 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
                     break;
                 case "sU":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeU);
                     break;
                 case "sD":
-                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[5], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeD);
                     break;
                 case "sR":
-                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeR);
                     break;
                 case "sL":
-                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeL);
                     break;
 
                 //level hub items
@@ -410,16 +409,16 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
                 case "RSU":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeU);
                     break;
                 case "RSD":
-                    tiles[x, y] = new Tile(Textures[15], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[15], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeD);
                     break;
                 case "RSL":
-                    tiles[x, y] = new Tile(Textures[16], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[16], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeL);
                     break;
                 case "RSR":
-                    tiles[x, y] = new Tile(Textures[17], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    tiles[x, y] = new Tile(Textures[17], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spikeR);
                     break;
                 case "RA":
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
@@ -456,14 +455,34 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "BS":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
                     break;
-                //case "B0":
-                //    int bNum = rand.Next(8, 10);
-                //    tiles[x, y] = new Tile(Textures[bNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
-                //    break;
-                //case "B":
-                //    int Num = rand.Next(8, 10);
-                //    tiles[x, y] = new Tile(Textures[Num], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
-                //    break;
+                case "BBK":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.blueKey);
+                    break;
+                case "PlaceholderBoss":
+                    tiles[x, y] = new Tile(Textures[16], new Rectangle((x - 7) * tileSize, (y - 3) * tileSize, 8 * tileSize, 4 * tileSize), Tile.TileType.floor);
+                    break;
+                case "PlaceholderObjects":
+                    tiles[x, y] = new Tile(Textures[17], new Rectangle((x - 3) * tileSize, (y - 3) * tileSize, 4 * tileSize, 4 * tileSize), Tile.TileType.floor);
+                    break;
+
+
+                case "TK1":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.blueKey);
+                    break;
+                case "TK2":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.redKey);
+                    break;
+                case "TK3":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.yellowKey);
+                    break;
+                    //case "B0":
+                    //    int bNum = rand.Next(8, 10);
+                    //    tiles[x, y] = new Tile(Textures[bNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                    //    break;
+                    //case "B":
+                    //    int Num = rand.Next(8, 10);
+                    //    tiles[x, y] = new Tile(Textures[Num], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    //    break;
 
 
 
@@ -484,7 +503,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     if (tiles[i, j] != null)
                     {
                         Rectangle r = tiles[i, j].GetRec();
-                        Rectangle drawRect = new Rectangle(r.X + offset, r.Y, r.Width, r.Height);
+                        Rectangle drawRect = new Rectangle(r.X , r.Y, r.Width, r.Height);
 
                         if (tiles[i, j].GetTex() != null)
                         {
@@ -492,6 +511,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         else if (LL.CurrentLevel == LevelLoader.currentLevel.level4)
                             spriteBatch.Draw(Textures[7], drawRect, Color.White);
+                        else if (LL.CurrentLevel == LevelLoader.currentLevel.level3)
+                            spriteBatch.Draw(Textures[10], drawRect, Color.White);
                         else if (LL.CurrentLevel == LevelLoader.currentLevel.level1)
                             spriteBatch.Draw(Textures[10], drawRect, Color.White);
                         else
