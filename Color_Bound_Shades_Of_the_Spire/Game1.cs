@@ -95,7 +95,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1] = new Texture2D[20];
             BlockTextures[2] = new Texture2D[16];
             BlockTextures[3] = new Texture2D[42];
-            BlockTextures[4] = new Texture2D[18];
+            BlockTextures[4] = new Texture2D[20];
             base.Initialize();
         }
 

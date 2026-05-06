@@ -357,10 +357,10 @@ namespace Color_Bound_Shades_Of_the_Spire
 
                 //level hub items
                 case "REU":
-                    tiles[x, y] = new Tile(Textures[16], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
+                    tiles[x, y] = new Tile(Textures[18], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
                     break;
                 case "RED":
-                    tiles[x, y] = new Tile(Textures[17], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
+                    tiles[x, y] = new Tile(Textures[19], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
                     break;
                 case "BE":
                     tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.BlueEntrance);
@@ -470,13 +470,13 @@ namespace Color_Bound_Shades_Of_the_Spire
 
 
                 case "TK1":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.blueKey);
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.blueKey);
                     break;
                 case "TK2":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.redKey);
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.redKey);
                     break;
                 case "TK3":
-                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.yellowKey);
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.yellowKey);
                     break;
                     //case "B0":
                     //    int bNum = rand.Next(8, 10);
