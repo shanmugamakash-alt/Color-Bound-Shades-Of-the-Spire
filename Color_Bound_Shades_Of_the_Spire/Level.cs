@@ -74,6 +74,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             if (initial)
             {
+                checkpoint = 0;
                 playerInitial = true;
                 player.ChangeColor(Color.White);
                 YGList.Clear();
