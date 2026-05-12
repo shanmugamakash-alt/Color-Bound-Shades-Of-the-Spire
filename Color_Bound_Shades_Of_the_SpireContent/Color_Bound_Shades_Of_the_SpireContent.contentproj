@@ -571,11 +571,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redFloor.png">
-      <Name>redFloor</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="redFloorUp.png">
       <Name>redFloorUp</Name>
       <Importer>TextureImporter</Importer>
@@ -810,6 +805,13 @@
     </Compile>
     <Compile Include="redBucket.png">
       <Name>redBucket</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="redFloor.png">
+      <Name>redFloor</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
