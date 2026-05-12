@@ -281,7 +281,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 case "Yc":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
-                    CollectablesList.Add(new ColorCollectable(Textures[39], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Yellow, 180));
+                    CollectablesList.Add(new ColorCollectable(Textures[39], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Yellow, 180, 30));
                     break;
                 case "YTT":
                     tiles[x, y] = new Tile(Textures[40], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
@@ -447,9 +447,17 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "RB":
                     tiles[x, y] = new Tile(Textures[13], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.barrier);
                     break;
+                case "RBC":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    CollectablesList.Add(new ColorCollectable(Textures[20], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Red, 3300, 300));
+                    break;
+                case "RMC":
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    CollectablesList.Add(new ColorCollectable(Textures[21], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Red, 600, 100));
+                    break;
                 case "RC":
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
-                    CollectablesList.Add(new ColorCollectable(Textures[10], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Red, 300));
+                    CollectablesList.Add(new ColorCollectable(Textures[10], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Red, 300, 30));
                     break;
                 case "RTT":
                     tiles[x, y] = new Tile(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);

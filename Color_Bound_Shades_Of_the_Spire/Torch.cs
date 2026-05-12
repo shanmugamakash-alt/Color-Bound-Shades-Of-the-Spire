@@ -49,6 +49,12 @@ namespace Color_Bound_Shades_Of_the_Spire
                 }
             }
 
+            if(player.dead)
+            {
+                lit = false;
+                litTimer = 0;
+            }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

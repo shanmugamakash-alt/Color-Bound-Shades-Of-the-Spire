@@ -19,14 +19,16 @@ namespace Color_Bound_Shades_Of_the_Spire
         Color ogColor;
         int pickupTimer;
         int cooldown;
+        int pickupSize;
 
-        public ColorCollectable(Texture2D t, Rectangle r, Color c, int timer)
+        public ColorCollectable(Texture2D t, Rectangle r, Color c, int timer, int size)
         {
             color = c;
             ogColor = c;
             tex = t;
             rect = r;
             cooldown = timer;
+            pickupSize = size;
             pickupTimer = 0;
         }
 
@@ -36,14 +38,14 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 if(color == Color.Red && UI.redSize <= UI.background.Width)
                 {
-                    UI.redSize += 30;
+                    UI.redSize += pickupSize;
                     pickupTimer = cooldown;
                     UI.showColor(this);
                     color = Color.White;
                 }
                 else if (color == Color.Yellow && UI.yellowSize <= UI.background.Width)
                 {
-                    UI.yellowSize += 30;
+                    UI.yellowSize += pickupSize;
                     pickupTimer = cooldown;
                     UI.showColor(this);
                     color = Color.White;
@@ -51,7 +53,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 }
                 else if (color == Color.Blue && UI.blueSize <= UI.background.Width)
                 {
-                    UI.blueSize += 30;
+                    UI.blueSize += pickupSize;
                     pickupTimer = cooldown;
                     UI.showColor(this);
                     color = Color.White;

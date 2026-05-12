@@ -27,6 +27,9 @@ namespace Color_Bound_Shades_Of_the_Spire
         Rectangle red;
         Rectangle blue;
         Rectangle yellow;
+        Rectangle backr;
+        Rectangle backb;
+        Rectangle backy;
         Color barColor;
 
         public Bar(Texture2D tex)
@@ -36,9 +39,12 @@ namespace Color_Bound_Shades_Of_the_Spire
             blueSize = 0;
             yellowSize = 0;
             background = new Rectangle(10, 10, 300, 75);
-            red = new Rectangle(10, 100, 50,50);
-            yellow = new Rectangle(80, 100, 50, 50);
-            blue = new Rectangle(150, 100, 50, 50);
+            red = new Rectangle(10, 100, 100, 50);
+            backr = red;
+            yellow = new Rectangle(120, 100, 100, 50);
+            backy = yellow;
+            blue = new Rectangle(230, 100, 100, 50);
+            backb = blue;
             currentColor = "white";
             this.tex = tex;
             isShowing = false;
@@ -51,7 +57,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         public void Draw(SpriteBatch spriteBatch, Player p)
         {
             spriteBatch.Draw(tex, background, Color.Black);
-            if(!isShowing)
+            spriteBatch.Draw(tex, backr, Color.Black);
+            spriteBatch.Draw(tex, backb, Color.Black);
+            spriteBatch.Draw(tex, backy, Color.Black);
+            if (!isShowing)
                 spriteBatch.Draw(tex, bar,p.color);
             else
                 spriteBatch.Draw(tex, bar, barColor);
@@ -61,7 +70,10 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
         public void Update(KeyboardState kb, KeyboardState oldKB, Player p)
         {
-            if(showTime < limit)
+            red.Width = (int)redSize / 3;
+            yellow.Width = (int)yellowSize / 3;
+            blue.Width = (int)blueSize / 3;
+            if (showTime < limit)
             {
                 showTime++;
             }
@@ -175,6 +187,12 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             isShowing = true;
             showTime = 0;
+            if (redSize >= 300)
+                redSize = 300;
+            if (yellowSize >= 300)
+                yellowSize = 300;
+            if (blueSize >= 300)
+                blueSize = 300;
             barColor = collectable.color;
             if (barColor == Color.Red)
                 bar.Width = (int)redSize;

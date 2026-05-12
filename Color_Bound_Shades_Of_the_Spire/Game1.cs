@@ -92,7 +92,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[16];
-            BlockTextures[1] = new Texture2D[20];
+            BlockTextures[1] = new Texture2D[22];
             BlockTextures[2] = new Texture2D[16];
             BlockTextures[3] = new Texture2D[42];
             BlockTextures[4] = new Texture2D[20];
@@ -194,6 +194,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][17] = this.Content.Load<Texture2D>("redSpikeRight");
             BlockTextures[1][18] = this.Content.Load<Texture2D>("redFloorUp");
             BlockTextures[1][19] = this.Content.Load<Texture2D>("redBossKey");
+            BlockTextures[1][20] = this.Content.Load<Texture2D>("redBucket");
+            BlockTextures[1][21] = this.Content.Load<Texture2D>("bottle");
             //blue
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("KeyDoor"); // unused as of now
