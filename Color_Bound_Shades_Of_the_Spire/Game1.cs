@@ -140,11 +140,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             t[3][4] = this.Content.Load<Texture2D>("BlobLeftJump4");
             t[3][5] = this.Content.Load<Texture2D>("BlobLeftJump5");
             //dash right
-            t[4][0] = this.Content.Load<Texture2D>("BlobRightDown");
-            t[4][1] = this.Content.Load<Texture2D>("BlobRightJump1");
-            t[4][2] = this.Content.Load<Texture2D>("BlobRightJump2");
-            t[4][3] = this.Content.Load<Texture2D>("BlobRightJump3");
-            t[4][4] = this.Content.Load<Texture2D>("BlobRightJump4");
+            t[4][0] = this.Content.Load<Texture2D>("BlobRightDash1");
+            t[4][1] = this.Content.Load<Texture2D>("BlobRightDash2");
+            t[4][2] = this.Content.Load<Texture2D>("BlobRightDash3");
+            t[4][3] = this.Content.Load<Texture2D>("BlobRightDash4");
+            t[4][4] = this.Content.Load<Texture2D>("BlobRightDash5");
 
             t[5][0] = this.Content.Load<Texture2D>("BlobLeftDash1");
             t[5][1] = this.Content.Load<Texture2D>("BlobLeftDash2");
@@ -280,7 +280,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][19] = this.Content.Load<Texture2D>("firedoorD");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 500, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
