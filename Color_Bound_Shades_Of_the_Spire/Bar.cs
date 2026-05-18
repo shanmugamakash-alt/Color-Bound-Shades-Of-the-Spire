@@ -23,7 +23,6 @@ namespace Color_Bound_Shades_Of_the_Spire
         int limit;
         string currentColor;
         Texture2D tex;
-        Texture2D baseTex;
         Rectangle red;
         Rectangle blue;
         Rectangle yellow;
