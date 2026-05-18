@@ -43,7 +43,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1TR1.txt">
+    <None Include="LevelFiles\level1TR1.txt">
       <Name>level1TR1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -61,809 +61,794 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bar.jpg">
+    <Compile Include="MainMenuButtons\bar.jpg">
       <Name>bar</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1TR2.txt">
+    <None Include="LevelFiles\level1TR2.txt">
       <Name>level1TR2</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1TR3.txt">
+    <None Include="LevelFiles\level1TR3.txt">
       <Name>level1TR3</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1TR4.txt">
+    <None Include="LevelFiles\level1TR4.txt">
       <Name>level1TR4</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Key.png">
+    <Compile Include="Items\Key.png">
       <Name>Key</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="checkpoint.jpg">
+    <Compile Include="Items\checkpoint.jpg">
       <Name>checkpoint</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="torch.png">
+    <Compile Include="BlockTextures\RedTextures\torch.png">
       <Name>torch</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="littorch.png">
+    <Compile Include="BlockTextures\RedTextures\littorch.png">
       <Name>littorch</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="floor.png">
-      <Name>floor</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <None Include="levelHub.txt">
+    <None Include="LevelFiles\levelHub.txt">
       <Name>levelHub</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1YR1.txt">
+    <None Include="LevelFiles\level1YR1.txt">
       <Name>level1YR1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="YellowFloor.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowFloor.png">
       <Name>YellowFloor</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="YellowEntranceDoorD.png">
+    <Compile Include="BlockTextures\Level1Hub\YellowEntranceDoorD.png">
       <Name>YellowEntranceDoorD</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowEntranceDoorU.png">
+    <Compile Include="BlockTextures\Level1Hub\YellowEntranceDoorU.png">
       <Name>YellowEntranceDoorU</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="YellowBackground.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowBackground.png">
       <Name>YellowBackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="YellowDoorDL.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowDoorDL.png">
       <Name>YellowDoorDL</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowDoorDR.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowDoorDR.png">
       <Name>YellowDoorDR</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowDoorUL.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowDoorUL.png">
       <Name>YellowDoorUL</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowDoorUR.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowDoorUR.png">
       <Name>YellowDoorUR</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="YellowGenerator.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowGenerator.png">
       <Name>YellowGenerator</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowRecieverOff.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowRecieverOff.png">
       <Name>YellowRecieverOff</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowRecieverOn.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowRecieverOn.png">
       <Name>YellowRecieverOn</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1YR2.txt">
+    <None Include="LevelFiles\level1YR2.txt">
       <Name>level1YR2</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1RR1.txt">
+    <None Include="LevelFiles\level1RR1.txt">
       <Name>level1RR1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="firedoorU.png">
+    <Compile Include="BlockTextures\RedTextures\firedoorU.png">
       <Name>firedoorU</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="firedoorD.png">
+    <Compile Include="BlockTextures\RedTextures\firedoorD.png">
       <Name>firedoorD</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1RR2.txt">
+    <None Include="LevelFiles\level1RR2.txt">
       <Name>level1RR2</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="enemy.png">
+    <Compile Include="Enemies\enemy.png">
       <Name>enemy</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1RR3.txt">
+    <None Include="LevelFiles\level1RR3.txt">
       <Name>level1RR3</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DungeonTileWall3.png">
+    <Compile Include="BlockTextures\Level1Hub\DungeonTileWall3.png">
       <Name>DungeonTileWall3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DungeonTileWall1.png">
+    <Compile Include="BlockTextures\Level1Hub\DungeonTileWall1.png">
       <Name>DungeonTileWall1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DungeonTileWall2.png">
+    <Compile Include="BlockTextures\Level1Hub\DungeonTileWall2.png">
       <Name>DungeonTileWall2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpikeU.png">
+    <Compile Include="BlockTextures\Level1Hub\SpikeU.png">
       <Name>SpikeU</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DungeonTileFloor.png">
+    <Compile Include="BlockTextures\Level1Hub\DungeonTileFloor.png">
       <Name>DungeonTileFloor</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1YR4.txt">
+    <None Include="LevelFiles\level1YR4.txt">
       <Name>level1YR4</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WireCharged.png">
+    <Compile Include="BlockTextures\YellowTextures\WireCharged.png">
       <Name>WireCharged</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobIdle.png">
+    <Compile Include="PlayerAnimations\BlobIdle.png">
       <Name>BlobIdle</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeft.png">
+    <Compile Include="PlayerAnimations\BlobLeft.png">
       <Name>BlobLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRight.png">
+    <Compile Include="PlayerAnimations\BlobRight.png">
       <Name>BlobRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpikeD %281%29.png">
+    <Compile Include="BlockTextures\Level1Hub\SpikeD %281%29.png">
       <Name>SpikeD %281%29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpikeL %281%29.png">
+    <Compile Include="BlockTextures\Level1Hub\SpikeL %281%29.png">
       <Name>SpikeL %281%29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpikeR %281%29.png">
+    <Compile Include="BlockTextures\Level1Hub\SpikeR %281%29.png">
       <Name>SpikeR %281%29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserHorizL.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserHorizL.png">
       <Name>YLaserHorizL</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserHorizM.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserHorizM.png">
       <Name>YLaserHorizM</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserHorizR.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserHorizR.png">
       <Name>YLaserHorizR</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserVertB.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserVertB.png">
       <Name>YLaserVertB</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserVertM.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserVertM.png">
       <Name>YLaserVertM</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserVertT.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserVertT.png">
       <Name>YLaserVertT</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YSpikeD.png">
+    <Compile Include="BlockTextures\YellowTextures\YSpikeD.png">
       <Name>YSpikeD</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YSpikeL.png">
+    <Compile Include="BlockTextures\YellowTextures\YSpikeL.png">
       <Name>YSpikeL</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YSpikeR.png">
+    <Compile Include="BlockTextures\YellowTextures\YSpikeR.png">
       <Name>YSpikeR</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YSpikeU.png">
+    <Compile Include="BlockTextures\YellowTextures\YSpikeU.png">
       <Name>YSpikeU</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Wire.png">
+    <Compile Include="BlockTextures\YellowTextures\Wire.png">
       <Name>Wire</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pixilart-drawing.png">
+    <Compile Include="BlockTextures\BlueTextures\pixilart-drawing.png">
       <Name>pixilart-drawing</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="water surface.png">
+    <Compile Include="BlockTextures\BlueTextures\water surface.png">
       <Name>water surface</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="water.png">
+    <Compile Include="BlockTextures\BlueTextures\water.png">
       <Name>water</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1BB1.txt">
-      <Name>level1BB1</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="colorCollectable.png">
+    <Compile Include="Items\colorCollectable.png">
       <Name>colorCollectable</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="OverloadGridUnpowered.png">
+    <Compile Include="BlockTextures\YellowTextures\OverloadGridUnpowered.png">
       <Name>OverloadGridUnpowered</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserHorizLVarient.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserHorizLVarient.png">
       <Name>YLaserHorizLVarient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserHorizMVarient.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserHorizMVarient.png">
       <Name>YLaserHorizMVarient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserHorizRVarient.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserHorizRVarient.png">
       <Name>YLaserHorizRVarient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserVertBVarient.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserVertBVarient.png">
       <Name>YLaserVertBVarient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserVertMVarient.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserVertMVarient.png">
       <Name>YLaserVertMVarient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YLaserVertTVarient.png">
+    <Compile Include="BlockTextures\YellowTextures\YLaserVertTVarient.png">
       <Name>YLaserVertTVarient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OverloadGridPowered.png">
+    <Compile Include="BlockTextures\YellowTextures\OverloadGridPowered.png">
       <Name>OverloadGridPowered</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="PowerGridDestroyed.png">
+    <Compile Include="BlockTextures\YellowTextures\PowerGridDestroyed.png">
       <Name>PowerGridDestroyed</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="PowerGridOn.png">
+    <Compile Include="BlockTextures\YellowTextures\PowerGridOn.png">
       <Name>PowerGridOn</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="WireOverload.png">
+    <Compile Include="BlockTextures\YellowTextures\WireOverload.png">
       <Name>WireOverload</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1YR3.txt">
+    <None Include="LevelFiles\level1YR3.txt">
       <Name>level1YR3</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BossDoorDL.png">
+    <Compile Include="BlockTextures\Level1Hub\BossDoorDL.png">
       <Name>BossDoorDL</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BossDoorDR.png">
+    <Compile Include="BlockTextures\Level1Hub\BossDoorDR.png">
       <Name>BossDoorDR</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BossDoorUL.png">
+    <Compile Include="BlockTextures\Level1Hub\BossDoorUL.png">
       <Name>BossDoorUL</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BossDoorUR.png">
+    <Compile Include="BlockTextures\Level1Hub\BossDoorUR.png">
       <Name>BossDoorUR</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BossKeyY.png">
+    <Compile Include="BlockTextures\YellowTextures\BossKeyY.png">
       <Name>BossKeyY</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="KeyDoor.png">
+    <Compile Include="BlockTextures\Level1Hub\KeyDoor.png">
       <Name>KeyDoor</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="KeyY.png">
+    <Compile Include="BlockTextures\YellowTextures\KeyY.png">
       <Name>KeyY</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="levelHubDoorD.png">
+    <Compile Include="BlockTextures\Level1Hub\levelHubDoorD.png">
       <Name>levelHubDoorD</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="levelHubDoorU.png">
+    <Compile Include="BlockTextures\Level1Hub\levelHubDoorU.png">
       <Name>levelHubDoorU</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="levelHubDoorUY.png">
+    <Compile Include="BlockTextures\YellowTextures\levelHubDoorUY.png">
       <Name>levelHubDoorUY</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Logo.png">
+    <Compile Include="MainMenuButtons\Logo.png">
       <Name>Logo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SignRead.png">
+    <Compile Include="BlockTextures\Level1Hub\SignRead.png">
       <Name>SignRead</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SignUnread.png">
+    <Compile Include="BlockTextures\Level1Hub\SignUnread.png">
       <Name>SignUnread</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowSignRead.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowSignRead.png">
       <Name>YellowSignRead</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowSignUnread.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowSignUnread.png">
       <Name>YellowSignUnread</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1RR4.txt">
+    <None Include="LevelFiles\level1RR4.txt">
       <Name>level1RR4</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="redAir.png">
+    <Compile Include="BlockTextures\RedTextures\redAir.png">
       <Name>redAir</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redBossKey.png">
+    <Compile Include="BlockTextures\RedTextures\redBossKey.png">
       <Name>redBossKey</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redCheckpoint.png">
+    <Compile Include="BlockTextures\RedTextures\redCheckpoint.png">
       <Name>redCheckpoint</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redFloorUp.png">
+    <Compile Include="BlockTextures\RedTextures\redFloorUp.png">
       <Name>redFloorUp</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redSpikeDown.png">
+    <Compile Include="BlockTextures\RedTextures\redSpikeDown.png">
       <Name>redSpikeDown</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redSpikeLeft.png">
+    <Compile Include="BlockTextures\RedTextures\redSpikeLeft.png">
       <Name>redSpikeLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redSpikeRight.png">
+    <Compile Include="BlockTextures\RedTextures\redSpikeRight.png">
       <Name>redSpikeRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redSpikeUp.png">
+    <Compile Include="BlockTextures\RedTextures\redSpikeUp.png">
       <Name>redSpikeUp</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="redBarrier.png">
+    <Compile Include="BlockTextures\RedTextures\redBarrier.png">
       <Name>redBarrier</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="level1BR1.txt">
+    <None Include="LevelFiles\level1BR1.txt">
       <Name>level1BR1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BossRoom1.txt">
+    <None Include="LevelFiles\BossRoom1.txt">
       <Name>BossRoom1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlaceHolderBoss.png">
+    <Compile Include="Items\PlaceHolderBoss.png">
       <Name>PlaceHolderBoss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Stuff.png">
+    <Compile Include="Items\Stuff.png">
       <Name>Stuff</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobIdleDown.png">
+    <Compile Include="PlayerAnimations\BlobIdleDown.png">
       <Name>BlobIdleDown</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobIdleJump1.png">
+    <Compile Include="PlayerAnimations\BlobIdleJump1.png">
       <Name>BlobIdleJump1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobIdleJump2.png">
+    <Compile Include="PlayerAnimations\BlobIdleJump2.png">
       <Name>BlobIdleJump2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobIdleJump3.png">
+    <Compile Include="PlayerAnimations\BlobIdleJump3.png">
       <Name>BlobIdleJump3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobLeftDown.png">
+    <Compile Include="PlayerAnimations\BlobLeftDown.png">
       <Name>BlobLeftDown</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeftJump1.png">
+    <Compile Include="PlayerAnimations\BlobLeftJump1.png">
       <Name>BlobLeftJump1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeftJump2.png">
+    <Compile Include="PlayerAnimations\BlobLeftJump2.png">
       <Name>BlobLeftJump2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeftJump3.png">
+    <Compile Include="PlayerAnimations\BlobLeftJump3.png">
       <Name>BlobLeftJump3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightDown.png">
+    <Compile Include="PlayerAnimations\BlobRightDown.png">
       <Name>BlobRightDown</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightJump1.png">
+    <Compile Include="PlayerAnimations\BlobRightJump1.png">
       <Name>BlobRightJump1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightJump2.png">
+    <Compile Include="PlayerAnimations\BlobRightJump2.png">
       <Name>BlobRightJump2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightJump3.png">
+    <Compile Include="PlayerAnimations\BlobRightJump3.png">
       <Name>BlobRightJump3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="bottle.png">
+    <Compile Include="Items\bottle.png">
       <Name>bottle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="bucket.png">
-      <Name>bucket</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobIdleJump4.png">
+    <Compile Include="PlayerAnimations\BlobIdleJump4.png">
       <Name>BlobIdleJump4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobIdleJump5.png">
+    <Compile Include="PlayerAnimations\BlobIdleJump5.png">
       <Name>BlobIdleJump5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobLeftJump4.png">
+    <Compile Include="PlayerAnimations\BlobLeftJump4.png">
       <Name>BlobLeftJump4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeftJump5.png">
+    <Compile Include="PlayerAnimations\BlobLeftJump5.png">
       <Name>BlobLeftJump5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightJump4.png">
+    <Compile Include="PlayerAnimations\BlobRightJump4.png">
       <Name>BlobRightJump4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightJump5.png">
+    <Compile Include="PlayerAnimations\BlobRightJump5.png">
       <Name>BlobRightJump5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobLeftDash1.png">
+    <Compile Include="PlayerAnimations\BlobLeftDash1.png">
       <Name>BlobLeftDash1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeftDash2.png">
+    <Compile Include="PlayerAnimations\BlobLeftDash2.png">
       <Name>BlobLeftDash2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeftDash3.png">
+    <Compile Include="PlayerAnimations\BlobLeftDash3.png">
       <Name>BlobLeftDash3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeftDash4.png">
+    <Compile Include="PlayerAnimations\BlobLeftDash4.png">
       <Name>BlobLeftDash4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobLeftDash5.png">
+    <Compile Include="PlayerAnimations\BlobLeftDash5.png">
       <Name>BlobLeftDash5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="YellowOverloadCrystal.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowOverloadCrystal.png">
       <Name>YellowOverloadCrystal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="YellowOverloadCrystalOff.png">
+    <Compile Include="BlockTextures\YellowTextures\YellowOverloadCrystalOff.png">
       <Name>YellowOverloadCrystalOff</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobRightDash1.png">
+    <Compile Include="PlayerAnimations\BlobRightDash1.png">
       <Name>BlobRightDash1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightDash2.png">
+    <Compile Include="PlayerAnimations\BlobRightDash2.png">
       <Name>BlobRightDash2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightDash3.png">
+    <Compile Include="PlayerAnimations\BlobRightDash3.png">
       <Name>BlobRightDash3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightDash4.png">
+    <Compile Include="PlayerAnimations\BlobRightDash4.png">
       <Name>BlobRightDash4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobRightDash5.png">
+    <Compile Include="PlayerAnimations\BlobRightDash5.png">
       <Name>BlobRightDash5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="redBucket.png">
-      <Name>redBucket</Name>
+    <Compile Include="Items\Bucket.png">
+      <Name>Bucket</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="redFloor.png">
+    <Compile Include="BlockTextures\RedTextures\redFloor.png">
       <Name>redFloor</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backgroundv2.png">
+    <Compile Include="MainMenuButtons\Backgroundv2.png">
       <Name>Backgroundv2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="TitleScreenv2.png">
+    <Compile Include="MainMenuButtons\TitleScreenv2.png">
       <Name>TitleScreenv2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobElectricDeath1.png">
+    <Compile Include="PlayerAnimations\BlobElectricDeath1.png">
       <Name>BlobElectricDeath1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobPoppedDeath1.png">
+    <Compile Include="PlayerAnimations\BlobPoppedDeath1.png">
       <Name>BlobPoppedDeath1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobPoppedDeath2.png">
+    <Compile Include="PlayerAnimations\BlobPoppedDeath2.png">
       <Name>BlobPoppedDeath2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobPoppedDeath3.png">
+    <Compile Include="PlayerAnimations\BlobPoppedDeath3.png">
       <Name>BlobPoppedDeath3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlobPoppedDeath4.png">
+    <Compile Include="PlayerAnimations\BlobPoppedDeath4.png">
       <Name>BlobPoppedDeath4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlobPoppedDeath3-.png">
+    <Compile Include="PlayerAnimations\BlobPoppedDeath3-.png">
       <Name>BlobPoppedDeath3-</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
